@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kit 03 · Training & Progress Hub — Protokol Langsing 30 Hari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1F1A;--emerald-900:#0A4435;--emerald-700:#0E5C46;--emerald-500:#149A72;
+  --emerald-100:#DEF2EA;--emerald-050:#EFF8F4;--gold-600:#B08A3E;--gold-500:#C9A24B;
+  --gold-100:#F6EEDC;--paper:#FAFAF7;--card:#FFFFFF;--line:#E3E9E4;--muted:#5B6B64;
+  --danger:#B3402F;--danger-bg:#FBEDEA;
+  --serif:'Fraunces',Georgia,serif;--sans:'Plus Jakarta Sans',-apple-system,'Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;font-size:15.5px;min-height:100vh}
+::selection{background:var(--gold-100);color:var(--emerald-900)}
+
+/* ===== Header ===== */
+.hero{background:
+  radial-gradient(900px 420px at 88% -20%, rgba(201,162,75,.18), transparent 55%),
+  radial-gradient(700px 500px at -5% 120%, rgba(20,154,114,.15), transparent 55%),
+  linear-gradient(165deg,var(--emerald-900),var(--emerald-700) 70%,#0C6B50);
+  color:#F5F8F4;padding:calc(30px + env(safe-area-inset-top)) 20px 78px;position:relative;overflow:hidden}
+.hero-in{max-width:1080px;margin:0 auto}
+.hero .kicker{display:inline-flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:2.4px;
+  text-transform:uppercase;font-weight:800;color:var(--gold-500);margin-bottom:14px}
+.hero .kicker::before{content:'';width:24px;height:1px;background:var(--gold-500)}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(29px,5.4vw,44px);line-height:1.08;letter-spacing:-.4px}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--gold-500)}
+.hero p{color:#CFE3D8;font-size:clamp(13.5px,2vw,15.5px);max-width:600px;margin-top:12px}
+.hero .orn{position:absolute;right:-60px;bottom:-110px;width:280px;height:280px;border-radius:50%;
+  border:1.5px solid rgba(201,162,75,.30);pointer-events:none}
+.hero .orn::after{content:'';position:absolute;inset:32px;border-radius:50%;border:1px solid rgba(245,248,244,.14)}
+
+/* ===== Tabs ===== */
+.tabbar-wrap{max-width:1080px;margin:-46px auto 0;padding:0 20px;position:relative;z-index:5}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);background:var(--card);border:1px solid var(--line);
+  border-radius:18px;padding:7px;gap:6px;box-shadow:0 18px 44px rgba(10,68,53,.14)}
+.tabbar button{border:none;background:transparent;font-family:var(--sans);cursor:pointer;
+  padding:13px 8px;border-radius:12px;font-size:12.5px;font-weight:800;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:2px;-webkit-tap-highlight-color:transparent}
+.tabbar button small{font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.7}
+.tabbar button.on{background:var(--emerald-900);color:#fff}
+.tabbar button.on small{color:var(--gold-500);opacity:1}
+.tabbar button:focus-visible{outline:2px solid var(--emerald-500);outline-offset:2px}
+@media(max-width:480px){.tabbar button{font-size:11px;padding:12px 4px}}
+
+/* ===== Layout ===== */
+.app{max-width:1080px;margin:0 auto;padding:26px 20px calc(70px + env(safe-area-inset-bottom))}
+.pane{display:none}
+.pane.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:18px}
+.card h2{font-family:var(--serif);font-weight:700;font-size:20px;color:var(--emerald-900);margin-bottom:4px}
+.card .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+
+label{display:block;font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;font-weight:800;
+  color:var(--emerald-700);margin-bottom:6px}
+input,select{width:100%;padding:12px 13px;border:1.5px solid #CFDFD4;border-radius:12px;background:#fff;
+  font-family:var(--sans);font-size:14.5px;font-weight:700;color:var(--emerald-900);appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230E5C46' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+input:focus,select:focus{outline:2px solid var(--emerald-500);outline-offset:1px;border-color:var(--emerald-500)}
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:11px}
+
+.btn{background:var(--emerald-900);color:#fff;border:none;padding:12px 20px;border-radius:12px;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn:hover{background:var(--emerald-700)}
+.btn.outline{background:transparent;border:1.5px solid var(--emerald-500);color:var(--emerald-700)}
+.btn.outline:hover{background:var(--emerald-050)}
+.btn.danger{background:transparent;border:1.5px solid #E3B3A8;color:var(--danger)}
+.btn.danger:hover{background:var(--danger-bg)}
+.btn.sm{padding:7px 12px;font-size:11.5px;border-radius:9px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+.note{background:var(--gold-100);border:1px solid #E8D9B4;border-radius:14px;padding:14px 16px;
+  font-size:13px;line-height:1.65;color:#6B5320;margin-top:14px}
+.note b{color:#4A3A12}
+.note .t{display:block;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;
+  color:var(--gold-600);margin-bottom:5px}
+
+.progress-row{display:flex;align-items:center;gap:12px;margin-top:14px}
+.progress-row .txt{font-size:12px;font-weight:800;color:var(--emerald-700);white-space:nowrap}
+.progress-row .pct{font-size:12px;font-weight:800;color:var(--gold-600);white-space:nowrap}
+.pbar{flex:1;height:9px;background:var(--emerald-100);border-radius:6px;overflow:hidden}
+.pbar div{height:100%;background:linear-gradient(90deg,var(--emerald-700),var(--gold-500));width:0%;transition:.3s}
+
+/* ===== Tab 1: Workout ===== */
+.day-strip{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;
+  margin-bottom:16px;scrollbar-width:none}
+.day-strip::-webkit-scrollbar{display:none}
+.day-btn{flex:0 0 auto;width:46px;height:46px;border-radius:12px;border:1.5px solid var(--line);
+  background:#fff;font-family:var(--sans);font-weight:800;font-size:12.5px;color:var(--emerald-700);
+  cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative}
+.day-btn.on{background:var(--emerald-900);color:#fff;border-color:var(--emerald-900)}
+.day-btn.done{border-color:var(--emerald-500)}
+.day-btn.done::after{content:'✓';position:absolute;top:-5px;right:-5px;background:var(--gold-500);
+  color:#3A2E10;width:16px;height:16px;border-radius:50%;font-size:9px;display:flex;align-items:center;
+  justify-content:center;font-weight:900}
+
+.timer-card{background:linear-gradient(150deg,var(--emerald-900),var(--emerald-700));color:#fff;
+  padding:26px;border-radius:20px;text-align:center;margin-bottom:18px}
+.timer-card .tl{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;font-weight:800;color:var(--gold-500)}
+.timer-card .tv{font-family:var(--serif);font-weight:700;font-size:clamp(44px,9vw,60px);letter-spacing:-1px;margin:6px 0}
+.timer-card .tbtns{display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.timer-card button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.28);
+  padding:10px 18px;border-radius:10px;font-family:var(--sans);font-weight:800;font-size:12.5px;cursor:pointer}
+.timer-card button.play{background:var(--gold-500);color:#3A2E10;border-color:var(--gold-500)}
+
+.wmeta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.wmeta span{background:var(--emerald-050);border:1px solid #D8E8DE;padding:5px 13px;border-radius:14px;
+  font-size:11.5px;font-weight:800;color:var(--emerald-700)}
+.exercise{background:#fff;border:1.5px solid var(--line);border-left:4px solid var(--emerald-500);
+  border-radius:0 14px 14px 0;padding:14px 16px;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.exercise.done{background:var(--emerald-050);border-left-color:var(--gold-500)}
+.ex-h{display:flex;justify-content:space-between;align-items:center}
+.ex-h .en{font-weight:800;font-size:14px;color:var(--ink)}
+.exercise.done .en{text-decoration:line-through;text-decoration-color:var(--gold-500);color:var(--muted)}
+.ex-h .ck{width:23px;height:23px;flex-shrink:0;border:2px solid var(--emerald-500);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:13px;font-weight:900}
+.exercise.done .ck{background:var(--emerald-500);color:#fff}
+.ex-d{font-size:12.5px;color:#3A4A43;line-height:1.6;margin-top:6px}
+.ex-d b{color:var(--ink)}
+.reps-tag{display:inline-block;background:var(--gold-100);color:var(--gold-600);padding:2px 10px;
+  border-radius:6px;font-size:11px;font-weight:800;margin-right:7px}
+
+/* ===== Tab 2: Progress Tracker ===== */
+.stat-box{background:var(--emerald-050);border:1px solid #D8E8DE;border-radius:14px;padding:13px;text-align:center}
+.stat-box.gold{background:var(--gold-100);border-color:#E8D9B4}
+.stat-box .l{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.stat-box .v{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--emerald-700);margin-top:2px}
+.stat-box.gold .v{color:var(--gold-600)}
+.chart-box{background:var(--emerald-050);border:1px solid #D8E8DE;border-radius:16px;padding:16px}
+.chart-box svg{width:100%;height:auto;display:block}
+.chart-cap{text-align:center;font-size:11.5px;color:var(--muted);font-weight:700;margin-top:8px}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--emerald-700)}
+table td,table th{padding:11px 14px;border-top:1px solid var(--line)}
+table tr:nth-child(even) td{background:#FCFCFA}
+.delta{font-size:10.5px;padding:2px 7px;border-radius:5px;font-weight:800;margin-left:5px}
+.delta.down{background:var(--emerald-050);color:var(--emerald-700)}
+.delta.up{background:var(--danger-bg);color:var(--danger)}
+.delta.same{background:#F1F5F0;color:var(--muted)}
+.empty-row{text-align:center;padding:30px;color:var(--muted);font-size:13.5px}
+
+/* ===== Tab 3: Habit Tracker ===== */
+.matrix-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;margin-bottom:16px}
+.matrix{display:grid;grid-template-columns:170px repeat(30,34px);gap:3px;font-size:11px;min-width:1300px}
+.mx-h{padding:7px 5px;background:var(--emerald-900);color:#fff;text-align:center;font-weight:800;font-size:10px;border-radius:5px}
+.mx-label{padding:8px 10px;background:var(--emerald-050);border-radius:6px;font-weight:700;color:var(--ink);
+  font-size:12px;display:flex;align-items:center;gap:6px}
+.mx-label .em{font-size:15px}
+.mx-cell{aspect-ratio:1;background:#F1F5F0;border-radius:6px;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;font-weight:900;font-size:12px;color:transparent;-webkit-tap-highlight-color:transparent}
+.mx-cell:hover{background:var(--emerald-100)}
+.mx-cell.done{background:var(--emerald-500);color:#fff}
+.mx-cell.done::before{content:'✓'}
+.hstat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+.habit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.habit-item{background:var(--emerald-050);border:1px solid #D8E8DE;border-radius:12px;padding:11px 14px;
+  font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:10px}
+.habit-item .em{font-size:19px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="orn"></div>
+  <div class="hero-in">
+    <div class="kicker">Kit 03 · Protokol Langsing 30 Hari</div>
+    <h1>Training &amp; <em>Progress Hub</em></h1>
+    <p>Latihan 15 menit harian dengan timer built-in, catat berat &amp; ukuran badan dengan grafik trend, dan matriks 10 habit — semua progress 30 harimu dalam satu dashboard.</p>
+  </div>
+</header>
+
+<div class="tabbar-wrap">
+  <div class="tabbar" role="tablist">
+    <button class="on" data-pane="workout" role="tab"><small>Harian</small>Workout 15 Menit</button>
+    <button data-pane="progress" role="tab"><small>Mingguan</small>Progress Tracker</button>
+    <button data-pane="habit" role="tab"><small>30 Hari</small>Habit Tracker</button>
+  </div>
+</div>
+
+<div class="app">
+
+<!-- ============ TAB 1: WORKOUT ============ -->
+<section class="pane on" id="pane-workout">
+  <div class="card">
+    <h2>Pilih Hari (1-30)</h2>
+    <div class="sub">Program rotasi 7 jenis latihan. Tandai selesai otomatis saat semua gerakan dicentang.</div>
+    <div class="day-strip" id="dayStrip"></div>
+    <div class="progress-row">
+      <span class="txt" id="woProgTxt">0/30 hari</span>
+      <div class="pbar"><div id="woProgFill"></div></div>
+      <span class="pct" id="woProgPct">0%</span>
+    </div>
+  </div>
+
+  <div class="timer-card">
+    <div class="tl">Timer Latihan</div>
+    <div class="tv" id="timerDisplay">15:00</div>
+    <div class="tbtns">
+      <button class="play" id="tStart" type="button">▶ Mulai</button>
+      <button id="tPause" type="button">⏸ Jeda</button>
+      <button id="tReset" type="button">↻ Ulang</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 id="dayTitle">Hari 1 — Full Body Foundation</h2>
+    <div class="wmeta" id="dayMeta"></div>
+    <div id="exercises"></div>
+    <div class="note"><span class="t">Prinsip Latihan</span><b>Form &gt; kecepatan.</b> Lebih baik 10 push-up form benar daripada 20 form rusak. Istirahat 30-45 detik antar gerakan. Detail alasan kenapa latihan ini bekerja ada di Bab 6 ebook.</div>
+  </div>
+</section>
+
+<!-- ============ TAB 2: PROGRESS TRACKER ============ -->
+<section class="pane" id="pane-progress">
+  <div class="card">
+    <h2>Catat Progress Hari Ini</h2>
+    <div class="sub">Timbang tiap pagi (Bab 3 ebook). Input minimal berat badan; lainnya opsional.</div>
+    <div class="f-grid">
+      <div><label>Tanggal</label><input type="date" id="prDate"></div>
+      <div><label>Berat (kg)</label><input type="number" step="0.1" id="prWeight" placeholder="65.0" inputmode="decimal"></div>
+      <div><label>Lingkar Pinggang (cm)</label><input type="number" step="0.1" id="prWaist" placeholder="80" inputmode="decimal"></div>
+      <div><label>Mood (1-10)</label><input type="number" min="1" max="10" id="prMood" placeholder="8" inputmode="numeric"></div>
+      <div><label>Energy (1-10)</label><input type="number" min="1" max="10" id="prEnergy" placeholder="7" inputmode="numeric"></div>
+      <div><label>Tidur (jam)</label><input type="number" step="0.5" id="prSleep" placeholder="7.5" inputmode="decimal"></div>
+    </div>
+    <div style="margin-top:11px"><label>Catatan (opsional)</label><input type="text" id="prNotes" placeholder="Hari ini gym pertama kali"></div>
+    <div class="btnrow">
+      <button class="btn" id="prAdd" type="button">Simpan Entry</button>
+      <button class="btn outline" id="prExport" type="button">Export CSV</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Ringkasan</h2>
+    <div class="f-grid" id="prSummary" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))"></div>
+    <div id="prChartWrap" style="margin-top:16px"></div>
+  </div>
+
+  <div class="card">
+    <h2>Semua Entry</h2>
+    <div class="table-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--line)">
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;min-width:560px">
+        <thead><tr>
+          <th style="background:var(--emerald-900);color:#F2F7F3;text-align:left;padding:11px 14px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800">Tgl</th>
+          <th style="background:var(--emerald-900);color:#F2F7F3;text-align:right;padding:11px 14px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800">BB</th>
+          <th style="background:var(--emerald-900);color:#F2F7F3;text-align:right;padding:11px 14px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800">Pinggang</th>
+          <th style="background:var(--emerald-900);color:#F2F7F3;text-align:right;padding:11px 14px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800">Mood</th>
+          <th style="background:var(--emerald-900);color:#F2F7F3;text-align:right;padding:11px 14px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800">Energy</th>
+          <th style="background:var(--emerald-900);color:#F2F7F3;text-align:right;padding:11px 14px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800">Tidur</th>
+          <th style="background:var(--emerald-900);color:#F2F7F3;text-align:left;padding:11px 14px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800">Aksi</th>
+        </tr></thead>
+        <tbody id="prBody"></tbody>
+      </table>
+    </div>
+    <div class="btnrow"><button class="btn danger" id="prReset" type="button">Reset Semua Data</button></div>
+  </div>
+</section>
+
+<!-- ============ TAB 3: HABIT TRACKER ============ -->
+<section class="pane" id="pane-habit">
+  <div class="card">
+    <h2>Matriks 30 Hari × 10 Habit</h2>
+    <div class="sub">Geser ke kanan untuk lihat hari selanjutnya. Tap kotak untuk mencentang.</div>
+    <div class="matrix-scroll" id="matrixScroll"><div class="matrix" id="matrix"></div></div>
+    <div class="hstat-row" id="hstatRow"></div>
+    <div class="note"><span class="t">Aturan Habit</span><b>80%+ compliance = sustainable.</b> 50-80% = perlu adjust. &lt;50% = revisi habit (terlalu banyak/sulit sekaligus). Target minimum: <b>7 dari 10 habit</b> tercentang per hari = hari sukses.</div>
+  </div>
+
+  <div class="card">
+    <h2>10 Habit yang Dilacak</h2>
+    <div id="habitList" class="habit-list"></div>
+  </div>
+</section>
+
+</div><!-- /.app -->
+
+<footer style="max-width:1080px;margin:0 auto;padding:0 20px 34px;text-align:center;font-size:11.5px;color:var(--muted)">Bagian dari paket <b style="color:var(--emerald-700)">Protokol Langsing 30 Hari</b> · Kit 03 dari 4 · Alasan latihan &amp; pengukuran dijelaskan di ebook utama, Bab 3 &amp; Bab 6</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+
+/* ===== Tab switching ===== */
+document.querySelectorAll('.tabbar [data-pane]').forEach(b=>b.addEventListener('click',()=>{
+  const p=b.dataset.pane;
+  document.querySelectorAll('.tabbar button').forEach(x=>x.classList.toggle('on',x.dataset.pane===p));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.toggle('on',x.id==='pane-'+p));
+  localStorage.setItem('pl30-hub-tab',p);
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* =========================================================
+   TAB 1 — WORKOUT
+   ========================================================= */
+const WORKOUTS=[
+  {name:'Full Body Foundation',kcal:120,intensity:'🟢 Beginner',exercises:[
+    {n:'Jumping Jacks',r:'3 × 30 detik',d:'Lompat sambil tangan kiri-kanan. <b>Cardio warm-up.</b>'},
+    {n:'Push-Up (knee atau full)',r:'3 × 8-12 rep',d:'Pemula: knee push-up. Mahir: full. <b>Chest + shoulder + tricep.</b>'},
+    {n:'Squat',r:'3 × 15 rep',d:'Turun sampai paha sejajar lantai. <b>Quadriceps + glute.</b>'},
+    {n:'Plank',r:'3 × 30 detik',d:'Body lurus, perut kencang. <b>Core stability.</b>'},
+    {n:'Mountain Climber',r:'3 × 30 detik',d:'Plank + lari di tempat. <b>Full body cardio.</b>'},
+  ]},
+  {name:'Upper Body Push',kcal:130,intensity:'🟢 Beginner',exercises:[
+    {n:'Wide Push-Up',r:'3 × 8-12 rep',d:'Tangan lebih lebar dari bahu. <b>Chest fokus.</b>'},
+    {n:'Pike Push-Up',r:'3 × 6-10 rep',d:'Body seperti V terbalik. <b>Shoulder.</b>'},
+    {n:'Tricep Dips (kursi)',r:'3 × 10 rep',d:'Pakai kursi, body turun-naik. <b>Tricep.</b>'},
+    {n:'Plank to Push-Up',r:'3 × 6 rep',d:'Plank → naik ke push-up position. <b>Core + shoulder.</b>'},
+    {n:'Wall Push',r:'3 × 12 rep',d:'Push-up tapi dinding. <b>Cool down.</b>'},
+  ]},
+  {name:'Lower Body Strength',kcal:140,intensity:'🟢 Beginner',exercises:[
+    {n:'Bodyweight Squat',r:'4 × 15 rep',d:'Form: dada tegak, lutut sejajar jari kaki.'},
+    {n:'Lunges (alternating)',r:'3 × 10/kaki',d:'Selangkah, turun sampai lutut hampir menyentuh lantai.'},
+    {n:'Glute Bridge',r:'3 × 15 rep',d:'Tidur, lutut tekuk, angkat panggul. <b>Glute aktivasi.</b>'},
+    {n:'Calf Raise',r:'3 × 20 rep',d:'Berdiri, angkat tumit. <b>Betis.</b>'},
+    {n:'Wall Sit',r:'3 × 30 detik',d:'Berjongkok melawan dinding seperti kursi. <b>Endurance quad.</b>'},
+  ]},
+  {name:'Core Power',kcal:110,intensity:'🟢 Beginner',exercises:[
+    {n:'Plank',r:'3 × 45 detik',d:'Strict plank, body lurus.'},
+    {n:'Russian Twist',r:'3 × 20 rep',d:'Duduk + kaki angkat, putar badan kiri-kanan.'},
+    {n:'Bicycle Crunch',r:'3 × 20 rep',d:'Lutut siku alternating. <b>Obliques.</b>'},
+    {n:'Leg Raise',r:'3 × 12 rep',d:'Tidur, kaki lurus, angkat 90°. <b>Lower abs.</b>'},
+    {n:'Dead Bug',r:'3 × 10/sisi',d:'Tidur, tangan-kaki alternating. <b>Core control.</b>'},
+  ]},
+  {name:'Cardio Burn',kcal:160,intensity:'🟡 Moderate',exercises:[
+    {n:'High Knees',r:'4 × 30 detik',d:'Lari di tempat, lutut tinggi. <b>Cardio.</b>'},
+    {n:'Burpees',r:'4 × 8 rep',d:'Squat → plank → jump. <b>Full body cardio.</b>'},
+    {n:'Jump Squat',r:'3 × 10 rep',d:'Squat + lompat. <b>Power leg.</b>'},
+    {n:'Skater Hop',r:'3 × 20 rep',d:'Lompat ke samping seperti skater. <b>Lateral movement.</b>'},
+    {n:'Mountain Climber',r:'3 × 40 detik',d:'Tempo cepat. <b>Cardio + core.</b>'},
+  ]},
+  {name:'Active Recovery',kcal:60,intensity:'🟢 Easy',exercises:[
+    {n:'Walking 20 menit',r:'1 sesi',d:'Outdoor / treadmill. <b>Active recovery, boost recovery.</b>'},
+    {n:'Stretching Full Body',r:'10 menit',d:'Hold each pose 30 detik. <b>Mobility.</b>'},
+    {n:'Foam Rolling (kalau ada)',r:'5 menit',d:'Roll otot tegang. <b>Recovery.</b>'},
+    {n:'Deep Breathing',r:'5 menit',d:'Box breathing 4-4-4-4. <b>Stress relief.</b>'},
+  ]},
+  {name:'HIIT Total Body',kcal:180,intensity:'🔴 Advanced',exercises:[
+    {n:'Burpees',r:'5 × 10 rep',d:'Tempo cepat. Istirahat 30 detik antar set.'},
+    {n:'Jumping Lunges',r:'4 × 12 rep',d:'Lunges + lompat alternating. <b>Plyometric leg.</b>'},
+    {n:'Push-Up + Shoulder Tap',r:'4 × 8 rep',d:'Push-up + tangan tap bahu. <b>Core stability + chest.</b>'},
+    {n:'Sprint in Place',r:'4 × 30 detik',d:'All-out 30 detik, rest 30 detik.'},
+    {n:'Plank Jacks',r:'3 × 30 detik',d:'Plank + kaki kiri-kanan seperti jumping jack.'},
+  ]},
+];
+let activeDay=1;
+const dayStrip=$('dayStrip');
+for(let i=1;i<=30;i++){
+  const b=document.createElement('button');
+  b.className='day-btn'+(i===1?' on':'');b.textContent=i;b.dataset.d=i;b.type='button';
+  b.addEventListener('click',()=>renderWorkout(i));
+  dayStrip.appendChild(b);
+}
+function getWorkout(d){return WORKOUTS[(d-1)%WORKOUTS.length]}
+function exDoneKey(d){return 'pl30-wo-'+d}
+function isExDone(d,i){try{return JSON.parse(localStorage.getItem(exDoneKey(d))||'[]').includes(i)}catch(e){return false}}
+function renderWorkout(d){
+  activeDay=d;
+  document.querySelectorAll('.day-btn').forEach(x=>x.classList.toggle('on',+x.dataset.d===d));
+  const w=getWorkout(d);
+  $('dayTitle').textContent=`Hari ${d} — ${w.name}`;
+  $('dayMeta').innerHTML=`<span>🔥 ~${w.kcal} kkal</span><span>⏱️ 15 menit</span><span>${w.intensity}</span>`;
+  $('exercises').innerHTML=w.exercises.map((ex,i)=>{
+    const done=isExDone(d,i);
+    return `<div class="exercise${done?' done':''}" data-i="${i}">
+      <div class="ex-h"><div class="en">${i+1}. ${ex.n}</div><div class="ck"></div></div>
+      <div class="ex-d"><span class="reps-tag">${ex.r}</span>${ex.d}</div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('#exercises .exercise').forEach(el=>{
+    el.addEventListener('click',()=>toggleEx(d,+el.dataset.i));
+  });
+  updateWorkoutProg();
+}
+function toggleEx(d,i){
+  let s=[];try{s=JSON.parse(localStorage.getItem(exDoneKey(d))||'[]')}catch(e){}
+  const idx=s.indexOf(i);
+  if(idx>=0)s.splice(idx,1);else s.push(i);
+  localStorage.setItem(exDoneKey(d),JSON.stringify(s));
+  const w=getWorkout(d);
+  if(s.length===w.exercises.length)localStorage.setItem('pl30-wo-day-'+d,'1');
+  else localStorage.removeItem('pl30-wo-day-'+d);
+  renderWorkout(d);
+}
+function updateWorkoutProg(){
+  let done=0;
+  for(let i=1;i<=30;i++){
+    if(localStorage.getItem('pl30-wo-day-'+i)==='1'){
+      done++;
+      const btn=document.querySelector(`.day-btn[data-d="${i}"]`);
+      if(btn)btn.classList.add('done');
+    }
+  }
+  $('woProgTxt').textContent=done+'/30 hari';
+  $('woProgFill').style.width=(done/30*100)+'%';
+  $('woProgPct').textContent=Math.round(done/30*100)+'%';
+}
+/* Timer */
+let timerInterval=null,timerSeconds=900;
+function tick(){
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  $('timerDisplay').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  if(timerSeconds<=0){clearInterval(timerInterval);timerInterval=null;
+    if(navigator.vibrate)navigator.vibrate([200,80,200]);
+    alert('⏰ Waktu 15 menit habis! Kerja bagus hari ini.');return}
+  timerSeconds--;
+}
+$('tStart').addEventListener('click',()=>{if(!timerInterval)timerInterval=setInterval(tick,1000)});
+$('tPause').addEventListener('click',()=>{if(timerInterval){clearInterval(timerInterval);timerInterval=null}});
+$('tReset').addEventListener('click',()=>{
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null}
+  timerSeconds=900;tick();
+});
+tick();
+
+/* =========================================================
+   TAB 2 — PROGRESS TRACKER
+   ========================================================= */
+function prGetData(){try{return JSON.parse(localStorage.getItem('pl30-progress')||'[]')}catch(e){return[]}}
+function prSave(d){localStorage.setItem('pl30-progress',JSON.stringify(d))}
+function fmt1(n){return n.toFixed(1)}
+function prAddEntry(){
+  const d={
+    date:$('prDate').value||new Date().toISOString().slice(0,10),
+    weight:+$('prWeight').value||null,
+    waist:+$('prWaist').value||null,
+    mood:+$('prMood').value||null,
+    energy:+$('prEnergy').value||null,
+    sleep:+$('prSleep').value||null,
+    notes:$('prNotes').value||''
+  };
+  if(!d.weight){alert('Minimal isi berat badan ya.');return}
+  const arr=prGetData();
+  arr.push(d);arr.sort((a,b)=>a.date.localeCompare(b.date));
+  prSave(arr);
+  ['prWeight','prWaist','prMood','prEnergy','prSleep','prNotes'].forEach(id=>$(id).value='');
+  renderProgress();
+}
+function prDelEntry(i){
+  if(!confirm('Hapus entry ini?'))return;
+  const arr=prGetData();arr.splice(i,1);prSave(arr);renderProgress();
+}
+function prResetAll(){if(confirm('Hapus SEMUA data progress? Tindakan ini tidak bisa dibatalkan.')){prSave([]);renderProgress()}}
+function prExportCSV(){
+  const arr=prGetData();
+  if(!arr.length){alert('Belum ada data untuk diexport.');return}
+  const csv='Tanggal,BB,Pinggang,Mood,Energy,Sleep,Notes\n'+arr.map(d=>`${d.date},${d.weight||''},${d.waist||''},${d.mood||''},${d.energy||''},${d.sleep||''},"${(d.notes||'').replace(/"/g,'""')}"`).join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});const u=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=u;a.download='protokol-langsing-progress.csv';a.click();URL.revokeObjectURL(u);
+}
+function renderProgress(){
+  const arr=prGetData();
+  const tb=$('prBody');
+  if(!arr.length){
+    tb.innerHTML='<tr><td colspan="7" class="empty-row">Belum ada entry. Mulai catat progress hari ini di form atas.</td></tr>';
+    $('prSummary').innerHTML='<div class="empty-row" style="grid-column:1/-1">Belum ada data</div>';
+    $('prChartWrap').innerHTML='';
+    return;
+  }
+  tb.innerHTML=arr.map((d,i)=>{
+    let deltaW='';
+    if(i>0&&arr[i-1].weight&&d.weight){
+      const dd=d.weight-arr[i-1].weight;
+      const cls=dd<0?'down':dd>0?'up':'same';
+      deltaW=`<span class="delta ${cls}">${dd>0?'+':''}${dd.toFixed(1)}</span>`;
+    }
+    return `<tr><td>${d.date}</td><td class="n">${d.weight?fmt1(d.weight):'-'}${deltaW}</td><td class="n">${d.waist?fmt1(d.waist):'-'}</td><td class="n">${d.mood||'-'}</td><td class="n">${d.energy||'-'}</td><td class="n">${d.sleep?fmt1(d.sleep):'-'}</td><td><button class="btn danger sm" data-i="${i}" type="button">Hapus</button></td></tr>`;
+  }).join('');
+  tb.querySelectorAll('button[data-i]').forEach(b=>b.addEventListener('click',()=>prDelEntry(+b.dataset.i)));
+
+  const ws=arr.map(a=>a.weight).filter(Boolean);
+  const first=ws[0],last=ws[ws.length-1],min=Math.min(...ws),max=Math.max(...ws);
+  const change=last-first;
+  $('prSummary').innerHTML=`
+    <div class="stat-box"><div class="l">Mulai</div><div class="v">${fmt1(first)} kg</div></div>
+    <div class="stat-box"><div class="l">Sekarang</div><div class="v">${fmt1(last)} kg</div></div>
+    <div class="stat-box ${change<=0?'':'gold'}"><div class="l">Perubahan</div><div class="v">${change>0?'+':''}${fmt1(change)} kg</div></div>
+    <div class="stat-box gold"><div class="l">Total Entry</div><div class="v">${arr.length}</div></div>
+  `;
+  if(ws.length<2){
+    $('prChartWrap').innerHTML='<div class="chart-box"><div class="empty-row">Tambah 1 entry lagi untuk melihat grafik trend.</div></div>';
+    return;
+  }
+  const padding=24,w=640,h=160;
+  const range=(max-min)||1;
+  const xstep=(w-padding*2)/(ws.length-1);
+  const pts=ws.map((wt,i)=>{
+    const x=padding+i*xstep;
+    const y=h-padding-((wt-min)/range)*(h-padding*2);
+    return [x,y];
+  });
+  const pathD='M '+pts.map(p=>`${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' L ');
+  const areaD=`${pathD} L ${pts[pts.length-1][0].toFixed(1)} ${h-padding} L ${pts[0][0].toFixed(1)} ${h-padding} Z`;
+  $('prChartWrap').innerHTML=`<div class="chart-box"><svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+      <path d="${areaD}" fill="rgba(20,154,114,.14)"/>
+      <path d="${pathD}" stroke="#0E5C46" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      ${pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="#C9A24B"/>`).join('')}
+    </svg><div class="chart-cap">${fmt1(min)} kg → ${fmt1(max)} kg · ${arr.length} entries</div></div>`;
+}
+$('prAdd').addEventListener('click',prAddEntry);
+$('prExport').addEventListener('click',prExportCSV);
+$('prReset').addEventListener('click',prResetAll);
+$('prDate').value=new Date().toISOString().slice(0,10);
+
+/* =========================================================
+   TAB 3 — HABIT TRACKER
+   ========================================================= */
+const HABITS=[
+  {em:'💧',n:'Minum 2,5L air'},
+  {em:'🥩',n:'Protein 1,8g/kg BB'},
+  {em:'🥬',n:'Sayur min. 3 porsi'},
+  {em:'🚶',n:'8.000+ langkah / jalan 30 menit'},
+  {em:'💪',n:'Workout 15 menit'},
+  {em:'😴',n:'Tidur 7-8 jam'},
+  {em:'❌',n:'No junk food / gorengan berlebih'},
+  {em:'📵',n:'No HP 1 jam sebelum tidur'},
+  {em:'🍬',n:'No minuman manis'},
+  {em:'🧘',n:'Stretching / relaksasi 10 menit'},
+];
+const habitListEl=$('habitList');
+HABITS.forEach((h,i)=>{
+  const d=document.createElement('div');
+  d.className='habit-item';
+  d.innerHTML=`<span class="em">${h.em}</span><div><b>${i+1}.</b> ${h.n}</div>`;
+  habitListEl.appendChild(d);
+});
+function hGetState(){try{return JSON.parse(localStorage.getItem('pl30-habit')||'{}')}catch(e){return{}}}
+function hSaveState(s){localStorage.setItem('pl30-habit',JSON.stringify(s))}
+function renderHabitMatrix(){
+  const state=hGetState();
+  const m=$('matrix');
+  let html='<div class="mx-h">Habit</div>';
+  for(let d=1;d<=30;d++)html+=`<div class="mx-h">${d}</div>`;
+  HABITS.forEach((h,hi)=>{
+    html+=`<div class="mx-label"><span class="em">${h.em}</span>${h.n}</div>`;
+    for(let d=1;d<=30;d++){
+      const k=`h${hi}-d${d}`;
+      html+=`<div class="mx-cell${state[k]?' done':''}" data-k="${k}"></div>`;
+    }
+  });
+  m.innerHTML=html;
+  m.querySelectorAll('.mx-cell').forEach(el=>el.addEventListener('click',()=>toggleHabit(el)));
+  updateHabitStats();
+}
+function toggleHabit(el){
+  const k=el.dataset.k;
+  const state=hGetState();
+  if(state[k]){delete state[k];el.classList.remove('done')}
+  else{state[k]=1;el.classList.add('done')}
+  hSaveState(state);
+  updateHabitStats();
+}
+function updateHabitStats(){
+  const state=hGetState();
+  const total=Object.keys(state).length;
+  const pct=Math.round(total/300*100);
+  let bestStreak=0,activeDays=0,curStreak=0;
+  for(let d=1;d<=30;d++){
+    let dayChecks=0;
+    for(let h=0;h<HABITS.length;h++)if(state[`h${h}-d${d}`])dayChecks++;
+    if(dayChecks>=7){curStreak++;if(curStreak>bestStreak)bestStreak=curStreak;activeDays++}
+    else if(dayChecks>0){activeDays++;curStreak=0}
+    else{curStreak=0}
+  }
+  $('hstatRow').innerHTML=`
+    <div class="stat-box"><div class="l">Total Centang</div><div class="v">${total}<span style="font-size:11px;font-family:var(--sans)"> / 300</span></div></div>
+    <div class="stat-box gold"><div class="l">Compliance</div><div class="v">${pct}%</div></div>
+    <div class="stat-box"><div class="l">Best Streak</div><div class="v">${bestStreak}<span style="font-size:11px;font-family:var(--sans)"> hari</span></div></div>
+    <div class="stat-box gold"><div class="l">Hari Aktif</div><div class="v">${activeDays}<span style="font-size:11px;font-family:var(--sans)">/30</span></div></div>
+  `;
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+(function(){
+  const savedTab=localStorage.getItem('pl30-hub-tab');
+  if(savedTab){
+    document.querySelectorAll('.tabbar button').forEach(x=>x.classList.toggle('on',x.dataset.pane===savedTab));
+    document.querySelectorAll('.pane').forEach(x=>x.classList.toggle('on',x.id==='pane-'+savedTab));
+  }
+  renderWorkout(1);
+  renderProgress();
+  renderHabitMatrix();
+})();
+</script>
+</body></html>

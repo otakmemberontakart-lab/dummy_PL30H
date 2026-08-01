@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kit 04 · Survival Guide — Protokol Langsing 30 Hari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1F1A;--emerald-900:#0A4435;--emerald-700:#0E5C46;--emerald-500:#149A72;
+  --emerald-100:#DEF2EA;--emerald-050:#EFF8F4;--gold-600:#B08A3E;--gold-500:#C9A24B;
+  --gold-100:#F6EEDC;--paper:#FAFAF7;--card:#FFFFFF;--line:#E3E9E4;--muted:#5B6B64;
+  --danger:#B3402F;--danger-bg:#FBEDEA;
+  --serif:'Fraunces',Georgia,serif;--sans:'Plus Jakarta Sans',-apple-system,'Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;font-size:15.5px;min-height:100vh}
+::selection{background:var(--gold-100);color:var(--emerald-900)}
+
+/* ===== Header ===== */
+.hero{background:
+  radial-gradient(900px 420px at 88% -20%, rgba(201,162,75,.18), transparent 55%),
+  radial-gradient(700px 500px at -5% 120%, rgba(20,154,114,.15), transparent 55%),
+  linear-gradient(165deg,var(--emerald-900),var(--emerald-700) 70%,#0C6B50);
+  color:#F5F8F4;padding:calc(30px + env(safe-area-inset-top)) 20px 78px;position:relative;overflow:hidden}
+.hero-in{max-width:1080px;margin:0 auto}
+.hero .kicker{display:inline-flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:2.4px;
+  text-transform:uppercase;font-weight:800;color:var(--gold-500);margin-bottom:14px}
+.hero .kicker::before{content:'';width:24px;height:1px;background:var(--gold-500)}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(29px,5.4vw,44px);line-height:1.08;letter-spacing:-.4px}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--gold-500)}
+.hero p{color:#CFE3D8;font-size:clamp(13.5px,2vw,15.5px);max-width:620px;margin-top:12px}
+.hero .orn{position:absolute;right:-60px;bottom:-110px;width:280px;height:280px;border-radius:50%;
+  border:1.5px solid rgba(201,162,75,.30);pointer-events:none}
+.hero .orn::after{content:'';position:absolute;inset:32px;border-radius:50%;border:1px solid rgba(245,248,244,.14)}
+
+/* ===== Tabs (horizontal scroll) ===== */
+.tabbar-wrap{max-width:1080px;margin:-46px auto 0;padding:0 20px;position:relative;z-index:5}
+.tabbar{display:flex;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:7px;
+  gap:6px;box-shadow:0 18px 44px rgba(10,68,53,.14);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabbar::-webkit-scrollbar{display:none}
+.tabbar button{border:none;background:transparent;font-family:var(--sans);cursor:pointer;flex:1 0 auto;
+  min-width:126px;padding:13px 12px;border-radius:12px;font-size:12.5px;font-weight:800;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:2px;-webkit-tap-highlight-color:transparent;white-space:nowrap}
+.tabbar button small{font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.7}
+.tabbar button.on{background:var(--emerald-900);color:#fff}
+.tabbar button.on small{color:var(--gold-500);opacity:1}
+.tabbar button:focus-visible{outline:2px solid var(--emerald-500);outline-offset:2px}
+
+/* ===== Layout ===== */
+.app{max-width:1080px;margin:0 auto;padding:26px 20px calc(70px + env(safe-area-inset-bottom))}
+.pane{display:none}
+.pane.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:18px}
+.card h2{font-family:var(--serif);font-weight:700;font-size:20px;color:var(--emerald-900);margin-bottom:4px}
+.card .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.card p{font-size:14.5px;color:#25342E;margin-bottom:12px;line-height:1.75}
+.card p:last-child{margin-bottom:0}
+.card p b{color:var(--ink)}
+
+.note{background:var(--gold-100);border:1px solid #E8D9B4;border-radius:14px;padding:14px 16px;
+  font-size:13px;line-height:1.65;color:#6B5320;margin-top:14px}
+.note b{color:#4A3A12}
+.note .t{display:block;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;
+  color:var(--gold-600);margin-bottom:5px}
+.note.green{background:var(--emerald-050);border-color:#CBE7DA;color:#1E4437}
+.note.green .t{color:var(--emerald-700)}
+.note.green b{color:var(--emerald-900)}
+
+/* ===== Picker cards (scenario selectors) ===== */
+.picker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:6px}
+.picker{border:1.5px solid var(--line);border-radius:16px;padding:16px 14px;text-align:center;cursor:pointer;
+  background:#fff;-webkit-tap-highlight-color:transparent;transition:border-color .15s}
+.picker:hover{border-color:var(--emerald-500)}
+.picker.on{background:var(--emerald-900);border-color:var(--emerald-900)}
+.picker .pe{font-size:28px;display:block;margin-bottom:6px}
+.picker .pn{font-weight:800;font-size:13px;color:var(--ink);line-height:1.3}
+.picker.on .pn{color:#fff}
+.picker .pd{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:2px}
+.picker.on .pd{color:var(--gold-500)}
+
+.result-panel{background:var(--emerald-050);border:1px solid #D8E8DE;border-radius:16px;padding:18px 20px;margin-top:16px}
+.result-panel h3{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--emerald-900);margin-bottom:10px}
+.result-panel h3 .em{margin-right:6px}
+.result-panel ul{padding-left:19px;font-size:13.5px;line-height:1.75;color:#1E4437}
+.result-panel ul li{margin-bottom:6px}
+.result-panel ul li b{color:var(--emerald-900)}
+.rp-empty{text-align:center;padding:24px 16px;color:var(--muted);font-size:13.5px;font-weight:600}
+
+.rank{display:flex;align-items:center;gap:10px;margin:10px 0}
+.rank .badge2{flex-shrink:0;width:70px;text-align:center;font-size:10px;font-weight:800;letter-spacing:.6px;
+  text-transform:uppercase;padding:5px 0;border-radius:7px}
+.rank.good .badge2{background:var(--emerald-100);color:var(--emerald-700)}
+.rank.mid .badge2{background:var(--gold-100);color:var(--gold-600)}
+.rank.bad .badge2{background:var(--danger-bg);color:var(--danger)}
+.rank .rt{font-size:13.5px;color:#25342E;line-height:1.6}
+.rank .rt b{color:var(--ink)}
+
+.script-box{background:#fff;border:1.5px dashed #CFDFD4;border-radius:12px;padding:12px 15px;margin:8px 0;
+  font-size:13.5px;font-style:italic;color:var(--emerald-800,#0E5C46)}
+.script-box::before{content:'"';font-family:var(--serif);font-weight:700;color:var(--gold-500);margin-right:2px}
+.script-box::after{content:'"';font-family:var(--serif);font-weight:700;color:var(--gold-500)}
+
+/* Checklist (travel) */
+.check{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);
+  border-radius:13px;padding:13px 15px;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:border-color .15s,background .15s}
+.check:hover{border-color:var(--emerald-500)}
+.check .box{width:22px;height:22px;flex-shrink:0;border:2px solid var(--emerald-500);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:12px;font-weight:900;margin-top:1px}
+.check.on{background:var(--emerald-050);border-color:var(--emerald-500)}
+.check.on .box{background:var(--emerald-500);color:#fff}
+.check .c-body{font-size:14px;line-height:1.55}
+.check .c-body b{color:var(--emerald-900)}
+.check.on .c-body b{text-decoration:line-through;text-decoration-color:var(--gold-500)}
+
+footer{max-width:1080px;margin:0 auto;padding:0 20px 34px;text-align:center;font-size:11.5px;color:var(--muted)}
+footer b{color:var(--emerald-700)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="orn"></div>
+  <div class="hero-in">
+    <div class="kicker">Kit 04 · Protokol Langsing 30 Hari</div>
+    <h1>Survival <em>Guide</em></h1>
+    <p>Panduan lapangan untuk lima situasi yang paling sering menggagalkan diet: kondangan, makan di luar, PMS &amp; craving, perjalanan dinas, dan hari setelah kebablasan. Pilih situasimu, dapatkan protokolnya.</p>
+  </div>
+</header>
+
+<div class="tabbar-wrap">
+  <div class="tabbar" role="tablist">
+    <button class="on" data-pane="acara" role="tab"><small>Situasi 1</small>Kondangan &amp; Acara</button>
+    <button data-pane="luar" role="tab"><small>Situasi 2</small>Makan di Luar</button>
+    <button data-pane="craving" role="tab"><small>Situasi 3</small>PMS &amp; Craving</button>
+    <button data-pane="travel" role="tab"><small>Situasi 4</small>Traveling</button>
+    <button data-pane="recovery" role="tab"><small>Situasi 5</small>Pemulihan</button>
+  </div>
+</div>
+
+<div class="app">
+
+<!-- ============ TAB 1: KONDANGAN & ACARA ============ -->
+<section class="pane on" id="pane-acara">
+  <div class="card">
+    <h2>Kondangan &amp; Acara Prasmanan</h2>
+    <div class="sub">Tidak ada budaya yang mengekspresikan kasih sayang lewat makanan seintens kita. Pilih jenis acaranya, dapatkan strategi piringnya.</div>
+    <p>Menolak makanan di acara sosial Indonesia bisa terasa seperti menolak orangnya. Kabar baiknya: kamu tidak perlu menolak apa pun — kamu hanya perlu <b>memilih dengan sadar</b>, satu putaran, satu piring.</p>
+    <div class="picker-grid" id="acaraPicker">
+      <div class="picker on" data-k="nikah"><span class="pe">💍</span><div class="pn">Pernikahan / Syukuran</div><div class="pd">Prasmanan besar</div></div>
+      <div class="picker" data-k="bukber"><span class="pe">🌙</span><div class="pn">Buka Bersama</div><div class="pd">Meja penuh sekaligus</div></div>
+      <div class="picker" data-k="kantor"><span class="pe">🎂</span><div class="pn">Ulang Tahun / Kantor</div><div class="pd">Kue &amp; snack meja</div></div>
+      <div class="picker" data-k="arisan"><span class="pe">🍲</span><div class="pn">Arisan Keluarga</div><div class="pd">Ditawari terus-terusan</div></div>
+    </div>
+    <div class="result-panel" id="acaraResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>Formula Piring Prasmanan</h2>
+    <div class="sub">Sama seperti di rumah (Bab 4 ebook), hanya urutannya sedikit berbeda karena godaannya lebih banyak.</div>
+    <div class="rank good"><div class="badge2">Langkah 1</div><div class="rt"><b>Keliling dulu, satu putaran penuh, tangan kosong.</b> Ini menghapus rasa takut kelewatan — kamu sudah tahu semua pilihan sebelum mengambil apa pun.</div></div>
+    <div class="rank good"><div class="badge2">Langkah 2</div><div class="rt"><b>Isi ½ piring dengan sayur &amp; lalapan dulu</b> sebelum menyentuh nasi atau lauk berat. Volume besar, kalori kecil — piringmu terasa penuh sebelum kalorinya banyak.</div></div>
+    <div class="rank mid">☝<div class="badge2">Langkah 3</div><div class="rt"><b>Satu porsi nasi, satu pilihan protein terbaik yang tersedia.</b> Sate, ikan, ayam panggang mengalahkan gulai dan rendang dari sisi kalori — bukan karena rendang haram, tapi karena satu porsi bisa 400+ kkal sendirian.</div></div>
+    <div class="rank bad"><div class="badge2">Awas</div><div class="rt"><b>Es buah bersantan &amp; kolak bukan buah biasa.</b> Santan + gula membuatnya setara satu porsi nasi lengkap — sekitar 350-450 kkal semangkuk kecil.</div></div>
+    <div class="note"><span class="t">Satu Piring, Bukan Bolak-Balik</span>Susun sekali dengan sadar, lalu <b>duduk dan nikmati.</b> Kalau ini memang jadwal cheat meal mingguanmu (Bab 8 ebook), nikmati penuh tanpa rasa bersalah — besok kembali protokol seperti biasa.</div>
+  </div>
+</section>
+
+<!-- ============ TAB 2: MAKAN DI LUAR ============ -->
+<section class="pane" id="pane-luar">
+  <div class="card">
+    <h2>Makan di Luar, Tanpa Drama</h2>
+    <div class="sub">Pilih tempatnya, dapatkan cara pesan yang sudah patuh protokol.</div>
+    <p>Kamu tidak perlu masak sendiri seumur hidup untuk tetap turun berat badan. Hampir semua tempat makan Indonesia punya opsi yang bisa dibuat patuh protokol — asal tahu apa yang harus diminta.</p>
+    <div class="picker-grid" id="luarPicker">
+      <div class="picker on" data-k="warteg"><span class="pe">🍛</span><div class="pn">Warteg</div></div>
+      <div class="picker" data-k="padang"><span class="pe">🥘</span><div class="pn">Nasi Padang</div></div>
+      <div class="picker" data-k="soto"><span class="pe">🍲</span><div class="pn">Soto / Bakso / Mie Ayam</div></div>
+      <div class="picker" data-k="ayam"><span class="pe">🍗</span><div class="pn">Ayam Geprek / Fried Chicken</div></div>
+      <div class="picker" data-k="cafe"><span class="pe">☕</span><div class="pn">Kafe Kekinian</div></div>
+      <div class="picker" data-k="jepang"><span class="pe">🍣</span><div class="pn">Jepang / Sushi</div></div>
+    </div>
+    <div class="result-panel" id="luarResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>Prinsip Universal di Manapun Kamu Makan</h2>
+    <ul style="padding-left:20px;font-size:14px;line-height:1.85;color:#25342E">
+      <li><b>Protein dulu di kepala, baru pilih sisanya.</b> Tentukan sumber proteinnya dulu sebelum lihat menu lengkap — mengurangi godaan impulsif.</li>
+      <li><b>Kuah bening menang lawan kuah santan.</b> Soto bening vs soto santan bisa beda 200+ kkal untuk porsi yang sama.</li>
+      <li><b>Minta sambal &amp; kecap terpisah, bukan disiram.</b> Kamu yang kontrol jumlahnya, bukan dapur.</li>
+      <li><b>Minuman selalu tawar</b> — teh tawar, air putih. Ini penghematan 150-450 kkal tanpa mengorbankan makanan sama sekali.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TAB 3: PMS & CRAVING ============ -->
+<section class="pane" id="pane-craving">
+  <div class="card">
+    <h2>Lapar Fisik atau Lapar Emosional?</h2>
+    <div class="sub">Bab 7 ebook menjelaskan kenapa ini terjadi. Di sini, cara membedakannya dalam 10 detik.</div>
+    <div class="cols">
+      <div class="rank good" style="align-items:flex-start"><div class="badge2" style="margin-top:2px">Fisik</div><div class="rt">Datang <b>bertahap</b>, bisa ditunda 20-30 menit tanpa siksaan, terasa di perut (bunyi, kosong), <b>terbuka</b> untuk makanan apa saja — nasi biasa pun cukup.</div></div>
+      <div class="rank bad" style="align-items:flex-start"><div class="badge2" style="margin-top:2px">Emosional</div><div class="rt">Datang <b>mendadak</b>, terasa mendesak "harus sekarang", terasa di kepala/mood bukan perut, <b>spesifik</b> — harus martabak, bukan sekadar makan.</div></div>
+    </div>
+    <div class="note green"><span class="t">Kalau Emosional</span>Bukan berarti dilarang makan — tapi pasang jeda 10 menit dulu. Minum air, jalan sebentar, lalu putuskan. Sebagian besar dorongan emosional mereda sendiri dalam waktu itu. Kalau setelah 10 menit masih ingin, dan ini memang jadwal cheat meal-mu, nikmati saja.</div>
+  </div>
+
+  <div class="card">
+    <h2>Craving Decoder</h2>
+    <div class="sub">Pilih craving yang sedang kamu rasakan — dapatkan pengganti yang tetap memuaskan tanpa menghapus progres minggu ini.</div>
+    <div class="picker-grid" id="cravePicker">
+      <div class="picker on" data-k="manis"><span class="pe">🍫</span><div class="pn">Manis</div></div>
+      <div class="picker" data-k="asin"><span class="pe">🧂</span><div class="pn">Asin / Gurih</div></div>
+      <div class="picker" data-k="goreng"><span class="pe">🍟</span><div class="pn">Berminyak / Gorengan</div></div>
+      <div class="picker" data-k="karbo"><span class="pe">🍜</span><div class="pn">Karbo Padat</div></div>
+    </div>
+    <div class="result-panel" id="craveResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>Menjelang &amp; Saat Menstruasi</h2>
+    <p>Fase luteal (7-10 hari sebelum haid) menaikkan kebutuhan kalori tubuh secara alami sekitar <b>100-300 kkal/hari</b> — ini bukan kelemahan, ini fisiologi. Progesteron naik, metabolisme sedikit terangkat, dan craving karbo-manis memang lebih kuat karena serotonin sedang rendah.</p>
+    <p>Berat badan naik 1-2 kg di masa ini <b>hampir selalu air</b>, bukan lemak — retensi cairan akibat perubahan hormon. Jangan panik, jangan potong kalori lebih dalam di masa ini.</p>
+    <div class="note"><span class="t">Penyesuaian yang Wajar</span>Boleh naikkan kalori <b>100-200 kkal/hari</b> selama fase ini, prioritaskan karbo kompleks (oat, ubi, buah) dibanding gula olahan murni — memuaskan craving dengan dampak gula darah yang lebih stabil. Timbang seperti biasa, tapi bandingkan dengan siklus bulan lalu di fase yang sama, bukan minggu lalu.</div>
+  </div>
+</section>
+
+<!-- ============ TAB 4: TRAVELING ============ -->
+<section class="pane" id="pane-travel">
+  <div class="card">
+    <h2>Checklist Sebelum Berangkat</h2>
+    <div class="sub">Tap untuk mencentang — tersimpan otomatis di perangkatmu.</div>
+    <div id="travelChecklist"></div>
+  </div>
+
+  <div class="card">
+    <h2>Tiga Medan Traveling</h2>
+    <div class="picker-grid" id="travelPicker">
+      <div class="picker on" data-k="hotel"><span class="pe">🏨</span><div class="pn">Hotel Breakfast Buffet</div></div>
+      <div class="picker" data-k="pesawat"><span class="pe">✈️</span><div class="pn">Bandara &amp; Pesawat</div></div>
+      <div class="picker" data-k="dinas"><span class="pe">💼</span><div class="pn">Dinas Padat Meeting</div></div>
+    </div>
+    <div class="result-panel" id="travelResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>Aturan 80/20 Selama Perjalanan</h2>
+    <p>Traveling bukan alasan untuk "libur total" dari protokol — tapi juga bukan alasan untuk stres menghitung setiap gram. Pakai kerangka simpel: <b>protein &amp; sayur diusahakan di setiap makan besar, porsi karbo dan minyak dilonggarkan tanpa dihitung ketat, dan jalan kaki jadi olahragamu</b> (kamu toh sedang jalan-jalan explore tempat baru).</p>
+    <p>Target realistis traveling 3-7 hari: <b>berat stabil, bukan turun.</b> Itu sudah kemenangan. Begitu pulang, kembali protokol penuh — kamu tidak kehilangan progres apa pun selama tidak ada lonjakan drastis.</p>
+  </div>
+</section>
+
+<!-- ============ TAB 5: PEMULIHAN ============ -->
+<section class="pane" id="pane-recovery">
+  <div class="card">
+    <h2>Kapan Kejadiannya?</h2>
+    <div class="sub">Kebablasan makan bukan akhir dari protokolmu. Pilih waktunya, dapatkan langkah selanjutnya.</div>
+    <div class="picker-grid" id="recoveryPicker">
+      <div class="picker on" data-k="kemarin"><span class="pe">🌅</span><div class="pn">Baru Saja / Kemarin</div></div>
+      <div class="picker" data-k="beberapa"><span class="pe">📅</span><div class="pn">2-3 Hari Lalu</div></div>
+      <div class="picker" data-k="seminggu"><span class="pe">🗓️</span><div class="pn">Seminggu Lebih</div></div>
+      <div class="picker" data-k="berulang"><span class="pe">🔁</span><div class="pn">Sudah Berulang Kali</div></div>
+    </div>
+    <div class="result-panel" id="recoveryResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>Yang TIDAK Perlu Kamu Lakukan</h2>
+    <div class="rank bad"><div class="badge2">Jangan</div><div class="rt">Puasa penuh besoknya sebagai "hukuman". Ini memicu siklus lapar ekstrem → makan berlebih lagi malamnya (Bab 1 ebook: all-or-nothing).</div></div>
+    <div class="rank bad"><div class="badge2">Jangan</div><div class="rt">Cardio 2 jam untuk "membakar dosa". Kelelahan + defisit ekstrem sehari = recovery buruk, bukan hasil lebih cepat.</div></div>
+    <div class="rank bad"><div class="badge2">Jangan</div><div class="rt">Mulai ulang dari hari 1 protokol. Satu kejadian tidak menghapus hari-hari sebelumnya — lanjutkan dari hari ini, di hari keberapapun kamu berada.</div></div>
+    <div class="rank good"><div class="badge2">Lakukan</div><div class="rt">Makan berikutnya, kembali normal. Itu saja. Konsistensi dinilai per minggu (Bab 3 ebook), bukan per kejadian.</div></div>
+  </div>
+</section>
+
+</div><!-- /.app -->
+
+<footer>Bagian dari paket <b>Protokol Langsing 30 Hari</b> · Kit 04 dari 4 · Filosofi cheat meal &amp; troubleshooting dijelaskan lengkap di ebook utama, Bab 8-9</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+
+/* ===== Tab switching ===== */
+document.querySelectorAll('.tabbar [data-pane]').forEach(b=>b.addEventListener('click',()=>{
+  const p=b.dataset.pane;
+  document.querySelectorAll('.tabbar button').forEach(x=>x.classList.toggle('on',x.dataset.pane===p));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.toggle('on',x.id==='pane-'+p));
+  localStorage.setItem('pl30-survival-tab',p);
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* Generic picker wiring: container id -> {data object, result render fn, result el id} */
+function wirePicker(containerId,resultId,renderFn){
+  const container=$(containerId);
+  container.querySelectorAll('.picker').forEach(el=>{
+    el.addEventListener('click',()=>{
+      container.querySelectorAll('.picker').forEach(x=>x.classList.remove('on'));
+      el.classList.add('on');
+      renderFn(el.dataset.k);
+    });
+  });
+  // render first (already .on) on load
+  const first=container.querySelector('.picker.on')||container.querySelector('.picker');
+  if(first)renderFn(first.dataset.k);
+}
+
+/* =========================================================
+   TAB 1 — KONDANGAN & ACARA
+   ========================================================= */
+const ACARA={
+  nikah:{title:'Pernikahan / Syukuran',emoji:'💍',items:[
+    'Keliling penuh dulu sebelum ambil — meja prasmanan pernikahan biasanya 8-12 menu, godaan kelewatan tinggi.',
+    'Prioritaskan <b>sate &amp; ikan bakar</b> di atas rendang/gulai/opor — protein sama, kalori jauh lebih ringan.',
+    'Ambil <b>satu jenis kudapan manis saja</b> di meja dessert, bukan sedikit-sedikit dari lima jenis (efeknya sama seperti satu porsi penuh).',
+    'Kalau ini jadwal cheat meal mingguanmu — nikmati sepenuhnya, tanpa audit kalori di tempat.',
+  ]},
+  bukber:{title:'Buka Bersama',emoji:'🌙',items:[
+    'Buka dengan <b>air putih + kurma 2-3 butir</b> dulu, jangan langsung menu berat — lambung yang kosong seharian butuh transisi.',
+    'Tunggu 10-15 menit setelah takjil sebelum makan besar. Sinyal kenyang butuh waktu sampai ke otak; makan besar terlalu cepat = makan berlebih tanpa sadar.',
+    'Gorengan (risoles, bakwan, pastel) adalah <b>godaan nomor satu bukber</b> — batasi 1 potong, bukan sepiring.',
+    'Kolak dan es buah bersantan bisa 300-450 kkal semangkuk kecil — anggap sebagai "menu utama", bukan pelengkap.',
+  ]},
+  kantor:{title:'Ulang Tahun / Acara Kantor',emoji:'🎂',items:[
+    'Kue ulang tahun 1 potong sedang ≈ 300-400 kkal — nikmati satu potong penuh, jangan "nyicip-nyicip" beberapa kali (efek kalorinya sering lebih besar dari 1 potong utuh).',
+    'Snack meja (keripik, biskuit, permen) adalah <b>kalori yang paling gampang tidak tercatat</b> — kalau mau, ambil sekali di piring kecil, jauhkan dari meja kerja sepanjang hari.',
+    'Kopi/teh kantor: minta tanpa gula atau gula setengah takaran biasa.',
+    'Ini momen sosial, bukan ujian — datang, nikmati sepotong kue, lanjutkan hari seperti biasa.',
+  ]},
+  arisan:{title:'Arisan Keluarga',emoji:'🍲',items:[
+    'Tuan rumah menawari terus? Jangan menolak tegas — <b>perlambat.</b> "Iya masih ada, nanti tante" sambil piring belum kosong, lebih efektif daripada penolakan yang mengundang tanya.',
+    'Duduk agak jauh dari meja utama kalau memungkinkan — jarak fisik mengurangi godaan nyemil otomatis.',
+    'Bawa buah tangan sehat kalau kamu yang masak untuk arisan (buah potong, kacang rebus) — kamu selalu punya opsi aman di meja.',
+    'Kalau ditanya soal diet dan malas menjelaskan: senyum, terima kasih, ganti topik. Kamu tidak wajib presentasi.',
+  ]},
+};
+function renderAcara(k){
+  const a=ACARA[k];
+  $('acaraResult').innerHTML=`<h3><span class="em">${a.emoji}</span>${a.title}</h3><ul>${a.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+}
+wirePicker('acaraPicker','acaraResult',renderAcara);
+
+/* =========================================================
+   TAB 2 — MAKAN DI LUAR
+   ========================================================= */
+const LUAR={
+  warteg:{title:'Warteg',emoji:'🍛',order:'Nasi setengah porsi, ayam/ikan bakar atau goreng (bukan gulai), tumis/sayur bening banyak, tempe/tahu, sambal terpisah.',ranks:[
+    {r:'good',t:'Ayam/ikan bakar, tempe/tahu, tumis kangkung/bayam, sayur bening — porsi nasi seukuran kepalan tangan.'},
+    {r:'mid',t:'Telur balado, perkedel (1 saja), sayur santan ringan — boleh, jaga porsi.'},
+    {r:'bad',t:'Gulai, gorengan berlapis tepung tebal, jeroan santan kental — padat kalori, porsi kecil pun sudah besar.'},
+  ]},
+  padang:{title:'Nasi Padang',emoji:'🥘',order:'Nasi dikit ("nasinya setengah aja"), ayam bakar/ikan bakar bukan gulai, sayur nangka atau daun singkong, sambal ijo terpisah dari kuah gulai.',ranks:[
+    {r:'good',t:'Ayam bakar, ikan bakar, ayam pop, sayur daun singkong/nangka rebus — kalori terkendali penuh rasa.'},
+    {r:'mid',t:'Rendang 1-2 potong kecil sesekali (bukan tiap kali makan), telur dadar Padang.'},
+    {r:'bad',t:'Kuah gulai/gulai otak/usus disiram ke nasi — satu siraman kuah santan bisa 200+ kkal sendirian, di luar lauknya.'},
+  ]},
+  soto:{title:'Soto / Bakso / Mie Ayam',emoji:'🍲',order:'Pilih kuah bening (soto bening, bukan soto santan/betawi), minta nasi terpisah porsi kecil, skip kerupuk & emping.',ranks:[
+    {r:'good',t:'Soto ayam/Lamongan kuah bening, bakso kuah (skip mie-nya atau setengah), isi ayam/daging suwir banyak.'},
+    {r:'mid',t:'Mie ayam porsi biasa tanpa pangsit goreng, bakso dengan mie sedikit.'},
+    {r:'bad',t:'Soto Betawi/soto santan, mie ayam + pangsit goreng + kerupuk lengkap — kombinasi karbo ganda + gorengan + santan.'},
+  ]},
+  ayam:{title:'Ayam Geprek / Fried Chicken',emoji:'🍗',order:'Pilih dada (bukan paha berkulit tebal), kalau bisa non-crispy/original, minta lalapan ekstra, nasi porsi kecil.',ranks:[
+    {r:'good',t:'Ayam dada tanpa kulit + lalapan banyak + sambal — geprek sebenarnya cukup ramah asal minyaknya tidak berlebih.'},
+    {r:'mid',t:'Ayam original crispy 1 potong, nasi porsi biasa — sesekali oke.'},
+    {r:'bad',t:'Paket kombo (ayam + nasi + minuman soda + saus mayo berlebih) — kombo ini gampang tembus 900-1.200 kkal sekali makan.'},
+  ]},
+  cafe:{title:'Kafe Kekinian',emoji:'☕',order:'Kopi/teh susu → americano atau less-sugar, makanan berat pilih menu ayam/telur/salad, hindari pastry sebagai menu utama.',ranks:[
+    {r:'good',t:'Americano/kopi hitam, chicken/egg bowl, salad dengan protein cukup.'},
+    {r:'mid',t:'Latte reguler (bukan oatmilk/creamer manis), croissant polos sesekali.'},
+    {r:'bad',t:'Minuman kekinian gula tinggi (bisa 300-500 kkal segelas) + cake/pastry sekaligus — dua sumber gula besar dalam satu duduk.'},
+  ]},
+  jepang:{title:'Jepang / Sushi',emoji:'🍣',order:'Sashimi atau sushi non-goreng (nigiri/maki biasa), edamame sebagai starter, hindari saus mayo berlebih di atas roll.',ranks:[
+    {r:'good',t:'Sashimi, nigiri, maki sayur/ikan polos, edamame, sup miso bening.'},
+    {r:'mid',t:'California roll, chicken teriyaki (kuahnya manis, porsi wajar).'},
+    {r:'bad',t:'Tempura roll, roll dengan mayo/cream cheese berlapis, katsu — sushi "goreng" ini gampang mengalahkan kalori nasi goreng biasa.'},
+  ]},
+};
+function renderLuar(k){
+  const l=LUAR[k];
+  $('luarResult').innerHTML=`<h3><span class="em">${l.emoji}</span>${l.title}</h3>
+    <div class="script-box">${l.order}</div>
+    ${l.ranks.map(x=>`<div class="rank ${x.r}"><div class="badge2">${x.r==='good'?'Pilih':x.r==='mid'?'Boleh':'Awas'}</div><div class="rt">${x.t}</div></div>`).join('')}`;
+}
+wirePicker('luarPicker','luarResult',renderLuar);
+
+/* =========================================================
+   TAB 3 — CRAVING DECODER
+   ========================================================= */
+const CRAVE={
+  manis:{emoji:'🍫',best:'2 kurma + kopi hitam atau yogurt plain + madu 1 sdt',mid:'1-2 potong cokelat hitam (70%+) — puas dengan porsi kecil',avoid:'Sebungkus penuh cokelat susu / semangkuk es krim besar',note:'Craving manis sering sebenarnya craving <b>energi cepat</b>. Kurma + kopi memberi rasa manis nyata plus sedikit kafein — sering cukup untuk memuaskan tanpa lonjakan gula drastis.'},
+  asin:{emoji:'🧂',best:'Telur rebus + taburan garam sedikit, atau edamame rebus asin',mid:'Segenggam kecil kacang panggang tanpa minyak berlebih',avoid:'Sebungkus keripik kentang / kerupuk berlebihan',note:'Craving asin kadang sinyal <b>dehidrasi ringan</b> — minum segelas air dulu, tunggu 5 menit, cek lagi apakah craving-nya masih sekuat itu.'},
+  goreng:{emoji:'🍟',best:'Ubi/kentang panggang air fryer + sedikit garam',mid:'Tahu/tempe goreng 2 potong (bukan sebungkus)',avoid:'Gorengan pinggir jalan tanpa batas / kentang goreng porsi besar',note:'Craving gorengan biasanya soal <b>tekstur renyah</b>, bukan rasa minyak itu sendiri. Air fryer bisa memberi renyah 80% mirip dengan minyak jauh lebih sedikit.'},
+  karbo:{emoji:'🍜',best:'Porsi karbo biasa (nasi/mie) dengan protein &amp; sayur cukup — makan penuh, bukan ditahan',mid:'Karbo + protein tapi porsi agak besar dari biasanya',avoid:'Mie instan 2 bungkus jam 11 malam sendirian',note:'Craving karbo padat sering muncul saat <b>kurang tidur atau protein hari itu kurang</b> (Bab 7 ebook). Cek dulu: sudah tidur cukup? Protein hari ini kena target? Kalau belum, itu akar masalahnya — bukan kurang niat.'},
+};
+function renderCrave(k){
+  const c=CRAVE[k];
+  $('craveResult').innerHTML=`
+    <div class="rank good"><div class="badge2">Terbaik</div><div class="rt">${c.best}</div></div>
+    <div class="rank mid"><div class="badge2">Boleh</div><div class="rt">${c.mid}</div></div>
+    <div class="rank bad"><div class="badge2">Awas</div><div class="rt">${c.avoid}</div></div>
+    <div class="note green" style="margin-top:12px"><span class="t">Kenapa Craving Ini Muncul</span>${c.note}</div>`;
+}
+wirePicker('cravePicker','craveResult',renderCrave);
+
+/* =========================================================
+   TAB 4 — TRAVELING
+   ========================================================= */
+const TRAVEL_ITEMS=[
+  {k:'t1',t:'Botol minum kosong (isi setelah lolos security bandara)'},
+  {k:'t2',t:'Kacang panggang / rebus kemasan kecil untuk snack darurat'},
+  {k:'t3',t:'Sepatu &amp; pakaian olahraga ringan — untuk workout 15 menit Kit 03 di kamar hotel'},
+  {k:'t4',t:'Timbangan digital travel-size (opsional, kalau perjalanan &gt; 5 hari)'},
+  {k:'t5',t:'Rencana kasar: berapa kali makan besar per hari, supaya tidak "ngemil sepanjang jalan" tanpa sadar'},
+];
+function renderTravelChecklist(){
+  const key='pl30-travel-check';
+  let state={};try{state=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+  $('travelChecklist').innerHTML=TRAVEL_ITEMS.map(it=>
+    `<div class="check${state[it.k]?' on':''}" data-k="${it.k}"><div class="box">✓</div><div class="c-body">${it.t}</div></div>`
+  ).join('');
+  document.querySelectorAll('#travelChecklist .check').forEach(el=>{
+    el.addEventListener('click',()=>{
+      el.classList.toggle('on');
+      let s={};try{s=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+      if(el.classList.contains('on'))s[el.dataset.k]=1;else delete s[el.dataset.k];
+      localStorage.setItem(key,JSON.stringify(s));
+    });
+  });
+}
+renderTravelChecklist();
+
+const TRAVELSIT={
+  hotel:{title:'Hotel Breakfast Buffet',emoji:'🏨',items:[
+    'Sama seperti prasmanan kondangan: <b>keliling dulu</b> sebelum ambil apa pun.',
+    'Telur (rebus/omelet custom minta sayur, tanpa keju berlebih) + buah potong adalah kombinasi paling aman di hampir semua hotel.',
+    'Pastry, croissant, donat berjejer menggoda — pilih <b>satu saja</b> kalau memang mau, bukan sampling semua.',
+    'Jus buah kemasan buffet = gula tinggi tanpa serat. Air putih atau kopi/teh tawar dulu.',
+  ]},
+  pesawat:{title:'Bandara &amp; Pesawat',emoji:'✈️',items:[
+    'Bandara penuh godaan gerai cepat saji karena memang dirancang begitu — datang dengan rencana, bukan browsing lapar.',
+    'Bawa snack sendiri (kacang, buah kering tanpa gula tambahan) untuk delay/transit panjang.',
+    'Makanan pesawat sering tinggi sodium — perbanyak air putih, kurangi soda/alkohol yang memperparah dehidrasi &amp; bengkak.',
+    'Duduk lama = NEAT rendah. Begitu landing, jalan kaki di bandara/hotel adalah cara mudah mengompensasi.',
+  ]},
+  dinas:{title:'Dinas Padat Meeting',emoji:'💼',items:[
+    'Snack meeting (kue kotak, gorengan) adalah <b>kalori yang paling gampang lolos tanpa sadar</b> — putuskan dari awal: ambil 1 atau skip, bukan improvisasi tiap jam.',
+    'Kalau makan siang &amp; makan malam sama-sama acara resmi (dua kali "harus makan banyak"), jadikan salah satunya lebih ringan secara sadar — bukan keduanya penuh.',
+    'Bawa air minum ke ruang meeting — mengurangi refleks ambil kopi/teh manis setiap jeda.',
+    'Kalau jadwal terlalu padat untuk latihan 15 menit, jalan kaki antar gedung/lantai sudah menghitung sebagai NEAT (Bab 6 ebook).',
+  ]},
+};
+function renderTravelSit(k){
+  const t=TRAVELSIT[k];
+  $('travelResult').innerHTML=`<h3><span class="em">${t.emoji}</span>${t.title}</h3><ul>${t.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+}
+wirePicker('travelPicker','travelResult',renderTravelSit);
+
+/* =========================================================
+   TAB 5 — PEMULIHAN
+   ========================================================= */
+const RECOVERY={
+  kemarin:{emoji:'🌅',title:'Baru Saja / Kemarin',body:[
+    'Timbangan pagi ini mungkin naik 0,5-1,5 kg. Itu <b>air dan sisa makanan di pencernaan</b>, bukan lemak baru — lemak tidak terbentuk secepat itu. Akan turun sendiri dalam 2-3 hari begitu kamu kembali normal.',
+    '<b>Makan berikutnya, langsung normal.</b> Bukan porsi kecil sebagai kompensasi, bukan dilewati. Normal.',
+    'Minum air lebih banyak hari ini membantu proses ini bergerak lebih cepat — bukan karena "membuang racun", tapi karena membantu keseimbangan cairan tubuh kembali stabil.',
+  ]},
+  beberapa:{emoji:'📅',title:'2-3 Hari Lalu',body:[
+    'Kalau sejak itu kamu sudah kembali ke protokol, kamu sudah melakukan hal yang benar — tidak ada tindakan tambahan yang dibutuhkan.',
+    'Kalau belum kembali (masih "lanjut" karena merasa sudah gagal minggu ini) — ini saatnya berhenti, bukan menunggu Senin depan. <b>Makan berikutnya adalah titik mulainya</b>, bukan hari Senin, bukan tanggal 1.',
+    'Cek rata-rata mingguanmu di Kit 03 Progress Tracker — satu-dua hari kebablasan jarang mengubah rata-rata mingguan secara signifikan kalau sisa harinya on-track.',
+  ]},
+  seminggu:{emoji:'🗓️',title:'Seminggu Lebih',body:[
+    'Ini bukan lagi "satu kejadian" — pola makan mingguanmu memang sedang bergeser. Itu bukan kegagalan karakter, itu sinyal untuk mengevaluasi apa yang berubah minggu ini: tidur? stres kerja? jadwal berantakan?',
+    '<b>Jangan mulai dengan defisit lebih dalam</b> sebagai kompensasi — itu justru pola yang memicu siklus berikutnya (Bab 1 ebook: all-or-nothing).',
+    'Mulai lagi dari langkah paling dasar: timbang besok pagi, catat makan hari ini, satu hari penuh sesuai protokol. Bangun momentum dari satu hari yang solid, bukan dari rencana sempurna 30 hari ke depan.',
+  ]},
+  berulang:{emoji:'🔁',title:'Sudah Berulang Kali',body:[
+    'Kalau pola ini — kebablasan, menyesal, membatasi ekstrem, kebablasan lagi — sudah terjadi berulang dalam beberapa minggu terakhir, ini lebih dari sekadar soal kalori.',
+    'Buku dan tools ini dirancang untuk pola makan yang fleksibel dan berkelanjutan, bukan untuk mengatasi siklus makan yang terasa di luar kendali.',
+    '<b>Ini bukan sesuatu yang harus kamu selesaikan sendiri.</b> Bicara dengan tenaga profesional — dokter, psikolog, atau ahli gizi klinis — adalah langkah yang tepat dan sama sekali bukan tanda kegagalan. Mereka bisa membantu dengan cara yang tidak bisa diberikan oleh ebook manapun.',
+  ]},
+};
+function renderRecovery(k){
+  const r=RECOVERY[k];
+  $('recoveryResult').innerHTML=`<h3><span class="em">${r.emoji}</span>${r.title}</h3><ul>${r.body.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+}
+wirePicker('recoveryPicker','recoveryResult',renderRecovery);
+
+/* =========================================================
+   INIT
+   ========================================================= */
+(function(){
+  const savedTab=localStorage.getItem('pl30-survival-tab');
+  if(savedTab){
+    document.querySelectorAll('.tabbar button').forEach(x=>x.classList.toggle('on',x.dataset.pane===savedTab));
+    document.querySelectorAll('.pane').forEach(x=>x.classList.toggle('on',x.id==='pane-'+savedTab));
+  }
+})();
+</script>
+</body></html>

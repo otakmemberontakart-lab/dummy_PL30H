@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kit 02 · Meal System — Protokol Langsing 30 Hari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1F1A;--emerald-900:#0A4435;--emerald-700:#0E5C46;--emerald-500:#149A72;
+  --emerald-100:#DEF2EA;--emerald-050:#EFF8F4;--gold-600:#B08A3E;--gold-500:#C9A24B;
+  --gold-100:#F6EEDC;--paper:#FAFAF7;--card:#FFFFFF;--line:#E3E9E4;--muted:#5B6B64;
+  --danger:#B3402F;--danger-bg:#FBEDEA;
+  --serif:'Fraunces',Georgia,serif;--sans:'Plus Jakarta Sans',-apple-system,'Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;font-size:15.5px;min-height:100vh}
+::selection{background:var(--gold-100);color:var(--emerald-900)}
+
+/* ===== Header ===== */
+.hero{background:
+  radial-gradient(900px 420px at 88% -20%, rgba(201,162,75,.18), transparent 55%),
+  radial-gradient(700px 500px at -5% 120%, rgba(20,154,114,.15), transparent 55%),
+  linear-gradient(165deg,var(--emerald-900),var(--emerald-700) 70%,#0C6B50);
+  color:#F5F8F4;padding:calc(30px + env(safe-area-inset-top)) 20px 78px;position:relative;overflow:hidden}
+.hero-in{max-width:1080px;margin:0 auto}
+.hero .kicker{display:inline-flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:2.4px;
+  text-transform:uppercase;font-weight:800;color:var(--gold-500);margin-bottom:14px}
+.hero .kicker::before{content:'';width:24px;height:1px;background:var(--gold-500)}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(29px,5.4vw,44px);line-height:1.08;letter-spacing:-.4px}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--gold-500)}
+.hero p{color:#CFE3D8;font-size:clamp(13.5px,2vw,15.5px);max-width:600px;margin-top:12px}
+.hero .orn{position:absolute;right:-60px;bottom:-110px;width:280px;height:280px;border-radius:50%;
+  border:1.5px solid rgba(201,162,75,.30);pointer-events:none}
+.hero .orn::after{content:'';position:absolute;inset:32px;border-radius:50%;border:1px solid rgba(245,248,244,.14)}
+
+/* ===== Tabs (horizontal scroll strip) ===== */
+.tabbar-wrap{max-width:1080px;margin:-46px auto 0;padding:0 20px;position:relative;z-index:5}
+.tabbar{display:flex;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:7px;
+  gap:6px;box-shadow:0 18px 44px rgba(10,68,53,.14);overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none}
+.tabbar::-webkit-scrollbar{display:none}
+.tabbar button{border:none;background:transparent;font-family:var(--sans);cursor:pointer;flex:1 0 auto;
+  min-width:132px;padding:13px 12px;border-radius:12px;font-size:13px;font-weight:800;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:2px;-webkit-tap-highlight-color:transparent;
+  white-space:nowrap}
+.tabbar button small{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.7}
+.tabbar button.on{background:var(--emerald-900);color:#fff}
+.tabbar button.on small{color:var(--gold-500);opacity:1}
+.tabbar button:focus-visible{outline:2px solid var(--emerald-500);outline-offset:2px}
+
+/* ===== Layout ===== */
+.app{max-width:1080px;margin:0 auto;padding:26px 20px calc(70px + env(safe-area-inset-bottom))}
+.pane{display:none}
+.pane.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:18px}
+.card h2{font-family:var(--serif);font-weight:700;font-size:20px;color:var(--emerald-900);margin-bottom:4px}
+.card .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px}
+label{display:block;font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;font-weight:800;
+  color:var(--emerald-700);margin-bottom:6px}
+input,select{width:100%;padding:12px 13px;border:1.5px solid #CFDFD4;border-radius:12px;background:#fff;
+  font-family:var(--sans);font-size:14.5px;font-weight:700;color:var(--emerald-900);appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230E5C46' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+input:focus,select:focus{outline:2px solid var(--emerald-500);outline-offset:1px;border-color:var(--emerald-500)}
+input[type=search]{-webkit-appearance:none}
+
+.btn{background:var(--emerald-900);color:#fff;border:none;padding:12px 20px;border-radius:12px;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn:hover{background:var(--emerald-700)}
+.btn.gold{background:var(--gold-500);color:#3A2E10}
+.btn.gold:hover{background:var(--gold-600);color:#fff}
+.btn.outline{background:transparent;border:1.5px solid var(--emerald-500);color:var(--emerald-700)}
+.btn.outline:hover{background:var(--emerald-050)}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+.summary-bar{background:var(--emerald-050);border:1px solid #D8E8DE;border-radius:14px;padding:13px 16px;
+  font-size:13.5px;color:#1E4437;font-weight:600;margin-top:14px;line-height:1.6}
+.summary-bar b{color:var(--emerald-900)}
+
+.progress-row{display:flex;align-items:center;gap:12px;margin-top:14px}
+.progress-row .txt{font-size:12px;font-weight:800;color:var(--emerald-700);white-space:nowrap}
+.progress-row .pct{font-size:12px;font-weight:800;color:var(--gold-600);white-space:nowrap}
+.pbar{flex:1;height:9px;background:var(--emerald-100);border-radius:6px;overflow:hidden}
+.pbar div{height:100%;background:linear-gradient(90deg,var(--emerald-700),var(--gold-500));width:0%;transition:.3s}
+
+/* Note callouts */
+.note{background:var(--gold-100);border:1px solid #E8D9B4;border-radius:14px;padding:14px 16px;
+  font-size:13px;line-height:1.65;color:#6B5320;margin-top:14px}
+.note b{color:#4A3A12}
+.note .t{display:block;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;
+  color:var(--gold-600);margin-bottom:5px}
+
+/* ===== Meal Plan (Tab 1) ===== */
+.week{margin-bottom:14px}
+.week-h{display:flex;justify-content:space-between;align-items:center;background:var(--emerald-050);
+  border-radius:12px;padding:11px 16px;margin-bottom:9px;font-size:13.5px;font-weight:800;color:var(--emerald-900)}
+.week-h span.tot{font-size:11.5px;color:var(--emerald-700);font-weight:700}
+.day{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:8px;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .15s}
+.day:hover{border-color:var(--emerald-500)}
+.day.done{background:var(--emerald-050);border-color:var(--emerald-500)}
+.day-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.day-h .dn{font-weight:800;font-size:14px;color:var(--ink)}
+.day.done .dn{text-decoration:line-through;text-decoration-color:var(--gold-500);color:var(--muted)}
+.day-h .ck{width:24px;height:24px;flex-shrink:0;border:2px solid var(--emerald-500);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:14px;font-weight:900}
+.day.done .ck{background:var(--emerald-500);color:#fff}
+.meal-line{font-size:13px;color:#3A4A43;line-height:1.75}
+.meal-line b.slot{display:inline-block;background:var(--gold-100);color:var(--gold-600);border-radius:6px;
+  padding:1px 9px;font-size:10.5px;font-weight:800;margin-right:7px;letter-spacing:.3px}
+.meal-line small{color:var(--muted);font-weight:600}
+.day-tot{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+.day-tot span{background:var(--emerald-050);border:1px solid #D8E8DE;padding:3px 10px;border-radius:7px;
+  font-size:11px;font-weight:800;color:var(--emerald-700)}
+
+/* ===== Database (Tab 2) ===== */
+.search-row{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.search-row input{flex:1}
+.count-pill{font-size:11.5px;font-weight:800;color:var(--muted);background:var(--emerald-050);
+  border-radius:9px;padding:9px 13px;white-space:nowrap}
+.chiprow{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.chip-f{padding:8px 15px;background:#fff;border:1.5px solid var(--line);border-radius:999px;
+  font-size:12px;font-weight:800;cursor:pointer;color:var(--emerald-700);-webkit-tap-highlight-color:transparent}
+.chip-f.on{background:var(--emerald-900);color:#fff;border-color:var(--emerald-900)}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;min-width:520px}
+th{background:var(--emerald-900);color:#F2F7F3;text-align:left;padding:11px 14px;font-size:10.5px;
+  letter-spacing:1px;text-transform:uppercase;font-weight:800;position:sticky;top:0}
+td{padding:11px 14px;border-top:1px solid var(--line)}
+tr:nth-child(even) td{background:#FCFCFA}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--emerald-700)}
+tr.hide{display:none}
+.badge{padding:3px 9px;border-radius:6px;font-size:10.5px;font-weight:800;white-space:nowrap}
+.b-good{background:var(--emerald-050);color:var(--emerald-700)}
+.b-mid{background:var(--gold-100);color:var(--gold-600)}
+.b-bad{background:var(--danger-bg);color:var(--danger)}
+
+/* ===== Recipes (Tab 3) ===== */
+.recipe-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.rtab{padding:9px 14px;background:#fff;border:1.5px solid var(--line);border-radius:12px;font-size:12px;
+  font-weight:800;cursor:pointer;color:var(--emerald-700);-webkit-tap-highlight-color:transparent}
+.rtab.on{background:var(--emerald-900);color:#fff;border-color:var(--emerald-900)}
+.pillrow{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.pill{background:var(--emerald-050);color:#0E5C46;padding:5px 12px;border-radius:14px;
+  font-size:11.5px;font-weight:800}
+.pill.g{background:var(--gold-100);color:var(--gold-600)}
+.bahan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin:12px 0}
+.bahan-item{background:var(--emerald-050);border:1px solid #D8E8DE;border-radius:10px;padding:9px 13px;font-size:13px}
+.bahan-item b{color:var(--emerald-700)}
+h3.rc{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--emerald-900);margin:20px 0 6px}
+.steps{padding-left:20px;font-size:14px;line-height:1.85;color:#25342E}
+.steps li{margin-bottom:6px}
+.scaler{background:var(--gold-100);border:1px solid #E8D9B4;border-radius:14px;padding:14px 16px;margin:14px 0}
+.scaler .sl-t{font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;font-weight:800;color:var(--gold-600);
+  margin-bottom:8px}
+.scaler .sl-v{font-family:var(--serif);font-weight:700;font-size:17px;color:#6B5320}
+.scaler input[type=range]{width:100%;accent-color:var(--emerald-500);margin-top:8px}
+
+/* ===== Grocery (Tab 4) ===== */
+.gcat-h{background:linear-gradient(120deg,var(--emerald-900),var(--emerald-700));color:#fff;padding:11px 16px;
+  border-radius:12px;font-size:13px;font-weight:800;margin:14px 0 8px;display:flex;justify-content:space-between}
+.gitem{display:flex;align-items:center;gap:11px;padding:11px 14px;background:#fff;border:1.5px solid var(--line);
+  border-radius:12px;margin-bottom:6px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.gitem.done{background:var(--emerald-050);border-color:var(--emerald-500)}
+.gitem.done .gn{text-decoration:line-through;text-decoration-color:var(--gold-500);color:var(--muted)}
+.gitem .ck{width:21px;height:21px;flex-shrink:0;border:2px solid var(--emerald-500);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:12px;font-weight:900}
+.gitem.done .ck{background:var(--emerald-500);color:#fff}
+.gitem .gn{flex:1;font-weight:700;font-size:13.5px;color:var(--ink)}
+.gitem .gq{color:var(--gold-600);font-weight:800;font-size:12px;white-space:nowrap}
+.gitem .gp{color:var(--muted);font-size:11px;font-weight:700;margin-left:8px;white-space:nowrap}
+.total-box{background:var(--emerald-900);border-radius:16px;padding:18px;margin-top:16px;text-align:center;color:#fff}
+.total-box .l{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;color:#9CC7B4}
+.total-box .v{font-family:var(--serif);font-weight:700;font-size:32px;color:var(--gold-500);margin-top:4px}
+
+footer{max-width:1080px;margin:0 auto;padding:0 20px 34px;text-align:center;font-size:11.5px;color:var(--muted)}
+footer b{color:var(--emerald-700)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:640px){.f-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="orn"></div>
+  <div class="hero-in">
+    <div class="kicker">Kit 02 · Protokol Langsing 30 Hari</div>
+    <h1>Meal <em>System</em></h1>
+    <p>Ekosistem makanmu lengkap dalam satu app: rencana 30 hari otomatis, database 100+ makanan Indonesia, 15 resep low-cal, dan grocery list yang siap dikirim ke WhatsApp.</p>
+  </div>
+</header>
+
+<div class="tabbar-wrap">
+  <div class="tabbar" role="tablist">
+    <button class="on" data-pane="plan" role="tab"><small>01</small>Meal Plan 30 Hari</button>
+    <button data-pane="db" role="tab"><small>02</small>Database Makanan</button>
+    <button data-pane="recipe" role="tab"><small>03</small>Resep Low-Cal</button>
+    <button data-pane="grocery" role="tab"><small>04</small>Grocery List</button>
+  </div>
+</div>
+
+<div class="app">
+
+<!-- ============ TAB 1: MEAL PLAN ============ -->
+<section class="pane on" id="pane-plan">
+  <div class="card">
+    <h2>Setup Rencana Makan</h2>
+    <div class="sub">Generate rencana 30 hari sesuai target kalori dari Kit 01. Semua opsi setara kalorinya per slot — bebas dirotasi.</div>
+    <div class="f-grid">
+      <div><label>Target Kalori/Hari</label><select id="pKcal">
+        <option value="1200">1.200 kkal — cutting agresif</option>
+        <option value="1500" selected>1.500 kkal — cutting standar</option>
+        <option value="1800">1.800 kkal — cutting ringan</option>
+        <option value="2000">2.000 kkal — maintenance (P)</option>
+        <option value="2300">2.300 kkal — maintenance (L)</option>
+        <option value="2500">2.500 kkal — lean bulk</option>
+      </select></div>
+      <div><label>Gaya Makan</label><select id="pStyle">
+        <option value="indo">Indonesia Klasik (nasi)</option>
+        <option value="lowcarb">Low Carb</option>
+        <option value="balanced">Balanced Mix</option>
+      </select></div>
+      <div><label>Preferensi</label><select id="pPref">
+        <option value="all">Bebas</option>
+        <option value="halal">Halal (no babi)</option>
+        <option value="noseafood">No Seafood</option>
+        <option value="vegetarian">Vegetarian-friendly</option>
+      </select></div>
+    </div>
+    <div class="summary-bar" id="pSummary">—</div>
+    <div class="progress-row">
+      <span class="txt" id="pProgTxt">0/30 hari</span>
+      <div class="pbar"><div id="pProgFill"></div></div>
+      <span class="pct" id="pProgPct">0%</span>
+    </div>
+  </div>
+
+  <div id="weeksContainer"></div>
+
+  <div class="card">
+    <h2>Tips Kepatuhan</h2>
+    <ul style="padding-left:20px;font-size:14px;line-height:1.85;color:#25342E">
+      <li><b>Meal prep Sabtu/Minggu 90 menit</b> — masak 3-4 hari sekaligus (lihat Bab 5 ebook).</li>
+      <li><b>Protein dulu, sisanya fleksibel</b> — kalau tidak sempat lengkap, minimal proteinnya kena.</li>
+      <li><b>Minum 2,5-3 liter air</b> — kunci fat loss yang paling sering dilewatkan.</li>
+      <li><b>Cheat meal boleh</b> — cek dampaknya di Kit 01 tab Simulasi Cheat Meal.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TAB 2: DATABASE MAKANAN ============ -->
+<section class="pane" id="pane-db">
+  <div class="card">
+    <h2>Database 100+ Makanan Indonesia</h2>
+    <div class="sub">Kalori, protein, dan diet-score. Cari, filter kategori, dan pakai sebagai referensi menyusun makan sendiri.</div>
+    <div class="search-row">
+      <input type="search" id="dbQ" placeholder="Cari makanan… (nasi, ayam, tahu, ikan)" autocomplete="off">
+      <span class="count-pill" id="dbCount">100 items</span>
+    </div>
+    <div class="chiprow" id="dbCats"></div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Makanan</th><th>Kategori</th><th style="text-align:right">Kkal</th><th style="text-align:right">Protein</th><th style="text-align:right">Skor</th></tr></thead>
+        <tbody id="dbBody"></tbody>
+      </table>
+    </div>
+    <div class="note"><span class="t">Cara Pakai Skor</span><b>Good</b> = rasio nutrisi:kalori bagus untuk defisit. <b>Mid</b> = boleh, jaga porsi. <b>Bad</b> = padat kalori — bukan haram, tapi hitung sadar (lihat Bab 4 ebook: "tiga pengubah senyap").</div>
+  </div>
+</section>
+
+<!-- ============ TAB 3: RESEP ============ -->
+<section class="pane" id="pane-recipe">
+  <div class="card">
+    <h2>15 Resep Low-Cal Indonesia</h2>
+    <div class="sub">Semua di bawah 450 kkal, cita rasa lokal. Geser slider untuk scaling porsi otomatis.</div>
+    <div class="recipe-tabs" id="rTabs"></div>
+    <div id="rOutput"></div>
+  </div>
+</section>
+
+<!-- ============ TAB 4: GROCERY LIST ============ -->
+<section class="pane" id="pane-grocery">
+  <div class="card">
+    <h2>Grocery List Auto-Generator</h2>
+    <div class="sub">Belanja mingguan otomatis sesuai gaya makan. Centang saat beli, budget terhitung real-time.</div>
+    <div class="f-grid">
+      <div><label>Gaya Diet</label><select id="gStyle">
+        <option value="indo">Indonesia Klasik (nasi)</option>
+        <option value="lowcarb">Low Carb</option>
+        <option value="balanced">Balanced Mix</option>
+      </select></div>
+      <div><label>Durasi</label><select id="gDays">
+        <option value="7" selected>7 hari (1 minggu)</option>
+        <option value="14">14 hari (2 minggu)</option>
+        <option value="30">30 hari penuh</option>
+      </select></div>
+      <div><label>Jumlah Orang</label><select id="gPeople">
+        <option value="1" selected>1 orang</option>
+        <option value="2">2 orang (couple)</option>
+        <option value="4">4 orang (keluarga)</option>
+      </select></div>
+      <div><label>Tipe Budget</label><select id="gBudget">
+        <option value="ekonomis">Ekonomis</option>
+        <option value="standar" selected>Standar</option>
+        <option value="premium">Premium</option>
+      </select></div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" id="gGen" type="button">Generate List</button>
+      <button class="btn outline" id="gWa" type="button">Kirim ke WhatsApp</button>
+      <button class="btn outline" id="gSync" type="button">Samakan Gaya dgn Meal Plan</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Daftar Belanja</h2>
+    <div id="gList"></div>
+    <div class="total-box"><div class="l">Total Belanja Estimasi</div><div class="v" id="gTotal">Rp 0</div></div>
+  </div>
+</section>
+
+</div><!-- /.app -->
+
+<footer>Bagian dari paket <b>Protokol Langsing 30 Hari</b> · Kit 02 dari 4 · Piring &amp; template makan dijelaskan lengkap di ebook utama, Bab 4-5</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const KEY='pl30-mealsystem';
+function st(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}}}
+function save(patch){try{localStorage.setItem(KEY,JSON.stringify({...st(),...patch}))}catch(e){}}
+
+/* ===== Tab switching ===== */
+document.querySelectorAll('.tabbar [data-pane]').forEach(b=>b.addEventListener('click',()=>{
+  const p=b.dataset.pane;
+  document.querySelectorAll('.tabbar button').forEach(x=>x.classList.toggle('on',x.dataset.pane===p));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.toggle('on',x.id==='pane-'+p));
+  save({tab:p});
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* =========================================================
+   TAB 1 — MEAL PLAN
+   ========================================================= */
+const MEALS={
+  indo:{
+    breakfast:[
+      {n:'Nasi merah + telur dadar + sayur bayam',k:400,p:20},
+      {n:'Bubur ayam (tanpa kerupuk)',k:380,p:18},
+      {n:'Lontong sayur + tahu',k:420,p:15},
+      {n:'Nasi uduk + ayam suwir + lalapan',k:450,p:22},
+      {n:'Roti gandum + telur rebus 2 + alpukat',k:380,p:20},
+    ],
+    lunch:[
+      {n:'Nasi 100g + ayam panggang + tumis kangkung',k:500,p:35},
+      {n:'Nasi 100g + ikan bakar + lalapan',k:480,p:32},
+      {n:'Soto ayam + nasi 80g + tempe',k:520,p:30},
+      {n:'Nasi 100g + telur dadar + sayur sop',k:460,p:25},
+      {n:'Pecel nasi + tempe goreng',k:490,p:22},
+    ],
+    dinner:[
+      {n:'Nasi 80g + dada ayam tumis + brokoli',k:420,p:35},
+      {n:'Sop ayam (no nasi) + tempe goreng',k:380,p:30},
+      {n:'Nasi 80g + ikan goreng + tumis bayam',k:440,p:28},
+      {n:'Ayam panggang + salad sayur',k:350,p:35},
+      {n:'Tahu telur + sayur asem',k:380,p:25},
+    ],
+    snack:[
+      {n:'Apel + 10 butir kacang almond',k:180,p:5},
+      {n:'Yogurt plain + madu',k:150,p:8},
+      {n:'Telur rebus 2 butir',k:140,p:12},
+      {n:'Pisang + 1 sdm peanut butter',k:200,p:6},
+    ],
+  },
+  lowcarb:{
+    breakfast:[
+      {n:'2 telur dadar + alpukat + tomat',k:380,p:22},
+      {n:'Oat 40g + protein scoop + pisang',k:400,p:30},
+      {n:'Omelet sayur + roti gandum 1 lembar',k:360,p:25},
+      {n:'Smoothie protein + chia seed + susu skim',k:380,p:35},
+    ],
+    lunch:[
+      {n:'Dada ayam panggang 200g + salad besar',k:480,p:45},
+      {n:'Ikan salmon panggang + brokoli kukus',k:500,p:40},
+      {n:'Tahu tempe rebus + sayur bening',k:420,p:30},
+      {n:'Beef teriyaki + lalapan + tanpa nasi',k:520,p:42},
+    ],
+    dinner:[
+      {n:'Sup ayam + kentang kukus 1 buah kecil',k:380,p:35},
+      {n:'Tofu scramble + sayur tumis',k:340,p:28},
+      {n:'Ikan tongkol bakar + asparagus',k:380,p:38},
+      {n:'Dada ayam suwir + capcay tanpa nasi',k:400,p:40},
+    ],
+    snack:[
+      {n:'Greek yogurt + berries',k:160,p:14},
+      {n:'Keju cheddar 30g + apel',k:170,p:8},
+      {n:'2 telur rebus',k:140,p:12},
+      {n:'Protein shake (air)',k:130,p:25},
+    ],
+  },
+  balanced:{
+    breakfast:[
+      {n:'Nasi merah + tempe orek + telur',k:420,p:22},
+      {n:'Oat 50g + susu + pisang + madu',k:400,p:15},
+      {n:'Roti gandum + selai kacang + telur',k:380,p:18},
+      {n:'Bubur ayam (light) + lalapan',k:380,p:18},
+    ],
+    lunch:[
+      {n:'Nasi 100g + ayam bakar + capcay',k:520,p:38},
+      {n:'Nasi 80g + ikan kukus + sayur tumis',k:480,p:35},
+      {n:'Mie sehat + telur + sayur',k:500,p:25},
+      {n:'Soto ayam + nasi 80g + tempe',k:520,p:32},
+    ],
+    dinner:[
+      {n:'Nasi 80g + dada ayam + brokoli',k:440,p:38},
+      {n:'Sop ikan + nasi 50g + tempe',k:400,p:30},
+      {n:'Ayam panggang + kentang kukus + sayur',k:460,p:35},
+      {n:'Tahu telur + tumis kangkung + nasi 50g',k:420,p:28},
+    ],
+    snack:[
+      {n:'Apel + 1 sdm peanut butter',k:180,p:5},
+      {n:'Yogurt plain + granola',k:200,p:10},
+      {n:'Telur rebus 2',k:140,p:12},
+      {n:'Pisang + segenggam kacang',k:200,p:6},
+    ],
+  }
+};
+function pick(arr,i){return arr[i%arr.length]}
+function renderPlan(){
+  const kcalTarget=+$('pKcal').value,style=$('pStyle').value,pref=$('pPref').value;
+  const labelStyle={indo:'Indonesia Klasik',lowcarb:'Low Carb',balanced:'Balanced Mix'}[style];
+  const labelPref={all:'Bebas',halal:'Halal',noseafood:'No Seafood',vegetarian:'Vegetarian-friendly'}[pref];
+  $('pSummary').innerHTML=`Target: <b>${kcalTarget} kkal/hari</b> · Gaya: <b>${labelStyle}</b> · Preferensi: <b>${labelPref}</b>`;
+  const meals=MEALS[style];
+  const wc=$('weeksContainer');
+  let html='';
+  for(let w=0;w<5;w++){
+    const daysInWeek=Math.min(7,30-w*7);
+    if(daysInWeek<=0)break;
+    html+=`<div class="week"><div class="week-h"><span>Minggu ${w+1} (Hari ${w*7+1}-${Math.min((w+1)*7,30)})</span><span class="tot">${kcalTarget*daysInWeek} kkal/minggu</span></div>`;
+    for(let d=0;d<7;d++){
+      const day=w*7+d; if(day>=30)break;
+      const br=pick(meals.breakfast,day),lu=pick(meals.lunch,day+1),sn=pick(meals.snack,day),di=pick(meals.dinner,day+2);
+      const total=br.k+lu.k+di.k+sn.k,prot=br.p+lu.p+di.p+sn.p;
+      html+=`<div class="day" data-day="${day}">
+        <div class="day-h"><span class="dn">Hari ${day+1}</span><div class="ck"></div></div>
+        <div class="meal-line"><b class="slot">Pagi</b>${br.n} <small>(${br.k} kkal · ${br.p}g P)</small></div>
+        <div class="meal-line"><b class="slot">Siang</b>${lu.n} <small>(${lu.k} kkal · ${lu.p}g P)</small></div>
+        <div class="meal-line"><b class="slot">Sore</b>${sn.n} <small>(${sn.k} kkal · ${sn.p}g P)</small></div>
+        <div class="meal-line"><b class="slot">Malam</b>${di.n} <small>(${di.k} kkal · ${di.p}g P)</small></div>
+        <div class="day-tot"><span>Total ${total} kkal</span><span>Protein ${prot}g</span></div>
+      </div>`;
+    }
+    html+='</div>';
+  }
+  wc.innerHTML=html;
+  document.querySelectorAll('.day').forEach(el=>{
+    el.addEventListener('click',()=>toggleDay(+el.dataset.day));
+    if(planDone().includes(+el.dataset.day))el.classList.add('done');
+  });
+  updatePlanProg();
+  save({pKcal:kcalTarget,pStyle:style,pPref:pref});
+}
+function planDone(){try{return JSON.parse(localStorage.getItem('pl30-plandone')||'[]')}catch(e){return[]}}
+function toggleDay(d){
+  let done=planDone();
+  const i=done.indexOf(d);
+  if(i>=0)done.splice(i,1);else done.push(d);
+  localStorage.setItem('pl30-plandone',JSON.stringify(done));
+  document.querySelector(`.day[data-day="${d}"]`).classList.toggle('done');
+  updatePlanProg();
+}
+function updatePlanProg(){
+  const n=planDone().length;
+  $('pProgTxt').textContent=n+'/30 hari';
+  $('pProgFill').style.width=(n/30*100)+'%';
+  $('pProgPct').textContent=Math.round(n/30*100)+'%';
+}
+['pKcal','pStyle','pPref'].forEach(id=>$(id).addEventListener('change',renderPlan));
+
+/* =========================================================
+   TAB 2 — DATABASE MAKANAN
+   ========================================================= */
+const DBDATA=[
+  {n:'Nasi putih',c:'karbo',k:130,p:2.7,s:'mid'},{n:'Nasi merah',c:'karbo',k:111,p:2.6,s:'good'},
+  {n:'Nasi shirataki',c:'karbo',k:10,p:0.2,s:'good'},{n:'Kentang rebus',c:'karbo',k:87,p:1.9,s:'good'},
+  {n:'Kentang goreng',c:'karbo',k:312,p:3.4,s:'bad'},{n:'Singkong rebus',c:'karbo',k:160,p:1.4,s:'mid'},
+  {n:'Ubi jalar',c:'karbo',k:86,p:1.6,s:'good'},{n:'Jagung manis',c:'karbo',k:86,p:3.2,s:'good'},
+  {n:'Roti putih',c:'karbo',k:265,p:9,s:'mid'},{n:'Roti gandum',c:'karbo',k:247,p:13,s:'good'},
+  {n:'Oat',c:'karbo',k:389,p:17,s:'good'},{n:'Mie instan',c:'karbo',k:436,p:9,s:'bad'},
+  {n:'Mie ayam (1 mangkok)',c:'karbo',k:380,p:18,s:'mid'},{n:'Bihun goreng',c:'karbo',k:380,p:8,s:'bad'},
+  {n:'Quinoa',c:'karbo',k:120,p:4.4,s:'good'},
+  {n:'Dada ayam fillet',c:'protein',k:165,p:31,s:'good'},{n:'Paha ayam (kulit)',c:'protein',k:209,p:26,s:'mid'},
+  {n:'Ayam goreng',c:'protein',k:260,p:22,s:'bad'},{n:'Ikan tongkol',c:'protein',k:184,p:30,s:'good'},
+  {n:'Ikan lele',c:'protein',k:122,p:18,s:'good'},{n:'Ikan tuna',c:'protein',k:144,p:32,s:'good'},
+  {n:'Ikan salmon',c:'protein',k:208,p:22,s:'good'},{n:'Ikan teri',c:'protein',k:131,p:18,s:'good'},
+  {n:'Udang',c:'protein',k:99,p:24,s:'good'},{n:'Cumi-cumi',c:'protein',k:92,p:16,s:'good'},
+  {n:'Daging sapi has dalam',c:'protein',k:158,p:26,s:'good'},{n:'Daging sapi giling',c:'protein',k:332,p:14,s:'mid'},
+  {n:'Bakso sapi',c:'protein',k:312,p:18,s:'mid'},{n:'Sate ayam',c:'protein',k:230,p:25,s:'mid'},
+  {n:'Sate kambing',c:'protein',k:280,p:22,s:'mid'},{n:'Telur ayam rebus',c:'protein',k:155,p:13,s:'good'},
+  {n:'Telur ceplok',c:'protein',k:196,p:13,s:'mid'},{n:'Telur dadar',c:'protein',k:154,p:11,s:'mid'},
+  {n:'Susu sapi UHT',c:'protein',k:42,p:3.4,s:'good'},{n:'Yogurt plain',c:'protein',k:59,p:10,s:'good'},
+  {n:'Greek yogurt',c:'protein',k:97,p:9,s:'good'},{n:'Keju cheddar',c:'protein',k:402,p:25,s:'mid'},
+  {n:'Tahu putih',c:'protein',k:76,p:8,s:'good'},{n:'Tahu goreng',c:'protein',k:271,p:18,s:'mid'},
+  {n:'Tempe',c:'protein',k:193,p:19,s:'good'},{n:'Tempe goreng',c:'protein',k:330,p:18,s:'mid'},
+  {n:'Edamame',c:'protein',k:121,p:11,s:'good'},{n:'Kacang kedelai',c:'protein',k:173,p:17,s:'good'},
+  {n:'Kacang almond',c:'protein',k:579,p:21,s:'mid'},{n:'Kacang mete',c:'protein',k:553,p:18,s:'mid'},
+  {n:'Kacang tanah',c:'protein',k:567,p:26,s:'mid'},{n:'Selai kacang',c:'protein',k:588,p:25,s:'mid'},
+  {n:'Bayam',c:'sayur',k:23,p:2.9,s:'good'},{n:'Kangkung',c:'sayur',k:19,p:2.6,s:'good'},
+  {n:'Brokoli',c:'sayur',k:34,p:2.8,s:'good'},{n:'Wortel',c:'sayur',k:41,p:0.9,s:'good'},
+  {n:'Tomat',c:'sayur',k:18,p:0.9,s:'good'},{n:'Mentimun',c:'sayur',k:16,p:0.7,s:'good'},
+  {n:'Selada',c:'sayur',k:15,p:1.4,s:'good'},{n:'Buncis',c:'sayur',k:31,p:1.8,s:'good'},
+  {n:'Pokcoy',c:'sayur',k:13,p:1.5,s:'good'},{n:'Kembang kol',c:'sayur',k:25,p:1.9,s:'good'},
+  {n:'Sayur asem (1 mangkok)',c:'sayur',k:90,p:4,s:'good'},{n:'Capcay',c:'sayur',k:120,p:5,s:'good'},
+  {n:'Tumis kangkung',c:'sayur',k:80,p:3,s:'good'},{n:'Sop sayur',c:'sayur',k:50,p:3,s:'good'},
+  {n:'Apel',c:'buah',k:52,p:0.3,s:'good'},{n:'Pisang',c:'buah',k:89,p:1.1,s:'good'},
+  {n:'Jeruk',c:'buah',k:47,p:0.9,s:'good'},{n:'Mangga',c:'buah',k:60,p:0.8,s:'good'},
+  {n:'Pepaya',c:'buah',k:43,p:0.5,s:'good'},{n:'Semangka',c:'buah',k:30,p:0.6,s:'good'},
+  {n:'Melon',c:'buah',k:34,p:0.8,s:'good'},{n:'Anggur',c:'buah',k:69,p:0.7,s:'good'},
+  {n:'Stroberi',c:'buah',k:32,p:0.7,s:'good'},{n:'Alpukat',c:'buah',k:160,p:2,s:'good'},
+  {n:'Buah naga',c:'buah',k:60,p:1.2,s:'good'},{n:'Nanas',c:'buah',k:50,p:0.5,s:'good'},
+  {n:'Soto ayam (1 mangkok)',c:'masakan',k:312,p:20,s:'mid'},{n:'Gado-gado (1 porsi)',c:'masakan',k:387,p:14,s:'mid'},
+  {n:'Pecel sayur',c:'masakan',k:320,p:12,s:'mid'},{n:'Rendang sapi',c:'masakan',k:468,p:30,s:'bad'},
+  {n:'Ayam betutu',c:'masakan',k:280,p:28,s:'good'},{n:'Ayam bakar',c:'masakan',k:240,p:30,s:'good'},
+  {n:'Ikan bakar',c:'masakan',k:180,p:25,s:'good'},{n:'Gudeg (1 porsi)',c:'masakan',k:480,p:15,s:'bad'},
+  {n:'Sate padang',c:'masakan',k:340,p:20,s:'mid'},{n:'Gulai kambing',c:'masakan',k:420,p:25,s:'bad'},
+  {n:'Sayur lodeh',c:'masakan',k:180,p:6,s:'mid'},{n:'Rawon',c:'masakan',k:280,p:22,s:'mid'},
+  {n:'Empal gentong',c:'masakan',k:380,p:25,s:'mid'},{n:'Bakso (1 mangkok)',c:'masakan',k:370,p:18,s:'mid'},
+  {n:'Mie ayam bakso',c:'masakan',k:450,p:22,s:'mid'},{n:'Nasi goreng',c:'masakan',k:330,p:12,s:'bad'},
+  {n:'Nasi uduk + ayam',c:'masakan',k:520,p:25,s:'mid'},{n:'Lontong sayur',c:'masakan',k:360,p:10,s:'mid'},
+  {n:'Kerupuk',c:'snack',k:494,p:5,s:'bad'},{n:'Risoles',c:'snack',k:230,p:6,s:'mid'},
+  {n:'Pastel',c:'snack',k:290,p:7,s:'mid'},{n:'Tempe mendoan',c:'snack',k:180,p:8,s:'mid'},
+  {n:'Pisang goreng',c:'snack',k:188,p:1.5,s:'bad'},{n:'Bakwan',c:'snack',k:135,p:3,s:'mid'},
+  {n:'Tahu isi',c:'snack',k:140,p:7,s:'mid'},{n:'Lumpia goreng',c:'snack',k:210,p:5,s:'bad'},
+  {n:'Es teh manis',c:'snack',k:115,p:0,s:'bad'},{n:'Es jeruk (gula)',c:'snack',k:120,p:0.5,s:'bad'},
+  {n:'Kopi hitam',c:'snack',k:2,p:0.3,s:'good'},{n:'Air putih',c:'snack',k:0,p:0,s:'good'}
+];
+const DBCATS={all:'Semua',karbo:'Karbo',protein:'Protein',sayur:'Sayur',buah:'Buah',masakan:'Masakan',snack:'Snack'};
+let dbActiveCat='all';
+function dbBadge(s){const lbl={good:'GOOD',mid:'MID',bad:'BAD'}[s];return `<span class="badge b-${s}">${lbl}</span>`}
+function renderDb(){
+  const q=$('dbQ').value.toLowerCase().trim();
+  const tb=$('dbBody');let visible=0;
+  tb.innerHTML=DBDATA.map(d=>{
+    const matchQ=!q||d.n.toLowerCase().includes(q);
+    const matchC=dbActiveCat==='all'||d.c===dbActiveCat;
+    const show=matchQ&&matchC; if(show)visible++;
+    return `<tr class="${show?'':'hide'}"><td><b>${d.n}</b></td><td style="font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700">${d.c}</td><td class="n">${d.k}</td><td class="n">${d.p}g</td><td style="text-align:right">${dbBadge(d.s)}</td></tr>`;
+  }).join('');
+  $('dbCount').textContent=visible+'/'+DBDATA.length+' items';
+}
+const dbCatsEl=$('dbCats');
+Object.entries(DBCATS).forEach(([k,v])=>{
+  const b=document.createElement('div');
+  b.className='chip-f'+(k==='all'?' on':'');b.textContent=v;b.dataset.c=k;
+  b.addEventListener('click',()=>{dbActiveCat=k;document.querySelectorAll('.chip-f').forEach(x=>x.classList.toggle('on',x.dataset.c===k));renderDb();});
+  dbCatsEl.appendChild(b);
+});
+$('dbQ').addEventListener('input',renderDb);
+
+/* =========================================================
+   TAB 3 — RESEP
+   ========================================================= */
+const R={
+  ayam_kemangi:{name:'Ayam Kemangi (Pan-fry)',emoji:'🍗',kcal:280,prot:32,time:'25 menit',serves:1,
+    bahan:[{i:'Dada ayam fillet',q:150,u:'g'},{i:'Daun kemangi',q:1,u:'genggam'},{i:'Cabai rawit',q:3,u:'buah'},{i:'Bawang putih',q:3,u:'siung'},{i:'Garam + lada',q:1,u:'sdt'},{i:'Minyak (untuk pan-fry)',q:1,u:'sdt'}],
+    steps:['Potong ayam dadu kecil, beri garam + lada','Tumis bawang putih + cabai sampai harum','Masukkan ayam, masak 5-7 menit','Tambahkan kemangi di akhir, aduk 30 detik','Sajikan dengan 80g nasi merah atau salad']},
+  ikan_bakar:{name:'Ikan Tongkol Bakar Lalapan',emoji:'🐟',kcal:230,prot:30,time:'30 menit',serves:1,
+    bahan:[{i:'Ikan tongkol fillet',q:150,u:'g'},{i:'Bumbu kecap',q:3,u:'sdm'},{i:'Bawang putih',q:2,u:'siung'},{i:'Jeruk nipis',q:0.5,u:'buah'},{i:'Lalapan (timun, selada, kemangi)',q:1,u:'porsi'},{i:'Sambal terasi',q:1,u:'sdm'}],
+    steps:['Marinade ikan dengan kecap + bawang putih + jeruk nipis 15 menit','Bakar di teflon non-stick 4-5 menit per sisi','Sajikan dengan lalapan + sambal','Total kalori cukup ringan, kenyang lama']},
+  capcay_kuah:{name:'Capcay Kuah Bening',emoji:'🥬',kcal:180,prot:14,time:'15 menit',serves:1,
+    bahan:[{i:'Sayur mix (sawi, wortel, jamur)',q:200,u:'g'},{i:'Bakso ayam',q:60,u:'g'},{i:'Bawang putih',q:2,u:'siung'},{i:'Kaldu ayam',q:300,u:'ml'},{i:'Kecap asin',q:1,u:'sdt'},{i:'Lada + garam',q:1,u:'sdt'}],
+    steps:['Tumis bawang putih, masukkan kaldu','Masak bakso 3 menit','Tambahkan sayur urutan (wortel dulu, jamur belakangan)','Bumbui kecap asin + lada','Sajikan hangat']},
+  tofu_scramble:{name:'Tofu Scramble Vegan',emoji:'🥚',kcal:240,prot:22,time:'10 menit',serves:1,
+    bahan:[{i:'Tahu putih',q:150,u:'g'},{i:'Bawang bombay',q:30,u:'g'},{i:'Tomat dadu',q:50,u:'g'},{i:'Kunyit bubuk',q:0.5,u:'sdt'},{i:'Garam + lada',q:1,u:'sdt'},{i:'Minyak (sedikit)',q:1,u:'sdt'}],
+    steps:['Hancurkan tahu dengan garpu','Tumis bawang + tomat sampai layu','Masukkan tahu + kunyit, aduk rata','Bumbui garam + lada','Sajikan dengan roti gandum atau salad']},
+  salmon_panggang:{name:'Salmon Panggang Lemon',emoji:'🐠',kcal:380,prot:38,time:'20 menit',serves:1,
+    bahan:[{i:'Salmon fillet',q:180,u:'g'},{i:'Lemon (perasan + iris)',q:1,u:'buah'},{i:'Bawang putih',q:2,u:'siung'},{i:'Asparagus',q:100,u:'g'},{i:'Garam + lada hitam',q:1,u:'sdt'},{i:'Olive oil',q:1,u:'sdt'}],
+    steps:['Marinade salmon dengan perasan lemon + bawang putih + garam 10 menit','Panggang di oven 200°C selama 12-15 menit','Atau pan-sear 4 menit per sisi','Sajikan dengan asparagus rebus + perasan lemon segar']},
+  bubur_oat:{name:'Bubur Oat Apel Kayu Manis',emoji:'🥣',kcal:320,prot:14,time:'8 menit',serves:1,
+    bahan:[{i:'Oat instan',q:50,u:'g'},{i:'Susu skim',q:200,u:'ml'},{i:'Apel (dadu)',q:80,u:'g'},{i:'Kayu manis bubuk',q:0.5,u:'sdt'},{i:'Madu',q:1,u:'sdt'},{i:'Kacang almond',q:10,u:'g'}],
+    steps:['Rebus oat dengan susu 5 menit','Tambahkan apel + kayu manis','Tuang madu di akhir','Topping kacang almond','Sarapan high-fiber, kenyang lama']},
+  telur_dadar_sayur:{name:'Telur Dadar Sayur Mini',emoji:'🥚',kcal:280,prot:22,time:'12 menit',serves:1,
+    bahan:[{i:'Telur ayam',q:2,u:'btr'},{i:'Bayam cincang',q:50,u:'g'},{i:'Tomat',q:30,u:'g'},{i:'Keju cheddar parut',q:15,u:'g'},{i:'Garam + lada',q:1,u:'sdt'},{i:'Minyak (sedikit)',q:0.5,u:'sdt'}],
+    steps:['Kocok telur dengan garam + lada','Tumis bayam + tomat 2 menit','Tuang telur, biarkan agak set','Taburi keju, lipat seperti omelet','Sajikan dengan roti gandum 1 lembar']},
+  sup_ayam_jagung:{name:'Sup Ayam Jagung',emoji:'🍲',kcal:260,prot:24,time:'30 menit',serves:1,
+    bahan:[{i:'Dada ayam (suwir)',q:100,u:'g'},{i:'Jagung manis pipil',q:80,u:'g'},{i:'Wortel',q:60,u:'g'},{i:'Kaldu ayam',q:400,u:'ml'},{i:'Daun bawang',q:1,u:'btng'},{i:'Bawang putih + lada',q:1,u:'sdt'}],
+    steps:['Rebus ayam dalam kaldu sampai matang, suwir halus','Masukkan jagung + wortel, masak 10 menit','Bumbui garam + lada','Taburi daun bawang','Sajikan hangat']},
+  gado_lite:{name:'Gado-Gado Lite',emoji:'🥗',kcal:320,prot:18,time:'25 menit',serves:1,
+    bahan:[{i:'Tahu rebus',q:80,u:'g'},{i:'Tempe rebus',q:50,u:'g'},{i:'Selada + kangkung',q:150,u:'g'},{i:'Tauge',q:80,u:'g'},{i:'Telur rebus',q:1,u:'btr'},{i:'Bumbu kacang (light)',q:30,u:'ml'}],
+    steps:['Rebus tahu + tempe 5 menit','Blanching sayur 1-2 menit','Susun di piring: sayur, tahu, tempe, telur','Siram bumbu kacang (light version: 1 sdm peanut butter + air panas)','Tidak pakai kerupuk untuk versi diet']},
+  nasi_kembang_kol:{name:'Nasi Kembang Kol + Ayam',emoji:'🍚',kcal:240,prot:28,time:'20 menit',serves:1,
+    bahan:[{i:'Kembang kol (parut kasar)',q:200,u:'g'},{i:'Dada ayam fillet',q:120,u:'g'},{i:'Bawang putih + bawang bombay',q:50,u:'g'},{i:'Kecap asin',q:1,u:'sdt'},{i:'Telur',q:1,u:'btr'},{i:'Daun bawang',q:1,u:'btng'}],
+    steps:['Parut kembang kol sampai seukuran nasi','Tumis bawang, masukkan ayam dadu masak 5 menit','Tambahkan kembang kol + kecap asin, aduk 3 menit','Sisihkan, buat orak-arik telur, campurkan','Pengganti nasi goreng — kalori sepertiga']},
+  pecel_lele_diet:{name:'Pecel Lele (Air Fryer)',emoji:'🐟',kcal:290,prot:24,time:'15 menit',serves:1,
+    bahan:[{i:'Ikan lele fillet',q:150,u:'g'},{i:'Lalapan (timun, kemangi)',q:1,u:'porsi'},{i:'Sambal pecel',q:1,u:'sdm'},{i:'Tahu rebus',q:50,u:'g'},{i:'Bumbu kuning marinade',q:1,u:'sdt'},{i:'Minyak spray',q:1,u:'sdt'}],
+    steps:['Marinade lele dengan bumbu kuning + jeruk nipis','Air fryer 180°C selama 12 menit (atau pan-sear no oil)','Sajikan dengan lalapan + sambal + tahu rebus','Tanpa nasi: super low kkal']},
+  mie_shirataki:{name:'Mie Shirataki Goreng',emoji:'🍜',kcal:200,prot:18,time:'15 menit',serves:1,
+    bahan:[{i:'Mie shirataki (basah)',q:200,u:'g'},{i:'Dada ayam suwir',q:80,u:'g'},{i:'Sayur (sawi, taoge)',q:100,u:'g'},{i:'Telur',q:1,u:'btr'},{i:'Kecap manis (light)',q:1,u:'sdt'},{i:'Bawang putih + bombay',q:30,u:'g'}],
+    steps:['Bilas shirataki di air panas 2 menit, tiriskan','Tumis bawang + ayam suwir','Masukkan sayur + shirataki','Bumbui kecap','Orak-arik telur, campurkan','Total cuma 200 kkal']},
+  smoothie_protein:{name:'Smoothie Protein Hijau',emoji:'🥤',kcal:280,prot:28,time:'5 menit',serves:1,
+    bahan:[{i:'Whey protein vanilla',q:30,u:'g'},{i:'Bayam segar',q:1,u:'genggam'},{i:'Pisang',q:0.5,u:'buah'},{i:'Susu almond tanpa gula',q:250,u:'ml'},{i:'Chia seed',q:1,u:'sdm'},{i:'Es batu',q:5,u:'pcs'}],
+    steps:['Blender semua bahan 30-45 detik','Sajikan dingin','Cocok untuk pre-workout / breakfast on-the-go']},
+  pizza_kuali:{name:'Pizza Kuali (Skillet Mini)',emoji:'🍕',kcal:380,prot:25,time:'15 menit',serves:1,
+    bahan:[{i:'Tortilla gandum 1 lembar',q:1,u:'lbr'},{i:'Saus tomat homemade',q:30,u:'ml'},{i:'Keju mozzarella shred',q:30,u:'g'},{i:'Dada ayam panggang (slice)',q:80,u:'g'},{i:'Paprika',q:30,u:'g'},{i:'Bawang bombay',q:20,u:'g'},{i:'Oregano',q:0.5,u:'sdt'}],
+    steps:['Panaskan kuali non-stick','Letakkan tortilla, oles saus tomat','Topping ayam + paprika + bombay + keju','Tutup kuali, masak api kecil 5-7 menit sampai keju leleh','Taburi oregano']},
+  bakso_diet:{name:'Bakso Diet (Tanpa Mie)',emoji:'🍡',kcal:280,prot:22,time:'20 menit',serves:1,
+    bahan:[{i:'Bakso ayam',q:80,u:'g'},{i:'Sayur sawi + bayam',q:150,u:'g'},{i:'Tahu putih kotak',q:80,u:'g'},{i:'Kaldu tulang ayam',q:400,u:'ml'},{i:'Daun bawang + seledri',q:20,u:'g'},{i:'Bawang putih goreng',q:5,u:'g'}],
+    steps:['Rebus bakso + tahu dalam kaldu sampai matang','Tambahkan sayur, masak 2 menit','Bumbui garam + lada','Sajikan dengan taburan bawang goreng + seledri','Bisa dimakan kapan saja lapar']}
+};
+const rKeys=Object.keys(R);
+const rTabsEl=$('rTabs');
+rKeys.forEach((k,i)=>{
+  const r=R[k];
+  const b=document.createElement('div');
+  b.className='rtab'+(i===0?' on':'');b.dataset.k=k;
+  b.innerHTML=`${r.emoji} ${r.name}`;
+  b.addEventListener('click',()=>renderRecipe(k));
+  rTabsEl.appendChild(b);
+});
+function renderRecipe(k){
+  document.querySelectorAll('.rtab').forEach(x=>x.classList.toggle('on',x.dataset.k===k));
+  const r=R[k];
+  $('rOutput').innerHTML=`
+    <h2 style="margin-top:6px">${r.emoji} ${r.name}</h2>
+    <div class="pillrow">
+      <span class="pill g">${r.kcal} kkal</span>
+      <span class="pill">${r.prot}g protein</span>
+      <span class="pill">${r.time}</span>
+      <span class="pill">${r.serves} porsi</span>
+    </div>
+    <div class="scaler">
+      <div class="sl-t">Scale Resep <span class="sl-v" id="rQty">1×</span> porsi</div>
+      <input type="range" id="rSlider" min="1" max="6" step="1" value="1">
+    </div>
+    <h3 class="rc">Bahan</h3>
+    <div class="bahan-grid" id="rBahan"></div>
+    <h3 class="rc">Cara Buat</h3>
+    <ol class="steps">${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+    <div class="note"><span class="t">Total Per Porsi</span><b>${r.kcal} kkal · ${r.prot}g protein.</b> Cocok untuk slot makan cutting / maintenance / lean bulk manapun (lihat Bab 5 ebook).</div>
+  `;
+  $('rSlider').addEventListener('input',e=>scaleRecipe(k,+e.target.value));
+  scaleRecipe(k,1);
+}
+function scaleRecipe(k,f){
+  const r=R[k];
+  $('rQty').textContent=f+'×';
+  $('rBahan').innerHTML=r.bahan.map(b=>{
+    const v=Math.round(b.q*f*10)/10;
+    const v2=b.u==='g'&&v>=1000?(v/1000).toFixed(1)+' kg':v+' '+b.u;
+    return `<div class="bahan-item"><b>${b.i}:</b> ${v2}</div>`;
+  }).join('');
+}
+renderRecipe(rKeys[0]);
+
+/* =========================================================
+   TAB 4 — GROCERY LIST
+   ========================================================= */
+const GITEMS={
+  indo:{
+    protein:[
+      {n:'Dada ayam fillet',q:0.4,u:'kg',p:35000},{n:'Telur ayam',q:1,u:'kg (15 btr)',p:30000},
+      {n:'Tahu putih',q:5,u:'pcs',p:5000},{n:'Tempe',q:5,u:'papan',p:6000},
+      {n:'Ikan lele/nila',q:0.3,u:'kg',p:20000},
+    ],
+    karbo:[
+      {n:'Beras merah / putih',q:1,u:'kg',p:14000},{n:'Roti gandum',q:1,u:'bungkus',p:18000},
+      {n:'Kentang',q:0.5,u:'kg',p:15000},{n:'Oat instan',q:0.3,u:'kg',p:25000},
+    ],
+    sayur:[
+      {n:'Bayam',q:3,u:'ikat',p:5000},{n:'Kangkung',q:3,u:'ikat',p:4000},
+      {n:'Brokoli',q:0.5,u:'kg',p:15000},{n:'Wortel',q:0.3,u:'kg',p:8000},
+      {n:'Tomat',q:0.3,u:'kg',p:7000},{n:'Selada',q:1,u:'ikat',p:8000},
+    ],
+    buah:[
+      {n:'Apel',q:5,u:'pcs',p:5000},{n:'Pisang',q:1,u:'sisir',p:15000},{n:'Jeruk',q:1,u:'kg',p:18000},
+    ],
+    lain:[
+      {n:'Bawang putih',q:0.2,u:'kg',p:10000},{n:'Bawang merah',q:0.3,u:'kg',p:13000},
+      {n:'Minyak goreng',q:1,u:'liter',p:15000},{n:'Garam',q:0.5,u:'kg',p:5000},
+      {n:'Lada bubuk',q:1,u:'sachet',p:5000},{n:'Kaldu jamur',q:1,u:'pcs',p:8000},
+    ]
+  },
+  lowcarb:{
+    protein:[
+      {n:'Dada ayam fillet',q:0.7,u:'kg',p:60000},{n:'Telur ayam',q:1,u:'kg (15 btr)',p:30000},
+      {n:'Ikan salmon/tongkol',q:0.4,u:'kg',p:45000},{n:'Tahu putih',q:3,u:'pcs',p:3000},
+      {n:'Greek yogurt / yogurt plain',q:0.5,u:'kg',p:35000},{n:'Keju cheddar',q:0.15,u:'kg',p:25000},
+    ],
+    karbo:[
+      {n:'Oat instan',q:0.3,u:'kg',p:25000},{n:'Kentang',q:0.4,u:'kg',p:12000},
+      {n:'Roti gandum',q:0.5,u:'bungkus',p:10000},
+    ],
+    sayur:[
+      {n:'Bayam',q:3,u:'ikat',p:5000},{n:'Asparagus',q:0.3,u:'kg',p:22000},
+      {n:'Brokoli',q:0.6,u:'kg',p:18000},{n:'Sawi + taoge',q:2,u:'ikat',p:9000},
+      {n:'Tomat',q:0.3,u:'kg',p:7000},{n:'Alpukat',q:3,u:'pcs',p:15000},
+    ],
+    buah:[
+      {n:'Apel',q:4,u:'pcs',p:4000},{n:'Berries (frozen/segar)',q:0.2,u:'kg',p:25000},
+    ],
+    lain:[
+      {n:'Bawang putih + bombay',q:0.3,u:'kg',p:15000},{n:'Chia seed',q:0.1,u:'kg',p:20000},
+      {n:'Susu almond tanpa gula',q:1,u:'liter',p:28000},{n:'Olive oil',q:0.25,u:'liter',p:35000},
+      {n:'Garam + lada',q:1,u:'set',p:10000},
+    ]
+  },
+  balanced:{
+    protein:[
+      {n:'Dada ayam fillet',q:0.5,u:'kg',p:42000},{n:'Telur ayam',q:1,u:'kg (15 btr)',p:30000},
+      {n:'Ikan kukus/kembung',q:0.3,u:'kg',p:20000},{n:'Tempe',q:4,u:'papan',p:5000},
+      {n:'Tahu putih',q:4,u:'pcs',p:4000},
+    ],
+    karbo:[
+      {n:'Beras merah',q:0.7,u:'kg',p:11000},{n:'Oat instan',q:0.2,u:'kg',p:17000},
+      {n:'Kentang',q:0.3,u:'kg',p:9000},{n:'Roti gandum',q:0.5,u:'bungkus',p:9000},
+    ],
+    sayur:[
+      {n:'Sawi/kangkung',q:3,u:'ikat',p:4500},{n:'Wortel',q:0.3,u:'kg',p:8000},
+      {n:'Brokoli',q:0.3,u:'kg',p:9000},{n:'Tomat',q:0.3,u:'kg',p:7000},
+    ],
+    buah:[
+      {n:'Pisang',q:1,u:'sisir',p:15000},{n:'Apel',q:4,u:'pcs',p:4000},{n:'Madu',q:0.25,u:'kg',p:25000},
+    ],
+    lain:[
+      {n:'Bawang putih',q:0.2,u:'kg',p:10000},{n:'Kecap manis/asin',q:1,u:'btl',p:14000},
+      {n:'Minyak goreng',q:0.7,u:'liter',p:11000},{n:'Bumbu dasar (garam,lada,kaldu)',q:1,u:'set',p:15000},
+    ]
+  }
+};
+const GMULT={ekonomis:0.85,standar:1.0,premium:1.4};
+const GCATS={protein:'Protein',karbo:'Karbo',sayur:'Sayur',buah:'Buah',lain:'Bumbu & Lain-lain'};
+function getGroceryList(){
+  const s=$('gStyle').value,d=+$('gDays').value,p=+$('gPeople').value,b=$('gBudget').value;
+  const ratio=(d/7)*p,mult=GMULT[b];
+  const items=GITEMS[s]||GITEMS.indo;
+  const result={};
+  for(const cat in items){
+    result[cat]=items[cat].map(it=>({...it,
+      qFinal:Math.round(it.q*ratio*100)/100,
+      pFinal:Math.round(it.p*ratio*mult/1000)*1000
+    }));
+  }
+  return result;
+}
+function renderGrocery(){
+  const list=getGroceryList();
+  let html='',total=0;
+  for(const cat in list){
+    const items=list[cat],catTotal=items.reduce((s,i)=>s+i.pFinal,0);
+    total+=catTotal;
+    html+=`<div class="gcat-h"><span>${GCATS[cat]}</span><span>Rp ${catTotal.toLocaleString('id-ID')}</span></div>`;
+    items.forEach((it,i)=>{
+      html+=`<div class="gitem" data-cat="${cat}" data-i="${i}"><div class="ck"></div><div class="gn">${it.n}</div><span class="gq">${it.qFinal} ${it.u}</span><span class="gp">Rp ${it.pFinal.toLocaleString('id-ID')}</span></div>`;
+    });
+  }
+  $('gList').innerHTML=html;
+  $('gTotal').textContent='Rp '+total.toLocaleString('id-ID');
+  document.querySelectorAll('.gitem').forEach(el=>{
+    el.addEventListener('click',()=>{
+      el.classList.toggle('done');
+      saveGroceryState();
+    });
+  });
+  loadGroceryState();
+  save({gStyle:$('gStyle').value,gDays:$('gDays').value,gPeople:$('gPeople').value,gBudget:$('gBudget').value});
+}
+function saveGroceryState(){
+  const done=[...document.querySelectorAll('.gitem.done')].map(el=>`${el.dataset.cat}-${el.dataset.i}`);
+  localStorage.setItem('pl30-grocerydone',JSON.stringify(done));
+}
+function loadGroceryState(){
+  try{
+    const done=JSON.parse(localStorage.getItem('pl30-grocerydone')||'[]');
+    done.forEach(k=>{
+      const idx=k.lastIndexOf('-'),cat=k.slice(0,idx),i=k.slice(idx+1);
+      const el=document.querySelector(`.gitem[data-cat="${cat}"][data-i="${i}"]`);
+      if(el)el.classList.add('done');
+    });
+  }catch(e){}
+}
+function exportGroceryWA(){
+  const list=getGroceryList();
+  let txt='🛒 GROCERY LIST — PROTOKOL LANGSING 30 HARI\n\n',total=0;
+  for(const cat in list){
+    txt+=GCATS[cat].toUpperCase()+'\n';
+    list[cat].forEach(it=>{txt+=`• ${it.n} — ${it.qFinal} ${it.u} (Rp ${it.pFinal.toLocaleString('id-ID')})\n`;total+=it.pFinal;});
+    txt+='\n';
+  }
+  txt+=`💰 TOTAL: Rp ${total.toLocaleString('id-ID')}`;
+  window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
+}
+$('gGen').addEventListener('click',renderGrocery);
+$('gWa').addEventListener('click',exportGroceryWA);
+$('gSync').addEventListener('click',()=>{$('gStyle').value=$('pStyle').value;renderGrocery();});
+['gStyle','gDays','gPeople','gBudget'].forEach(id=>$(id).addEventListener('change',renderGrocery));
+
+/* =========================================================
+   INIT / RESTORE
+   ========================================================= */
+(function(){
+  const s=st();
+  if(s.pKcal)$('pKcal').value=s.pKcal;
+  if(s.pStyle)$('pStyle').value=s.pStyle;
+  if(s.pPref)$('pPref').value=s.pPref;
+  if(s.gStyle)$('gStyle').value=s.gStyle;
+  if(s.gDays)$('gDays').value=s.gDays;
+  if(s.gPeople)$('gPeople').value=s.gPeople;
+  if(s.gBudget)$('gBudget').value=s.gBudget;
+  if(s.tab){
+    document.querySelectorAll('.tabbar button').forEach(x=>x.classList.toggle('on',x.dataset.pane===s.tab));
+    document.querySelectorAll('.pane').forEach(x=>x.classList.toggle('on',x.id==='pane-'+s.tab));
+  }
+  renderPlan();
+  renderDb();
+  renderGrocery();
+})();
+</script>
+</body></html>

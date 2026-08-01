@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Protokol Langsing 30 Hari — Diet Evidence-Based untuk Turun 2-4 Kg Sebulan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1F1A;          /* forest ink */
+  --emerald-900:#0A4435;
+  --emerald-700:#0E5C46;
+  --emerald-500:#149A72;
+  --emerald-100:#DEF2EA;
+  --emerald-050:#EFF8F4;
+  --gold-600:#B08A3E;
+  --gold-500:#C9A24B;
+  --gold-100:#F6EEDC;
+  --paper:#FAFAF7;
+  --card:#FFFFFF;
+  --line:#E3E9E4;
+  --muted:#5B6B64;
+  --danger:#B3402F;
+  --danger-bg:#FBEDEA;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Plus Jakarta Sans',-apple-system,'Segoe UI',sans-serif;
+  --rail:300px;
+  --content:740px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.85;font-size:16.5px}
+::selection{background:var(--gold-100);color:var(--emerald-900)}
+
+/* ===== Progress bar ===== */
+#progress{position:fixed;top:0;left:0;height:3px;width:0%;z-index:1200;
+  background:linear-gradient(90deg,var(--emerald-700),var(--emerald-500) 60%,var(--gold-500));transition:width .08s linear}
+
+/* ===== Layout shell ===== */
+.shell{display:flex;min-height:100vh}
+.rail{width:var(--rail);flex-shrink:0}
+main{flex:1;min-width:0}
+.page{max-width:var(--content);margin:0 auto;padding:0 44px 120px}
+
+/* ===== Sidebar (desktop rail / mobile drawer) ===== */
+.sidebar{position:fixed;top:0;left:0;width:var(--rail);height:100dvh;background:var(--card);
+  border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:1100;
+  transition:transform .32s cubic-bezier(.4,0,.2,1)}
+.sb-brand{padding:26px 24px 20px;border-bottom:1px solid var(--line)}
+.sb-brand .mark{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--emerald-900);line-height:1.25}
+.sb-brand .mark em{font-style:italic;color:var(--gold-600)}
+.sb-brand .tag{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:6px}
+.sb-nav{flex:1;overflow-y:auto;padding:14px 14px 24px;-webkit-overflow-scrolling:touch}
+.sb-nav a{display:flex;gap:11px;align-items:baseline;padding:10px 12px;border-radius:10px;
+  text-decoration:none;color:var(--muted);font-size:13.5px;font-weight:600;line-height:1.45;margin-bottom:2px}
+.sb-nav a .no{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--gold-600);min-width:22px}
+.sb-nav a:hover{background:var(--emerald-050);color:var(--emerald-900)}
+.sb-nav a.active{background:var(--emerald-100);color:var(--emerald-900)}
+.sb-nav a.active .no{color:var(--emerald-700)}
+.sb-nav .group{font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;color:#9AA8A1;
+  font-weight:800;padding:18px 12px 8px}
+.sb-foot{padding:16px 24px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+.sb-close{display:none}
+
+/* Mobile drawer behavior */
+.menu-btn{display:none}
+.scrim{position:fixed;inset:0;background:rgba(12,31,26,.45);backdrop-filter:blur(2px);
+  opacity:0;pointer-events:none;transition:opacity .25s;z-index:1090}
+@media(max-width:1080px){
+  .rail{display:none}
+  .sidebar{transform:translateX(-104%);width:min(320px,86vw);box-shadow:24px 0 60px rgba(12,31,26,.18)}
+  body.nav-open .sidebar{transform:translateX(0)}
+  body.nav-open .scrim{opacity:1;pointer-events:auto}
+  body.nav-open{overflow:hidden}
+  .menu-btn{display:flex;position:fixed;top:14px;right:14px;z-index:1150;width:46px;height:46px;
+    align-items:center;justify-content:center;background:var(--emerald-900);color:#fff;border:none;
+    border-radius:14px;font-size:19px;cursor:pointer;box-shadow:0 8px 24px rgba(10,68,53,.35)}
+  .sb-close{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:none;
+    background:var(--emerald-050);color:var(--emerald-900);border-radius:10px;font-size:16px;cursor:pointer}
+  .sb-brand{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .page{padding:0 22px 90px}
+}
+
+/* ===== Cover ===== */
+.cover{position:relative;background:
+  radial-gradient(1200px 600px at 85% -10%, rgba(201,162,75,.16), transparent 55%),
+  radial-gradient(900px 700px at -10% 110%, rgba(20,154,114,.14), transparent 55%),
+  linear-gradient(168deg,var(--emerald-900) 0%,var(--emerald-700) 62%,#0C6B50 100%);
+  color:#F5F8F4;border-radius:0 0 28px 28px;overflow:hidden}
+.cover-in{max-width:var(--content);margin:0 auto;padding:clamp(64px,10vh,110px) 44px clamp(56px,8vh,88px)}
+@media(max-width:1080px){.cover-in{padding-left:22px;padding-right:22px;padding-top:84px}}
+.cover .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:2.4px;
+  text-transform:uppercase;font-weight:800;color:var(--gold-500);margin-bottom:26px}
+.cover .eyebrow::before{content:'';width:26px;height:1px;background:var(--gold-500)}
+.cover h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,6.4vw,68px);line-height:1.04;
+  letter-spacing:-.5px;margin-bottom:8px}
+.cover h1 em{font-style:italic;font-weight:600;color:var(--gold-500)}
+.cover .sub{font-size:clamp(15.5px,2.2vw,18.5px);color:#CFE3D8;max-width:520px;margin:18px 0 34px;line-height:1.7}
+.cover .meta{display:flex;flex-wrap:wrap;gap:10px}
+.cover .chip{border:1px solid rgba(245,248,244,.28);border-radius:999px;padding:8px 16px;
+  font-size:12.5px;font-weight:700;color:#EAF3EE;backdrop-filter:blur(3px)}
+.cover .chip b{color:var(--gold-500)}
+.cover .ornament{position:absolute;right:-70px;bottom:-90px;width:340px;height:340px;border-radius:50%;
+  border:1.5px solid rgba(201,162,75,.30);pointer-events:none}
+.cover .ornament::after{content:'';position:absolute;inset:38px;border-radius:50%;border:1px solid rgba(245,248,244,.14)}
+@media(max-width:640px){.cover .ornament{width:220px;height:220px;right:-60px;bottom:-70px}}
+
+/* ===== Reading typography ===== */
+.chapter{padding-top:74px;scroll-margin-top:14px}
+.ch-head{margin-bottom:34px}
+.ch-kicker{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+.ch-kicker .num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold-600);font-weight:600}
+.ch-kicker .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-500),transparent)}
+.ch-kicker .part{font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;font-weight:800;color:var(--muted)}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4.2vw,38px);line-height:1.14;
+  color:var(--emerald-900);letter-spacing:-.3px}
+h2 em{font-style:italic;color:var(--gold-600);font-weight:600}
+.ch-lede{font-size:clamp(16.5px,2.2vw,18.5px);color:#33463F;line-height:1.8;margin-top:16px;
+  font-weight:500;border-left:3px solid var(--gold-500);padding-left:18px}
+h3{font-family:var(--serif);font-weight:600;font-size:clamp(21px,3vw,25px);color:var(--emerald-900);
+  margin:44px 0 14px;line-height:1.3}
+h4{font-size:16px;font-weight:800;color:var(--emerald-700);margin:28px 0 10px}
+p{margin-bottom:16px;color:#25342E}
+p b,li b{color:var(--ink)}
+ul,ol{margin:0 0 18px 24px}
+li{margin-bottom:9px;color:#25342E}
+.small{font-size:13px;color:var(--muted)}
+a.inline{color:var(--emerald-700);font-weight:700;text-decoration:underline;text-decoration-color:var(--gold-500);text-underline-offset:3px}
+
+/* ===== Components ===== */
+.callout{border-radius:16px;padding:20px 22px;margin:24px 0;font-size:15px;line-height:1.75}
+.callout .cl-t{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;font-weight:800;margin-bottom:8px;display:block}
+.callout.key{background:var(--emerald-050);border:1px solid #CBE7DA}
+.callout.key .cl-t{color:var(--emerald-700)}
+.callout.gold{background:var(--gold-100);border:1px solid #E8D9B4}
+.callout.gold .cl-t{color:var(--gold-600)}
+.callout.warn{background:var(--danger-bg);border:1px solid #F0CFC7}
+.callout.warn .cl-t{color:var(--danger)}
+.callout p:last-child{margin-bottom:0}
+
+.pull{font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,24px);line-height:1.5;
+  color:var(--emerald-900);margin:34px 0;padding:6px 0 6px 24px;border-left:2px solid var(--gold-500)}
+
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14px;background:var(--card);
+  border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+th{background:var(--emerald-900);color:#F2F7F3;text-align:left;padding:12px 14px;font-size:11.5px;
+  letter-spacing:1.2px;text-transform:uppercase;font-weight:800}
+td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#FCFCFA}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--emerald-700)}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+.table-scroll table{margin:0;min-width:520px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.tile .t-h{font-weight:800;font-size:15px;color:var(--emerald-900);margin-bottom:6px}
+.tile p{font-size:14px;margin-bottom:0;color:#3A4A43}
+
+/* Accordion */
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+details summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:800;font-size:15px;
+  color:var(--emerald-900);display:flex;justify-content:space-between;align-items:center;gap:12px;
+  -webkit-tap-highlight-color:transparent}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';font-family:var(--serif);font-size:20px;color:var(--gold-600);flex-shrink:0;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details[open] summary{border-bottom:1px dashed var(--line)}
+details .d-body{padding:16px 20px 18px;font-size:14.5px}
+details .d-body p:last-child{margin-bottom:0}
+.kcal-tag{display:inline-block;background:var(--gold-100);color:var(--gold-600);border-radius:7px;
+  padding:2px 9px;font-size:11.5px;font-weight:800;margin-left:8px;vertical-align:middle}
+
+/* Checklist (persisted) */
+.check{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+  border-radius:13px;padding:14px 16px;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:border-color .15s, background .15s}
+.check:hover{border-color:var(--emerald-500)}
+.check .box{width:23px;height:23px;flex-shrink:0;border:2px solid var(--emerald-500);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:13px;font-weight:900;margin-top:2px}
+.check.on{background:var(--emerald-050);border-color:var(--emerald-500)}
+.check.on .box{background:var(--emerald-500);color:#fff}
+.check .c-body{font-size:14.5px;line-height:1.6}
+.check .c-body b{display:block;color:var(--emerald-900)}
+.check.on .c-body b{text-decoration:line-through;text-decoration-color:var(--gold-500)}
+
+/* Mini calculator */
+.widget{background:linear-gradient(150deg,var(--emerald-050),#F4F1E6);border:1px solid #D8E5DC;
+  border-radius:20px;padding:24px;margin:28px 0}
+.widget .w-t{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--emerald-900);margin-bottom:4px}
+.widget .w-s{font-size:13px;color:var(--muted);margin-bottom:18px}
+.w-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:11px;margin-bottom:16px}
+.w-grid label{display:block;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;
+  color:var(--emerald-700);margin-bottom:6px}
+.w-grid input,.w-grid select{width:100%;padding:12px 13px;border:1.5px solid #CFDFD4;border-radius:11px;
+  background:#fff;font-family:var(--sans);font-size:15px;font-weight:700;color:var(--emerald-900)}
+.w-grid input:focus,.w-grid select:focus{outline:2px solid var(--emerald-500);outline-offset:1px;border-color:var(--emerald-500)}
+.w-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.w-stat{background:#fff;border:1px solid #DCE7DE;border-radius:13px;padding:13px;text-align:center}
+.w-stat .l{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.w-stat .v{font-family:var(--serif);font-weight:700;font-size:23px;color:var(--emerald-700);margin-top:3px}
+.w-stat .v small{font-size:12px;font-family:var(--sans);font-weight:700;color:var(--muted)}
+.w-stat.hero{background:var(--emerald-900);border-color:var(--emerald-900)}
+.w-stat.hero .l{color:#9CC7B4}
+.w-stat.hero .v{color:var(--gold-500)}
+
+/* Divider */
+.div{display:flex;align-items:center;gap:14px;margin:60px 0 0;color:var(--gold-600)}
+.div::before,.div::after{content:'';flex:1;height:1px;background:var(--line)}
+.div span{font-family:var(--serif);font-style:italic;font-size:15px}
+
+/* Glossary */
+.gl-search{display:flex;gap:10px;align-items:center;background:var(--card);border:1.5px solid var(--line);
+  border-radius:14px;padding:6px 8px 6px 18px;margin:20px 0 26px}
+.gl-search input{flex:1;border:none;background:transparent;font-family:var(--sans);font-size:15.5px;
+  padding:12px 0;color:var(--ink)}
+.gl-search input:focus{outline:none}
+.gl-search .n{font-size:12px;font-weight:800;color:var(--muted);background:var(--emerald-050);
+  border-radius:9px;padding:8px 12px;white-space:nowrap}
+.gl-cat{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--emerald-900);
+  margin:30px 0 12px;display:flex;align-items:center;gap:10px}
+.gl-cat::after{content:'';flex:1;height:1px;background:var(--line)}
+.term{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--emerald-500);
+  border-radius:0 13px 13px 0;padding:13px 17px;margin-bottom:9px}
+.term.hide{display:none}
+.term .tn{font-weight:800;font-size:14.5px;color:var(--emerald-900)}
+.term .tn i{font-style:italic;font-weight:500;font-size:12px;color:var(--muted);margin-left:6px}
+.term .td{font-size:13.5px;color:#3A4A43;line-height:1.65;margin-top:4px}
+.term .td code{background:var(--gold-100);color:var(--gold-600);border-radius:5px;padding:1px 6px;
+  font-size:12px;font-weight:700;font-family:var(--sans)}
+
+/* Footer */
+.book-end{margin-top:80px;background:var(--emerald-900);border-radius:24px;color:#E8F1EA;
+  padding:clamp(30px,5vw,48px);text-align:center}
+.book-end .f-t{font-family:var(--serif);font-weight:700;font-size:clamp(23px,3.6vw,30px);line-height:1.25}
+.book-end .f-t em{font-style:italic;color:var(--gold-500)}
+.book-end p{color:#B9D2C4;font-size:14.5px;max-width:480px;margin:14px auto 0}
+
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.sidebar,.menu-btn,.scrim,#progress{display:none}.rail{display:none}.cover{border-radius:0}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<button class="menu-btn" aria-label="Buka daftar isi" onclick="toggleNav()">☰</button>
+<div class="scrim" onclick="toggleNav()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div>
+      <div class="mark">Protokol <em>Langsing</em><br>30 Hari</div>
+      <div class="tag">Edisi Premium</div>
+    </div>
+    <button class="sb-close" aria-label="Tutup menu" onclick="toggleNav()">✕</button>
+  </div>
+  <nav class="sb-nav" id="toc">
+    <a href="#mulai"><span class="no">§</span>Cara Memakai Buku Ini</a>
+    <div class="group">Bagian I — Fondasi</div>
+    <a href="#bab1"><span class="no">01</span>Mengapa 95% Diet Gagal</a>
+    <a href="#bab2"><span class="no">02</span>Sains di Balik Fat Loss</a>
+    <a href="#bab3"><span class="no">03</span>Protokol Kalori &amp; Macros</a>
+    <div class="group">Bagian II — Eksekusi</div>
+    <a href="#bab4"><span class="no">04</span>Piring Indonesia</a>
+    <a href="#bab5"><span class="no">05</span>Sistem Makan 30 Hari</a>
+    <a href="#bab6"><span class="no">06</span>Protokol Latihan 15 Menit</a>
+    <a href="#bab7"><span class="no">07</span>Tidur, Stres &amp; Hormon</a>
+    <div class="group">Bagian III — Bertahan</div>
+    <a href="#bab8"><span class="no">08</span>Cheat Meal &amp; Hidup Sosial</a>
+    <a href="#bab9"><span class="no">09</span>Plateau &amp; Troubleshooting</a>
+    <a href="#bab10"><span class="no">10</span>Peta 30 Hari, Minggu demi Minggu</a>
+    <a href="#bab11"><span class="no">11</span>Setelah Hari ke-30</a>
+    <div class="group">Referensi</div>
+    <a href="#glosarium"><span class="no">✦</span>Glosarium Interaktif</a>
+    <a href="#penutup"><span class="no">✦</span>Mulai Hari Ini</a>
+  </nav>
+  <div class="sb-foot">Protokol Langsing 30 Hari · Paket Premium<br>1 Ebook + 4 Tools Interaktif</div>
+</aside>
+
+<div class="shell">
+<div class="rail"></div>
+<main>
+
+<header class="cover">
+  <div class="ornament"></div>
+  <div class="cover-in">
+    <div class="eyebrow">Ebook Utama · Edisi Premium</div>
+    <h1>Protokol <em>Langsing</em><br>30 Hari</h1>
+    <p class="sub">Diet Evidence-Based untuk Turun 2-4 Kg Sebulan — tanpa menyiksa diri, tanpa berhenti makan nasi, dan tanpa aturan yang tidak masuk akal.</p>
+    <div class="meta">
+      <span class="chip"><b>11 Bab</b> Mendalam</span>
+      <span class="chip"><b>Glosarium</b> 40+ Istilah</span>
+      <span class="chip"><b>4 Tools</b> Interaktif Bonus</span>
+      <span class="chip">Berbasis <b>Riset</b>, Bukan Tren</span>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+<!-- ============ CARA PAKAI ============ -->
+<section class="chapter" id="mulai">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">§</span><span class="rule"></span><span class="part">Sebelum Mulai</span></div>
+    <h2>Cara Memakai <em>Buku Ini</em></h2>
+    <p class="ch-lede">Buku ini bukan bacaan sekali duduk lalu dilupakan. Ia dirancang sebagai protokol — urutan langkah yang jelas — dan sebagai referensi yang akan kamu buka berulang kali selama 30 hari ke depan.</p>
+  </div>
+
+  <p>Sebagian besar orang membeli materi diet, membacanya dengan semangat di hari pertama, lalu tidak pernah membukanya lagi. Bukan karena materinya buruk, tapi karena materinya tidak dirancang untuk <b>dipakai</b>. Buku ini berbeda dalam tiga hal.</p>
+
+  <p><b>Pertama, urutannya adalah urutan kerja.</b> Bagian I membangun fondasi: kamu akan paham <em>mengapa</em> berat badan naik dan turun, lalu menghitung angka-angka personalmu (kalori target, protein, dan macros). Bagian II adalah eksekusi harian: apa yang dimakan, bagaimana berlatih 15 menit sehari, dan bagaimana tidur serta stres diam-diam menentukan hasilmu. Bagian III memastikan hasilnya bertahan — melewati cheat meal, kondangan, plateau, dan kehidupan setelah hari ke-30.</p>
+
+  <p><b>Kedua, buku ini interaktif.</b> Ada kalkulator langsung di dalam bab, checklist yang tersimpan otomatis di perangkatmu, dan glosarium dengan pencarian instan. Progress bacaanmu terlihat di garis tipis paling atas layar. Kamu tidak butuh koneksi internet setelah file ini terbuka — semuanya berjalan di perangkatmu sendiri.</p>
+
+  <p><b>Ketiga, buku ini jujur.</b> Tidak ada janji turun 10 kg dalam sebulan, karena itu bukan fat loss — itu kehilangan air, otot, dan kewarasan. Target protokol ini spesifik: <b>turun 2-4 kg lemak dalam 30 hari</b>, dengan massa otot yang terjaga, energi yang tetap stabil, dan pola makan yang masih terasa seperti hidup normal orang Indonesia.</p>
+
+  <div class="callout gold">
+    <span class="cl-t">Paket Lengkapmu</span>
+    <p>Selain ebook ini, kamu menerima 4 tools HTML interaktif: <b>Kalkulator Suite</b> (TDEE, macros &amp; cheat meal), <b>Meal System</b> (planner 30 hari, database 100+ makanan Indonesia, resep, grocery list), <b>Training &amp; Progress Hub</b> (workout harian, tracker berat &amp; habit), dan <b>Survival Guide</b> (protokol kondangan, warteg, traveling, dan craving). Setiap bab akan menunjukkan kapan tepatnya kamu memakai masing-masing tools.</p>
+  </div>
+
+  <h3>Aturan main selama 30 hari</h3>
+  <p>Sebelum masuk ke bab pertama, sepakati tiga aturan ini dengan dirimu sendiri. Klik untuk mencentang — centangmu tersimpan otomatis.</p>
+  <div class="check" data-ck="rule1"><div class="box">✓</div><div class="c-body"><b>Saya menargetkan 2-4 kg dalam 30 hari, bukan lebih.</b>Target yang lebih agresif hampir selalu berakhir dengan rebound. Lambat yang konsisten mengalahkan cepat yang menyerah.</div></div>
+  <div class="check" data-ck="rule2"><div class="box">✓</div><div class="c-body"><b>Saya akan mengukur, bukan menebak.</b>Timbang badan tiap pagi, catat makanan minimal 7 hari pertama. Data adalah satu-satunya cara tahu protokol ini bekerja.</div></div>
+  <div class="check" data-ck="rule3"><div class="box">✓</div><div class="c-body"><b>Satu hari buruk tidak membatalkan apa pun.</b>Protokol ini dinilai per minggu, bukan per hari. Kebablasan semalam diselesaikan dengan kembali normal besok pagi — bukan dengan menghukum diri.</div></div>
+</section>
+
+<!-- ============ BAB 1 ============ -->
+<section class="chapter" id="bab1">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 01</span><span class="rule"></span><span class="part">Bagian I — Fondasi</span></div>
+    <h2>Mengapa 95% Diet <em>Gagal</em></h2>
+    <p class="ch-lede">Kamu hampir pasti pernah diet sebelumnya. Dan kalau kamu membaca buku ini, kemungkinan besar diet itu tidak bertahan. Kabar baiknya: itu bukan salah kemauanmu. Itu salah desain dietnya.</p>
+  </div>
+
+  <p>Setiap Januari, jutaan orang Indonesia memulai diet. Pada bulan Maret, mayoritas sudah kembali ke pola makan lama — sering kali dengan berat badan lebih tinggi dari sebelum mulai. Fenomena ini begitu konsisten sampai punya nama sendiri di literatur: <b>weight cycling</b>, atau yang lebih dikenal sebagai efek yoyo.</p>
+
+  <p>Masalahnya bukan kurang informasi. Informasi diet ada di mana-mana — justru terlalu banyak, dan sebagian besar saling bertentangan. Hari ini karbo adalah musuh; besok lemak; lusa jam makan. Masalah sebenarnya ada di tiga pola yang berulang hampir di setiap kegagalan diet.</p>
+
+  <h3>Penyebab #1 — Salah diagnosis: menyalahkan makanan tertentu, bukan total energi</h3>
+  <p>"Aku gemuk karena nasi." "Aku gemuk karena gorengan." "Aku gemuk karena makan malam." Semua kalimat ini terdengar masuk akal, dan semuanya salah diagnosis dengan cara yang sama: mereka menyalahkan <em>satu jenis makanan atau satu kebiasaan</em>, padahal yang menentukan berat badan adalah <b>total energi yang masuk versus total energi yang keluar</b>, dijumlah dalam hitungan minggu.</p>
+  <p>Ini bukan opini — ini termodinamika, dan telah dikonfirmasi berulang kali dalam studi terkontrol ketat di mana partisipan tinggal di laboratorium metabolik dan seluruh asupannya diukur. Ketika kalori disamakan, komposisi diet (tinggi karbo vs rendah karbo) menghasilkan fat loss yang secara praktis setara. Diet keto bekerja bukan karena karbohidrat "beracun", tapi karena menghilangkan satu kelompok makanan besar otomatis memangkas kalori.</p>
+  <p>Implikasinya membebaskan: <b>kamu tidak perlu berhenti makan nasi.</b> Kamu perlu tahu berapa banyak nasi (dan segala hal lain) yang masuk, lalu mengaturnya agar totalnya sedikit di bawah kebutuhan tubuhmu. Itu saja. Sisanya adalah detail eksekusi — dan detail itulah isi buku ini.</p>
+
+  <h3>Penyebab #2 — Pendekatan all-or-nothing</h3>
+  <p>Pola pikirnya begini: "Mulai Senin, aku tidak akan makan gorengan, tidak minum manis, olahraga tiap hari satu jam, dan tidur jam 10." Rencana ini menuntut kesempurnaan di lima area sekaligus — pada orang yang kemarin belum melakukan satu pun dari kelimanya.</p>
+  <p>Yang terjadi bisa ditebak. Hari ketiga ada traktiran kantor, satu risoles termakan, dan otak langsung mengetok palu: <em>"Sudah gagal. Sekalian aja hari ini bebas, mulai lagi Senin depan."</em> Satu risoles 230 kkal berubah menjadi hari bebas 3.500 kkal, dan "Senin depan" tidak pernah datang.</p>
+  <p>Riset perilaku menyebut ini <b>abstinence violation effect</b> — pelanggaran kecil terhadap aturan yang terlalu kaku memicu pelanggaran total. Solusinya bukan disiplin yang lebih keras, tapi aturan yang lebih longgar dan bisa dipertahankan: protokol ini secara eksplisit menganggarkan makanan enak, cheat meal mingguan, dan hari-hari yang tidak sempurna. Bab 8 membahas ini tuntas.</p>
+
+  <h3>Penyebab #3 — Tidak mengukur apa pun</h3>
+  <p>Tanyakan pada siapa pun yang "sudah diet tapi tidak turun-turun": berapa kalori yang dia makan kemarin? Hampir tidak ada yang bisa menjawab. Dan di sinilah letak masalahnya — penelitian secara konsisten menemukan bahwa orang <b>meremehkan asupan kalorinya sendiri secara signifikan</b>, bahkan hingga 30-50% pada beberapa kelompok. Bukan karena bohong; karena mengingat dan memperkirakan makanan memang sulit.</p>
+  <p>Sesendok minyak untuk menumis: 120 kkal. Dua gelas es teh manis: 230 kkal. "Cuma nyicip" martabak dua potong: 400 kkal. Tanpa pencatatan, angka-angka ini tidak terlihat — tapi tubuhmu tetap menghitungnya. Diet yang dirasa "sudah sedikit banget makannya" sering kali secara matematis bahkan belum defisit.</p>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 1</span>
+    <p>Diet gagal bukan karena kamu lemah. Diet gagal karena (1) menyalahkan makanan tertentu alih-alih total kalori, (2) menuntut kesempurnaan yang mustahil, dan (3) berjalan tanpa data. Protokol 30 hari ini membalik ketiganya: fokus ke total energi, anggarkan ketidaksempurnaan, ukur semuanya.</p>
+  </div>
+
+  <div class="pull">"Kamu tidak butuh diet yang sempurna. Kamu butuh diet yang masih berjalan di minggu keempat."</div>
+</section>
+
+<!-- ============ BAB 2 ============ -->
+<section class="chapter" id="bab2">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 02</span><span class="rule"></span><span class="part">Bagian I — Fondasi</span></div>
+    <h2>Sains di Balik <em>Fat Loss</em></h2>
+    <p class="ch-lede">Satu bab ini akan membuatmu lebih paham soal berat badan daripada 95% orang yang pernah menasihatimu soal diet. Dan setelahnya, kamu tidak akan bisa ditipu tren diet apa pun lagi.</p>
+  </div>
+
+  <h3>Tubuhmu adalah rekening energi</h3>
+  <p>Bayangkan tubuhmu sebagai rekening bank, tapi mata uangnya kalori. Setiap makanan adalah setoran. Setiap aktivitas — termasuk sekadar hidup: bernapas, memompa darah, berpikir — adalah penarikan. Lemak tubuh adalah <b>tabungan</b>: kelebihan setoran disimpan, kekurangan setoran diambil dari tabungan.</p>
+  <p>Dari analogi ini, seluruh ilmu berat badan bisa dirangkum dalam tiga kalimat:</p>
+  <ul>
+    <li><b>Surplus kalori</b> (masuk &gt; keluar) → tabungan lemak bertambah → berat naik.</li>
+    <li><b>Defisit kalori</b> (masuk &lt; keluar) → tabungan lemak dipakai → berat turun.</li>
+    <li><b>Maintenance</b> (masuk ≈ keluar) → berat stabil.</li>
+  </ul>
+  <p>Setiap diet yang pernah berhasil dalam sejarah — keto, IF, vegan, mediterania, food combining, apa pun — berhasil melalui satu mekanisme yang sama: membuat penganutnya makan lebih sedikit kalori daripada yang dia bakar. Kemasannya berbeda; mesinnya identik.</p>
+
+  <h3>BMR — biaya hidup dasar tubuhmu</h3>
+  <p><b>Basal Metabolic Rate (BMR)</b> adalah kalori yang tubuhmu bakar dalam kondisi istirahat total — kalau kamu berbaring seharian tanpa bergerak. Ini biaya operasional organ: otak sendiri memakai sekitar 20% dari total, ditambah jantung, hati, ginjal, dan pemeliharaan sel. BMR biasanya menyumbang 60-70% dari total pembakaran harianmu — porsi terbesar, dan bekerja bahkan saat kamu tidur.</p>
+  <p>Rumus estimasi paling akurat untuk populasi umum saat ini adalah <b>Mifflin-St Jeor</b>:</p>
+  <div class="table-scroll"><table>
+    <tr><th>Jenis Kelamin</th><th>Rumus BMR (kkal/hari)</th></tr>
+    <tr><td>Laki-laki</td><td>(10 × BB kg) + (6,25 × TB cm) − (5 × umur) + 5</td></tr>
+    <tr><td>Perempuan</td><td>(10 × BB kg) + (6,25 × TB cm) − (5 × umur) − 161</td></tr>
+  </table></div>
+  <p>Contoh: perempuan 28 tahun, 160 cm, 65 kg → BMR = 650 + 1.000 − 140 − 161 = <b>1.349 kkal</b>. Itu baru biaya "sekadar hidup" — belum termasuk jalan, kerja, mikir soal deadline, apalagi olahraga.</p>
+
+  <h3>TDEE — total pengeluaran harianmu</h3>
+  <p><b>Total Daily Energy Expenditure (TDEE)</b> = BMR + seluruh aktivitas. Praktisnya, TDEE dihitung dengan mengalikan BMR dengan faktor aktivitas:</p>
+  <div class="table-scroll"><table>
+    <tr><th>Level Aktivitas</th><th>Deskripsi Nyata</th><th style="text-align:right">Faktor</th></tr>
+    <tr><td><b>Sedentary</b></td><td>Kerja duduk, hampir tidak olahraga, ke mana-mana naik kendaraan</td><td class="n">× 1,2</td></tr>
+    <tr><td><b>Light</b></td><td>Jalan kaki lumayan, olahraga ringan 1-3× seminggu</td><td class="n">× 1,375</td></tr>
+    <tr><td><b>Moderate</b></td><td>Olahraga 3-5× seminggu dengan intensitas cukup</td><td class="n">× 1,55</td></tr>
+    <tr><td><b>Active</b></td><td>Olahraga 6-7× seminggu atau kerja fisik</td><td class="n">× 1,725</td></tr>
+    <tr><td><b>Very Active</b></td><td>Atlet / kerja fisik berat + latihan rutin</td><td class="n">× 1,9</td></tr>
+  </table></div>
+  <div class="callout warn">
+    <span class="cl-t">Kesalahan Paling Umum</span>
+    <p>Hampir semua orang <b>melebih-lebihkan level aktivitasnya.</b> Gym 3× seminggu selama 45 menit, tapi sisanya duduk 10 jam sehari? Itu <b>Light</b>, bukan Moderate. Kalau ragu antara dua level, selalu pilih yang lebih rendah — lebih aman meremehkan TDEE daripada melebih-lebihkannya.</p>
+  </div>
+  <p>Melanjutkan contoh tadi: BMR 1.349 × 1,375 (Light) = <b>TDEE ± 1.855 kkal</b>. Makan di angka itu, berat stabil. Di atasnya, naik. Di bawahnya — dan inilah yang akan kita rancang — turun.</p>
+
+  <h3>Defisit: kenapa 300-500 kkal adalah angka emas</h3>
+  <p>Satu kilogram lemak tubuh menyimpan sekitar <b>7.700 kkal</b>. Maka defisit 500 kkal/hari × 7 hari = 3.500 kkal ≈ <b>0,45 kg lemak per minggu</b> ≈ 2 kg sebulan. Persis di dalam rentang target buku ini. Defisit 300-500 kkal disebut <b>defisit moderat</b>, dan ia adalah angka emas karena tiga alasan:</p>
+  <ol>
+    <li><b>Cukup besar untuk terlihat hasilnya.</b> 2-4 kg sebulan adalah perubahan yang nyata di timbangan, di cermin, dan di celana.</li>
+    <li><b>Cukup kecil untuk tidak memicu alarm tubuh.</b> Defisit ekstrem (&gt;800 kkal) membuat tubuh merespons: hormon lapar (ghrelin) melonjak, hormon kenyang (leptin) anjlok, gerakan spontan berkurang tanpa sadar, dan tubuh mulai mengorbankan otot sebagai sumber energi. Ini resep kegagalan minggu ketiga.</li>
+    <li><b>Cukup longgar untuk hidup normal.</b> Di defisit moderat, kamu masih bisa makan nasi, masih bisa ngopi, masih bisa datang ke acara keluarga tanpa membawa bekal sendiri.</li>
+  </ol>
+
+  <h3>"Tapi metabolismeku lambat…"</h3>
+  <p>Ini keberatan yang paling sering muncul, jadi mari selesaikan dengan jujur. Variasi BMR antar individu dengan berat dan komposisi tubuh yang sama memang ada, tapi umumnya hanya berkisar ±5-8% — sekitar 100-200 kkal, setara satu gorengan. Yang jauh lebih berpengaruh adalah <b>NEAT (Non-Exercise Activity Thermogenesis)</b>: kalori dari semua gerakan non-olahraga — jalan ke warung, naik tangga, beres-beres, bahkan gelisah menggoyangkan kaki. NEAT bisa berbeda ratusan kkal antara orang yang "tidak bisa diam" dan yang seharian menetap.</p>
+  <p>Artinya: metabolisme lambat jarang menjadi penyebab sebenarnya. Kombinasi <em>underestimasi makanan + overestimasi aktivitas</em> hampir selalu adalah jawabannya — dan keduanya bisa diperbaiki dengan pengukuran, bukan dengan menyerah.</p>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 2</span>
+    <p>Berat badan tunduk pada neraca energi. BMR adalah biaya dasar, TDEE adalah total pengeluaran, dan defisit moderat 300-500 kkal/hari adalah kecepatan penurunan yang optimal: cukup cepat untuk memotivasi, cukup lambat untuk mempertahankan otot dan kewarasan. Di bab berikutnya, kita hitung angkamu.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 3 ============ -->
+<section class="chapter" id="bab3">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 03</span><span class="rule"></span><span class="part">Bagian I — Fondasi</span></div>
+    <h2>Protokol Kalori &amp; <em>Macros</em></h2>
+    <p class="ch-lede">Ini bab paling penting di seluruh buku. Di akhir bab, kamu akan memegang empat angka personal: kalori target, gram protein, lemak, dan karbohidrat. Empat angka itu adalah protokolmu.</p>
+  </div>
+
+  <h3>Langkah 1 — Hitung angkamu sekarang</h3>
+  <p>Isi kalkulator di bawah. Ia memakai rumus Mifflin-St Jeor dari Bab 2 dan langsung menerapkan defisit moderat. Angkanya diperbarui saat kamu mengetik.</p>
+
+  <div class="widget">
+    <div class="w-t">Kalkulator Protokol</div>
+    <div class="w-s">Semua perhitungan terjadi di perangkatmu. Versi lengkap dengan simulasi cheat meal ada di bonus <b>Kalkulator Suite</b>.</div>
+    <div class="w-grid">
+      <div><label>Jenis Kelamin</label><select id="cGender"><option value="f" selected>Perempuan</option><option value="m">Laki-laki</option></select></div>
+      <div><label>Umur</label><input type="number" id="cAge" value="28" inputmode="numeric"></div>
+      <div><label>Tinggi (cm)</label><input type="number" id="cH" value="160" inputmode="numeric"></div>
+      <div><label>Berat (kg)</label><input type="number" id="cW" value="65" inputmode="decimal" step="0.1"></div>
+      <div><label>Aktivitas</label><select id="cAct">
+        <option value="1.2">Sedentary</option><option value="1.375" selected>Light</option>
+        <option value="1.55">Moderate</option><option value="1.725">Active</option><option value="1.9">Very Active</option>
+      </select></div>
+      <div><label>Defisit</label><select id="cDef">
+        <option value="300">Ringan (−300)</option><option value="500" selected>Standar (−500)</option>
+      </select></div>
+    </div>
+    <div class="w-out">
+      <div class="w-stat"><div class="l">BMR</div><div class="v" id="oBmr">—</div></div>
+      <div class="w-stat"><div class="l">TDEE</div><div class="v" id="oTdee">—</div></div>
+      <div class="w-stat hero"><div class="l">Kalori Target</div><div class="v" id="oGoal">—</div></div>
+      <div class="w-stat"><div class="l">Protein</div><div class="v" id="oProt">— <small>g</small></div></div>
+      <div class="w-stat"><div class="l">Lemak</div><div class="v" id="oFat">— <small>g</small></div></div>
+      <div class="w-stat"><div class="l">Karbo</div><div class="v" id="oCarb">— <small>g</small></div></div>
+    </div>
+  </div>
+
+  <h3>Langkah 2 — Pahami kenapa macros diurutkan begini</h3>
+  <p>Kalori menentukan <em>berapa banyak</em> berat berubah; macros menentukan <em>apa yang hilang</em> — lemak atau otot — dan seberapa tahan lapar kamu di prosesnya. Urutan prioritasnya tidak bisa ditukar:</p>
+
+  <h4>Protein — dihitung pertama, tidak bisa ditawar</h4>
+  <p>Saat defisit, tubuh butuh alasan kuat untuk mempertahankan otot — jaringan yang mahal secara energi. Alasan itu adalah <b>asupan protein tinggi + latihan beban</b>. Meta-analisis besar (Morton dkk., 2018) menempatkan titik optimal asupan protein untuk mendukung massa otot di sekitar <b>1,6-2,2 g per kg berat badan</b>; saat cutting, bagian atas rentang itu lebih aman. Protokol ini memakai <b>1,8 g/kg</b> sebagai patokan praktis.</p>
+  <p>Bonus yang sering diremehkan: protein adalah macro paling mengenyangkan dan punya <b>thermic effect</b> tertinggi — sekitar 20-30% kalorinya terbakar hanya untuk mencernanya (bandingkan karbo 5-10%, lemak 0-3%). Diet tinggi protein secara harfiah membuat defisitmu terasa lebih ringan.</p>
+
+  <h4>Lemak — lantai minimum untuk hormon</h4>
+  <p>Lemak bukan musuh; ia bahan baku hormon (termasuk hormon seks), pelarut vitamin A-D-E-K, dan penyusun membran sel. Turun terlalu rendah terlalu lama dan tubuh membalas: siklus haid kacau, testosteron turun, mood anjlok, kulit dan rambut kusam. Lantai amannya: <b>0,8-1 g per kg berat badan</b>. Protokol ini memakai 0,8 g/kg saat cutting.</p>
+
+  <h4>Karbohidrat — sisanya, dan itu bukan penghinaan</h4>
+  <p>Setelah protein dan lemak terpenuhi, seluruh sisa anggaran kalori jatuh ke karbohidrat. Ini justru kabar baik: karbo adalah bahan bakar utama latihan dan otak, dan di sinilah nasi, kentang, buah, dan oat-mu tinggal. "Sisa" pada orang dengan target 1.500 kkal biasanya masih 130-160 g — setara nasi 3 porsi sedang plus buah. Kamu akan tetap makan nasi setiap hari di protokol ini.</p>
+
+  <div class="table-scroll"><table>
+    <tr><th>Macro</th><th>Aturan</th><th>kkal per gram</th><th>Contoh (65 kg, target 1.500)</th></tr>
+    <tr><td><b>Protein</b></td><td>1,8 g × kg BB</td><td class="n">4</td><td>117 g ≈ 468 kkal</td></tr>
+    <tr><td><b>Lemak</b></td><td>0,8 g × kg BB</td><td class="n">9</td><td>52 g ≈ 468 kkal</td></tr>
+    <tr><td><b>Karbo</b></td><td>Sisa kalori ÷ 4</td><td class="n">4</td><td>±141 g ≈ 564 kkal</td></tr>
+  </table></div>
+
+  <h3>Langkah 3 — Aturan penimbangan &amp; evaluasi</h3>
+  <p>Angka target sudah ada. Sekarang aturan mengukur hasilnya — dan ini sering jadi titik gagal psikologis kalau tidak dipahami:</p>
+  <ul>
+    <li><b>Timbang setiap pagi</b>, setelah ke toilet, sebelum makan-minum, pakaian minimal. Konsistensi kondisi lebih penting dari merek timbangan.</li>
+    <li><b>Yang dinilai adalah rata-rata mingguan, bukan angka harian.</b> Berat harian bisa berayun ±1-2 kg hanya karena air, garam, karbo kemarin, dan isi pencernaan. Naik 0,8 kg sehari setelah makan bakso bukan berarti kamu menambah 0,8 kg lemak — itu air dan glikogen.</li>
+    <li><b>Ukur juga lingkar pinggang seminggu sekali</b> (pusar, pagi, perut rileks). Saat timbangan bohong, meteran jarang bohong.</li>
+    <li><b>Evaluasi tiap 2 minggu:</b> rata-rata mingguan turun 0,4-1 kg? Jalan terus. Tidak bergerak 2 minggu penuh? Buka Bab 9.</li>
+  </ul>
+
+  <div class="callout gold">
+    <span class="cl-t">Pakai Tools-mu</span>
+    <p>Simpan empat angkamu di <b>Kalkulator Suite</b>, lalu catat berat harian di <b>Training &amp; Progress Hub</b> — grafik trend-nya otomatis, dan kamu akan melihat rata-rata mingguan tanpa perlu menghitung manual.</p>
+  </div>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 3</span>
+    <p>Protokolmu adalah empat angka: kalori target (TDEE − 300 s.d. 500), protein 1,8 g/kg, lemak 0,8 g/kg, karbo sisanya. Timbang tiap pagi, nilai per minggu, evaluasi per dua minggu. Semua bab setelah ini hanyalah cara membuat empat angka itu terjadi di kehidupan nyata.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 4 ============ -->
+<section class="chapter" id="bab4">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 04</span><span class="rule"></span><span class="part">Bagian II — Eksekusi</span></div>
+    <h2>Piring <em>Indonesia</em></h2>
+    <p class="ch-lede">Hampir semua panduan diet ditulis untuk orang yang sarapan oatmeal dan makan siang salad. Kamu makan di warteg, masak rendang saat lebaran, dan menganggap "belum makan" kalau belum ketemu nasi. Bab ini menerjemahkan sains ke piringmu.</p>
+  </div>
+
+  <h3>Filosofi: bukan mengganti masakan, tapi mengatur komposisi</h3>
+  <p>Masakan Indonesia sering dituduh "tidak sehat". Tuduhan itu keliru sasaran. Bahan dasarnya justru luar biasa: ikan segar, tempe dan tahu (protein nabati terbaik di dunia dengan harga termurah di dunia), sayur melimpah, rempah tanpa kalori. Masalahnya ada di tiga titik yang bisa diatur: <b>porsi nasi yang dominan, metode goreng, dan gula di minuman.</b> Perbaiki tiga titik itu — tanpa menyentuh yang lain — dan piring warteg berubah jadi piring diet.</p>
+
+  <p>Kerangka praktisnya: <b>Formula Piring 2-1-1.</b> Setiap kali makan besar, bayangkan piringmu terbagi:</p>
+  <div class="grid2">
+    <div class="tile"><div class="t-h">½ piring — Sayur</div><p>Volume terbesar, kalori terkecil. Tumis kangkung, sayur asem, capcay, lalapan, sop. Sayur adalah "peredam lapar" resmi protokol ini.</p></div>
+    <div class="tile"><div class="t-h">¼ piring — Protein</div><p>Bintang utamanya. Ayam (utamakan dada), ikan, telur, tempe, tahu. Porsi seukuran telapak tangan penuh.</p></div>
+    <div class="tile"><div class="t-h">¼ piring — Karbo</div><p>Nasi 100-150 g (sekitar satu centong munjung), atau kentang, atau lontong. Ada, dinikmati, tapi bukan mayoritas.</p></div>
+    <div class="tile"><div class="t-h">+ Rasa sepuasnya</div><p>Sambal, jeruk nipis, bawang, cabai, kecap asin, rempah — semua praktis nol kalori. Diet ini tidak pernah hambar.</p></div>
+  </div>
+
+  <h3>Karbohidrat: kenali harganya, lalu pilih</h3>
+  <div class="table-scroll"><table>
+    <tr><th>Sumber Karbo</th><th style="text-align:right">kkal / 100 g</th><th>Catatan Protokol</th></tr>
+    <tr><td>Nasi putih</td><td class="n">130</td><td>Boleh. Kunci di porsi: 100-150 g per makan.</td></tr>
+    <tr><td>Nasi merah</td><td class="n">111</td><td>Lebih berserat → kenyang lebih lama. Upgrade bagus, bukan wajib.</td></tr>
+    <tr><td>Kentang rebus</td><td class="n">87</td><td>Salah satu makanan paling mengenyangkan per kalori. Senjata rahasia.</td></tr>
+    <tr><td>Ubi &amp; jagung</td><td class="n">86</td><td>Murah, kenyang, penuh mikronutrien.</td></tr>
+    <tr><td>Oat</td><td class="n">389 (kering)</td><td>40-50 g kering jadi semangkuk besar. Sarapan andalan.</td></tr>
+    <tr><td>Mie instan</td><td class="n">436 / bungkus</td><td>Bukan haram — tapi 1 bungkus ≈ ⅓ anggaran harianmu dan lapar lagi 2 jam kemudian. Pilih sadar.</td></tr>
+  </table></div>
+
+  <h3>Protein lokal: daftar belanja seorang praktisi</h3>
+  <p>Target proteinmu (Bab 3) terdengar besar sampai kamu sadar betapa kayanya opsi lokal. Angka per 100 g:</p>
+  <div class="table-scroll"><table>
+    <tr><th>Sumber</th><th style="text-align:right">Protein</th><th style="text-align:right">kkal</th><th>Catatan</th></tr>
+    <tr><td>Dada ayam</td><td class="n">31 g</td><td class="n">165</td><td>Rasio protein:kalori terbaik. Raja cutting.</td></tr>
+    <tr><td>Ikan tongkol / tuna</td><td class="n">30 g</td><td class="n">≈150-184</td><td>Murah di pasar, protein setara dada ayam.</td></tr>
+    <tr><td>Telur (per butir)</td><td class="n">6-7 g</td><td class="n">±75</td><td>Protein paling fleksibel. Rebus = teman ngemil terbaik.</td></tr>
+    <tr><td>Tempe</td><td class="n">19 g</td><td class="n">193</td><td>Kebanggaan nasional yang layak. Fermentasi = mudah dicerna.</td></tr>
+    <tr><td>Tahu</td><td class="n">8 g</td><td class="n">76</td><td>Ringan kalori; kombinasikan dengan tempe/telur.</td></tr>
+    <tr><td>Udang</td><td class="n">24 g</td><td class="n">99</td><td>Hampir murni protein.</td></tr>
+    <tr><td>Ikan lele</td><td class="n">18 g</td><td class="n">122</td><td>Pecel lele minus gorengannya? Lihat resep air-fryer di bonus Meal System.</td></tr>
+  </table></div>
+
+  <h3>Tiga pengubah senyap: minyak, gula cair, kerupuk</h3>
+  <p>Kalau makananmu sudah "sehat" tapi berat tidak turun, hampir pasti pelakunya salah satu dari tiga ini:</p>
+  <ol>
+    <li><b>Minyak goreng.</b> 1 sendok makan = ±120 kkal. Menggoreng deep-fry bisa menambah 150-250 kkal ke bahan yang sama dibanding dibakar/direbus. Ayam goreng vs ayam bakar bukan soal moral — soal 100 kkal lebih per potong. Solusi praktis: teflon anti lengket, air fryer, bakar, kukus, dan takar minyak dengan sendok, bukan dituang.</li>
+    <li><b>Gula cair.</b> Es teh manis (±115 kkal), es jeruk (±120), boba (±450). Kalori cair tidak mengenyangkan sama sekali — otak hampir tidak "mencatatnya" sebagai makanan. Mengganti 2 gelas manis per hari dengan air/teh tawar = defisit ±230 kkal <em>tanpa mengubah makanan sama sekali.</em> Ini satu perubahan dengan ROI tertinggi di seluruh buku ini.</li>
+    <li><b>Kerupuk &amp; pelengkap goreng.</b> Kerupuk 494 kkal/100 g. Tiga keping besar ≈ satu porsi nasi. Bawang goreng, rempeyek, emping — sama saja. Tidak dilarang; dihitung.</li>
+  </ol>
+
+  <h3>Buah: aturan satu genggam</h3>
+  <p>Buah adalah dessert resmi protokol ini: manis, penuh serat dan mikronutrien, dan sulit berlebihan. Aturan praktis: <b>2-3 porsi sehari, satu porsi = satu genggam</b> (1 apel, 1 pisang sedang, 1 mangkuk kecil pepaya). Yang perlu diwaspadai hanya bentuk cairnya — jus 3 buah + gula adalah minuman manis dengan kostum sehat. Makan buahnya, jangan minum.</p>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 4</span>
+    <p>Masakan Indonesia kompatibel penuh dengan fat loss. Pakai Formula Piring 2-1-1, pilih protein lokal yang efisien, dan awasi tiga pengubah senyap: minyak, minuman manis, kerupuk. Nasi tetap di piringmu — porsinya saja yang tahu diri.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 5 ============ -->
+<section class="chapter" id="bab5">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 05</span><span class="rule"></span><span class="part">Bagian II — Eksekusi</span></div>
+    <h2>Sistem Makan <em>30 Hari</em></h2>
+    <p class="ch-lede">Motivasi menentukan hari pertama; sistem menentukan hari ke-23. Bab ini memberikan struktur harian yang berjalan otomatis — dengan template yang tinggal dipilih, bukan dipikirkan setiap hari.</p>
+  </div>
+
+  <h3>Struktur 4 slot</h3>
+  <p>Protokol ini membagi hari menjadi empat slot makan. Bukan karena "makan sering mempercepat metabolisme" (itu mitos — lihat Glosarium), tapi karena empat slot membuat lapar tidak pernah menumpuk sampai level kalap, dan protein tersebar optimal untuk otot:</p>
+  <div class="table-scroll"><table>
+    <tr><th>Slot</th><th>Jam Fleksibel</th><th style="text-align:right">Porsi Kalori</th><th>Fungsi</th></tr>
+    <tr><td><b>Sarapan</b></td><td>06.00-09.00</td><td class="n">±25%</td><td>Set protein sejak pagi → siang tidak kalap</td></tr>
+    <tr><td><b>Makan siang</b></td><td>12.00-13.30</td><td class="n">±33%</td><td>Makan terbesar; ikut jam sosial kantor</td></tr>
+    <tr><td><b>Snack</b></td><td>15.30-17.00</td><td class="n">±12%</td><td>Jembatan anti-lapar menuju makan malam</td></tr>
+    <tr><td><b>Makan malam</b></td><td>18.30-20.00</td><td class="n">±30%</td><td>Ya, kamu makan malam. Jam bukan masalah — total kalori masalahnya</td></tr>
+  </table></div>
+
+  <h3>Template siap pakai (klik untuk buka)</h3>
+  <p>Setiap slot punya 3 opsi. Rotasikan sesukamu — semua opsi dalam satu slot setara kalorinya, jadi bebas tukar tanpa menghitung ulang. Versi 30 hari penuh yang menyusun ini otomatis ada di bonus <b>Meal System</b>.</p>
+
+  <h4>Sarapan — pilih satu</h4>
+  <details><summary>Opsi A · Oat pisang + telur rebus<span class="kcal-tag">±380 kkal · 20 g protein</span></summary>
+    <div class="d-body"><p>Oat 45 g diseduh air/susu skim, topping 1 pisang iris dan sejumput kayu manis, plus 2 telur rebus di samping. Serat oat + protein telur = kenyang sampai siang. Siapkan malam sebelumnya (overnight oats) kalau pagi selalu buru-buru.</p></div>
+  </details>
+  <details><summary>Opsi B · Nasi + telur dadar + tumis sayur<span class="kcal-tag">±420 kkal · 20 g protein</span></summary>
+    <div class="d-body"><p>Nasi 100 g, telur dadar 2 butir dengan 1 sdt minyak, tumis bayam atau kangkung. Sarapan warteg klasik yang sudah patuh protokol. Tambah sambal sesuka hati.</p></div>
+  </details>
+  <details><summary>Opsi C · Roti gandum + telur + alpukat<span class="kcal-tag">±390 kkal · 19 g protein</span></summary>
+    <div class="d-body"><p>2 lembar roti gandum, 2 telur (rebus/orak-arik), ¼ alpukat dioles sebagai "mentega". Untuk yang sarapannya harus bisa dibawa jalan.</p></div>
+  </details>
+
+  <h4>Makan siang — pilih satu</h4>
+  <details><summary>Opsi A · Ayam bakar + nasi + lalapan<span class="kcal-tag">±510 kkal · 35 g protein</span></summary>
+    <div class="d-body"><p>Ayam bakar 1 potong besar (utamakan dada), nasi 150 g, lalapan sebanyak-banyaknya, sambal. Pesan di warung mana pun: "ayam bakar, nasinya setengah, lalapannya banyakin". Kalimat itu adalah protokol dalam satu tarikan napas.</p></div>
+  </details>
+  <details><summary>Opsi B · Soto ayam bening + nasi<span class="kcal-tag">±470 kkal · 30 g protein</span></summary>
+    <div class="d-body"><p>Soto ayam kuah bening (bukan santan), nasi 100 g, tambah suwiran ayam kalau bisa, telur rebus ½ butir, lewati kerupuk. Kuah panas memperlambat makan dan mempercepat kenyang.</p></div>
+  </details>
+  <details><summary>Opsi C · Pecel + tempe + telur<span class="kcal-tag">±490 kkal · 24 g protein</span></summary>
+    <div class="d-body"><p>Sayur pecel porsi besar dengan bumbu kacang secukupnya (minta "sambelnya dikit"), nasi 100 g, tempe bacem/goreng 2 potong, telur rebus. Opsi sayur terbanyak di daftar ini.</p></div>
+  </details>
+
+  <h4>Snack sore — pilih satu</h4>
+  <details><summary>Opsi A · Buah + kacang<span class="kcal-tag">±180 kkal · 5 g protein</span></summary>
+    <div class="d-body"><p>1 apel/pisang + 10 butir almond atau segenggam kecil kacang tanah rebus. Manis, renyah, portabel.</p></div>
+  </details>
+  <details><summary>Opsi B · 2 telur rebus + kopi hitam<span class="kcal-tag">±150 kkal · 12 g protein</span></summary>
+    <div class="d-body"><p>Snack dengan protein tertinggi per rupiah di negeri ini. Kopi hitam/teh tawar tanpa gula menemani.</p></div>
+  </details>
+  <details><summary>Opsi C · Yogurt plain + madu<span class="kcal-tag">±160 kkal · 9 g protein</span></summary>
+    <div class="d-body"><p>Yogurt plain 150 g + 1 sdt madu. Kalau ketemu greek yogurt, lebih baik lagi — proteinnya hampir dua kali lipat.</p></div>
+  </details>
+
+  <h4>Makan malam — pilih satu</h4>
+  <details><summary>Opsi A · Ikan bakar + lalapan + nasi kecil<span class="kcal-tag">±430 kkal · 30 g protein</span></summary>
+    <div class="d-body"><p>Ikan bakar 1 ekor sedang, lalapan + sambal, nasi 80 g. Malam dengan protein tinggi dan volume besar — tidur tanpa lapar.</p></div>
+  </details>
+  <details><summary>Opsi B · Capcay + tahu/ayam + nasi kecil<span class="kcal-tag">±440 kkal · 26 g protein</span></summary>
+    <div class="d-body"><p>Capcay kuah porsi besar dengan tambahan protein (ayam/tahu/bakso ayam), nasi 80 g. Semangkuk penuh sayur di penghujung hari.</p></div>
+  </details>
+  <details><summary>Opsi C · Sop ayam + tempe, tanpa nasi<span class="kcal-tag">±390 kkal · 30 g protein</span></summary>
+    <div class="d-body"><p>Sop ayam kampung kuah bening porsi besar + tempe 2 potong. Untuk malam ketika jatah karbo sudah habis dipakai siang — tetap kenyang lewat kuah dan volume.</p></div>
+  </details>
+
+  <h3>Alternatif struktur: Intermittent Fasting 16:8</h3>
+  <p>Sebagian orang lebih mudah patuh dengan mempersempit jam makan: puasa 16 jam, makan dalam jendela 8 jam (mis. 12.00-20.00) — sarapan digeser jadi makan siang. Faktanya harus jernih: IF <b>bukan sihir metabolik.</b> Studi perbandingan langsung menunjukkan hasilnya setara diet biasa <em>ketika total kalorinya sama.</em> IF hanyalah alat kepatuhan: lebih sedikit jam makan = lebih sedikit kesempatan kelebihan kalori. Cocok untuk yang tidak lapar di pagi hari; buruk untuk yang justru jadi kalap saat buka jendela. Coba, ukur, dan pertahankan hanya jika datanya bagus.</p>
+
+  <h3>Meal prep: 90 menit yang menyelamatkan 7 hari</h3>
+  <p>Kepatuhan runtuh bukan saat kenyang, tapi saat lapar bertemu tidak ada makanan siap. Penangkalnya satu ritual: <b>Sabtu/Minggu pagi, 90 menit.</b> Rebus 10 telur. Masak 500-700 g dada ayam (bakar/suwir). Potong sayur untuk 3 hari. Masak nasi lalu porsikan 100 g per wadah (timbang sekali, hafalkan volumenya selamanya). Simpan di kulkas — protein matang bertahan 3-4 hari. Ketika lapar datang, makanan patuh-protokol lebih cepat dijangkau daripada gofood. Itu seluruh rahasianya.</p>
+
+  <div class="callout gold">
+    <span class="cl-t">Pakai Tools-mu</span>
+    <p>Buka bonus <b>Meal System</b>: generate rencana 30 hari dari kalori targetmu, cek kalori bahan apa pun di database 100+ makanan Indonesia, ikuti 15 resep low-cal, lalu auto-buat grocery list mingguan lengkap dengan estimasi budget — siap dikirim ke WhatsApp.</p>
+  </div>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 5</span>
+    <p>Empat slot makan, tiga opsi per slot, rotasi bebas karena kalorinya setara. IF opsional, bukan wajib. Meal prep 90 menit seminggu adalah asuransi kepatuhanmu. Sistem yang baik membuat keputusan baik menjadi keputusan termudah.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 6 ============ -->
+<section class="chapter" id="bab6">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 06</span><span class="rule"></span><span class="part">Bagian II — Eksekusi</span></div>
+    <h2>Protokol Latihan <em>15 Menit</em></h2>
+    <p class="ch-lede">Kamu tidak butuh gym, alat, atau satu jam sehari. Kamu butuh 15 menit latihan beban tubuh yang progresif — dan pemahaman jujur tentang untuk apa sebenarnya latihan itu.</p>
+  </div>
+
+  <h3>Kejujuran dulu: latihan bukan mesin pembakar utama</h3>
+  <p>Mari luruskan ekspektasi. Latihan 15 menit membakar mungkin 100-180 kkal — setara satu pisang goreng. Kalau tujuannya murni membakar kalori, mengatur piring jauh lebih efisien. Lalu kenapa latihan tetap <b>non-negotiable</b> di protokol ini? Karena perannya bukan membakar — perannya <b>memberi tahu tubuh agar yang dibakar adalah lemak, bukan otot.</b></p>
+  <p>Saat defisit tanpa latihan beban, sebagian signifikan berat yang hilang adalah otot. Hasilnya: berat turun tapi badan tetap "lembek", metabolisme ikut turun (otot adalah jaringan yang boros energi), dan begitu diet selesai, berat kembali — sebagai lemak. Ini disebut skinny-fat, dan resistance training adalah satu-satunya pencegahnya. Meta-analisis konsisten: <b>defisit + latihan beban + protein tinggi = berat yang hilang hampir seluruhnya lemak.</b></p>
+
+  <h3>Struktur: 5 gerakan, 15 menit, 5-6 hari seminggu</h3>
+  <p>Setiap sesi terdiri dari 5 gerakan bodyweight, masing-masing 3 set, istirahat 30-45 detik. Empat level tersedia — mulai dari level yang bisa kamu selesaikan dengan form benar, bukan level yang memuaskan ego:</p>
+
+  <details><summary>Level 1 · Pemula Total — belum pernah latihan sama sekali</summary>
+    <div class="d-body"><p><b>Wall push-up</b> 3×10 · <b>Squat ke kursi</b> (duduk-berdiri) 3×10 · <b>Glute bridge</b> 3×12 · <b>Plank lutut</b> 3×20 detik · <b>Jalan cepat di tempat</b> 3×40 detik.</p><p>Tujuan level ini bukan hasil — tapi membangun kebiasaan menepati janji 15 menit pada diri sendiri. Dua minggu di sini, lalu naik.</p></div>
+  </details>
+  <details><summary>Level 2 · Beginner Fit — bisa 5+ push-up lutut</summary>
+    <div class="d-body"><p><b>Knee push-up</b> 3×8-12 · <b>Bodyweight squat</b> 3×15 · <b>Lunges bergantian</b> 3×8/kaki · <b>Plank penuh</b> 3×30 detik · <b>Mountain climber</b> 3×30 detik.</p></div>
+  </details>
+  <details><summary>Level 3 · Intermediate — bisa 10+ push-up penuh</summary>
+    <div class="d-body"><p><b>Push-up penuh</b> 3×10-15 · <b>Squat tempo lambat</b> (3 detik turun) 3×12 · <b>Bulgarian split squat</b> (kaki belakang di kursi) 3×8/kaki · <b>Pike push-up</b> 3×8 · <b>Plank + shoulder tap</b> 3×20.</p></div>
+  </details>
+  <details><summary>Level 4 · Advanced — HIIT total</summary>
+    <div class="d-body"><p><b>Burpees</b> 4×10 · <b>Jump squat</b> 4×12 · <b>Push-up dekat (tricep)</b> 3×12 · <b>Jumping lunges</b> 3×10/kaki · <b>Plank jack</b> 3×30 detik. Level ini menuntut recovery baik — hanya kalau tidur 7 jam+ konsisten.</p></div>
+  </details>
+
+  <h3>Progressive overload: satu-satunya aturan yang wajib</h3>
+  <p>Otot beradaptasi pada tuntutan, lalu berhenti beradaptasi kalau tuntutannya sama terus. Maka setiap minggu, naikkan <em>sedikit saja</em> salah satu dari: jumlah rep (+1-2), durasi plank (+5-10 detik), tempo lebih lambat, atau naik level gerakan. Minggu lalu squat 3×15, minggu ini 3×17. Itu saja. Kemajuan mikro yang dijumlahkan 30 hari adalah transformasi.</p>
+
+  <h3>Cardio &amp; NEAT: pengganda opsional</h3>
+  <p>Cardio bukan wajib di protokol ini — tapi ia pengganda yang bagus. Yang paling underrated justru yang paling sederhana: <b>jalan kaki.</b> Target 7.000-10.000 langkah/hari membakar 200-350 kkal ekstra tanpa memicu lapar berlebih (kelemahan cardio intens: eat-back). Parkir lebih jauh, turun satu halte lebih awal, jalan setelah makan malam sambil telfonan. NEAT — semua gerakan non-olahraga ini — bisa menyumbang lebih banyak defisit daripada sesi latihanmu sendiri.</p>
+
+  <div class="callout warn">
+    <span class="cl-t">Yang Tidak Perlu Kamu Lakukan</span>
+    <p>Sit-up 200× untuk "membakar lemak perut" (spot reduction adalah mitos — lemak turun merata sesuai genetik), cardio 1 jam setiap hari (recovery-mu akan hancur duluan), dan latihan saat sakit atau tidur &lt; 5 jam (hari itu, istirahat adalah latihannya).</p>
+  </div>
+
+  <div class="callout gold">
+    <span class="cl-t">Pakai Tools-mu</span>
+    <p>Bonus <b>Training &amp; Progress Hub</b> berisi 30 hari program lengkap dengan timer 15 menit built-in, checklist per gerakan, dan tracker progressive overload — bersebelahan dengan grafik berat badanmu.</p>
+  </div>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 6</span>
+    <p>Latihan 15 menit bukan untuk membakar kalori — untuk memastikan yang terbakar adalah lemak, bukan otot. Lima gerakan, empat level, satu aturan: sedikit lebih berat dari minggu lalu. Jalan kaki adalah cardio terbaik yang tidak terasa seperti cardio.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 7 ============ -->
+<section class="chapter" id="bab7">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 07</span><span class="rule"></span><span class="part">Bagian II — Eksekusi</span></div>
+    <h2>Tidur, Stres &amp; <em>Hormon</em></h2>
+    <p class="ch-lede">Ini bab yang tidak ada di kebanyakan buku diet — dan justru sering jadi pembeda antara yang berhasil dan yang menyerah. Karena nafsu makan bukan soal kemauan; ia soal hormon. Dan hormonmu diprogram ulang setiap malam.</p>
+  </div>
+
+  <h3>Dua hormon yang mengatur rasa laparmu</h3>
+  <p>Kenalan dengan dua tokoh utama: <b>ghrelin</b>, hormon lapar yang diproduksi lambung untuk berteriak "makan sekarang", dan <b>leptin</b>, hormon kenyang dari sel lemak yang berbisik "sudah cukup". Selama kadar keduanya normal, defisit moderat terasa menantang tapi masuk akal. Masalah dimulai ketika keduanya dikacaukan — dan pengacau nomor satunya bukan makanan. Tapi kurang tidur.</p>
+
+  <h3>Kurang tidur = diet mode hard, otomatis</h3>
+  <p>Eksperimen pembatasan tidur menunjukkan pola yang konsisten dan cukup mengerikan: setelah beberapa malam tidur pendek (±4-5 jam), <b>ghrelin naik, leptin turun</b>, dan partisipan makan ratusan kkal lebih banyak keesokan harinya — dengan preferensi bergeser ke makanan padat kalori. Craving gorengan jam 10 malam setelah hari yang melelahkan itu bukan kelemahan karakter; itu biologi yang berjalan sesuai desain.</p>
+  <p>Lebih jauh lagi: studi menemukan bahwa saat dua kelompok menjalani defisit kalori yang sama, kelompok yang tidurnya dipangkas <b>kehilangan proporsi otot jauh lebih besar</b> dan lemak lebih sedikit dibanding kelompok yang tidur cukup. Bacalah kalimat itu sekali lagi. Dengan piring yang sama persis, tidurmu ikut menentukan apakah yang hilang itu lemak atau otot.</p>
+  <p>Protokolnya sederhana dan tidak bisa diganti suplemen:</p>
+  <ul>
+    <li><b>7-8 jam</b>, dengan jam tidur-bangun yang konsisten (±30 menit, termasuk akhir pekan).</li>
+    <li><b>Layar berhenti 60 menit sebelum tidur.</b> Bukan cuma soal blue light — scrolling itu stimulasi yang menunda kantuk.</li>
+    <li><b>Kafein terakhir jam 14.00.</b> Waktu paruh kafein 5-6 jam; kopi jam 5 sore masih separuh aktif di darahmu jam 10 malam.</li>
+    <li><b>Kamar gelap dan sejuk.</b> AC/kipas + tutup mata murah adalah investasi diet yang serius.</li>
+  </ul>
+
+  <h3>Stres, kortisol, dan makan emosional</h3>
+  <p>Stres kronis menaikkan <b>kortisol</b>, yang punya dua efek buruk bagi protokolmu: meningkatkan nafsu makan (khususnya pada makanan manis-berlemak — comfort food benar-benar menghibur secara kimiawi), dan mendorong penyimpanan lemak visceral di area perut. Ditambah retensi air yang dipicunya, minggu penuh stres bisa membuat timbangan naik walau kalorimu patuh — lalu angka itu membuatmu makin stres. Lingkarannya jelas kejam.</p>
+  <p>Kamu tidak bisa menghapus stres, tapi bisa memutus rantainya ke makanan:</p>
+  <ul>
+    <li><b>Kenali polanya dulu.</b> Lapar fisik datang bertahap dan bisa menunggu; lapar emosional datang mendadak, spesifik ("harus martabak"), dan mendesak. Sekali bisa membedakan keduanya, setengah pertempuran selesai.</li>
+    <li><b>Pasang jeda 10 menit.</b> Saat dorongan datang, jangan melarang — tunda. Minum segelas air, jalan sebentar, lalu putuskan. Sebagian besar dorongan emosional mereda sendiri dalam 10 menit.</li>
+    <li><b>Sediakan pelampiasan non-makanan</b> untuk hari berat: jalan sore, mandi air hangat, latihan napas 4-4-4-4. Terdengar sepele sampai dicoba dengan serius.</li>
+    <li><b>Jangan simpan pemicu di rumah.</b> Kamu tidak melawan godaan yang tidak ada di lemari. Keputusan terbaik dibuat sekali seminggu di supermarket, bukan tiap malam di dapur.</li>
+  </ul>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 7</span>
+    <p>Tidur 7-8 jam adalah bagian dari protokol, setara pentingnya dengan kalori dan protein — ia menentukan hormon laparmu dan komposisi berat yang hilang. Stres tidak bisa dihapus, tapi rantai stres-ke-makanan bisa diputus dengan jeda, pengganti, dan lingkungan yang dirancang. Kamu tidak butuh lebih banyak willpower; kamu butuh lebih sedikit pertempuran.</p>
+  </div>
+
+  <div class="pull">"Diet terbaik di dunia bisa dikalahkan oleh tiga malam begadang berturut-turut."</div>
+</section>
+
+<!-- ============ BAB 8 ============ -->
+<section class="chapter" id="bab8">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 08</span><span class="rule"></span><span class="part">Bagian III — Bertahan</span></div>
+    <h2>Cheat Meal &amp; <em>Hidup Sosial</em></h2>
+    <p class="ch-lede">Selama 30 hari ke depan akan ada ulang tahun, kondangan, bukber, traktiran, dan malam ketika kamu benar-benar ingin martabak. Protokol yang pura-pura hal itu tidak ada adalah protokol yang gagal. Protokol ini menganggarkannya.</p>
+  </div>
+
+  <h3>Kenapa cheat meal justru bagian dari strategi</h3>
+  <p>Ada dua alasan cheat meal masuk resmi ke protokol ini. <b>Alasan psikologis</b> — yang terpenting: makanan yang dilarang total menjadi obsesi. Mengetahui bahwa Sabtu malam kamu boleh makan apa pun yang kamu mau mengubah "tidak boleh selamanya" menjadi "belum sekarang" — dan otak manusia jauh lebih kooperatif pada penundaan daripada larangan. <b>Alasan fisiologis</b> — lebih kecil, tapi nyata: satu makan besar sesekali membantu memulihkan glikogen dan memberi sinyal kelonggaran pada sistem yang sedang defisit. Efek "reset metabolisme"-nya sering dilebih-lebihkan; efek "reset kewarasan"-nya tidak.</p>
+
+  <h3>Empat aturan cheat meal</h3>
+  <ol>
+    <li><b>Cheat MEAL, bukan cheat DAY.</b> Ini aturan terpenting. Satu makan bebas (±800-1.500 kkal ekstra) mudah diserap oleh defisit seminggu. Satu HARI bebas (bisa 4.000-5.000+ kkal) menghapus hampir seluruh kerja kerasmu seminggu. Satu kata itu — meal vs day — adalah perbedaan antara turun 2 kg dan turun 0 kg sebulan.</li>
+    <li><b>Jadwalkan, jangan spontan.</b> Cheat yang dijadwalkan adalah hadiah; cheat spontan adalah kebocoran. Pilih momen sosial yang memang bernilai — makan bareng keluarga Sabtu malam — bukan sebatang cokelat sendirian karena bosan.</li>
+    <li><b>Nikmati tanpa rasa bersalah, berhenti saat kenyang.</b> Duduk, makan pelan, nikmati betul-betul. Rasa bersalah justru memicu pola "sudah terlanjur, sekalian saja" — musuh lama kita dari Bab 1.</li>
+    <li><b>Besoknya: normal. Bukan balas dendam.</b> Jangan puasa, jangan cardio 2 jam sebagai "hukuman". Kembali saja ke protokol seperti tidak terjadi apa-apa — karena memang tidak terjadi apa-apa. Timbangan mungkin naik 0,5-1 kg karena air dan glikogen; itu bukan lemak dan akan turun sendiri dalam 2-3 hari.</li>
+  </ol>
+
+  <h3>Bertahan di medan sosial Indonesia</h3>
+  <p>Tidak ada budaya yang mengekspresikan kasih sayang lewat makanan seintens kita — dan menolak makanan bisa terasa seperti menolak orangnya. Beberapa protokol lapangan:</p>
+  <ul>
+    <li><b>Kondangan prasmanan:</b> keliling dulu satu putaran penuh sebelum ambil apa pun (menghapus "takut kelewatan"), lalu susun satu piring dengan formula 2-1-1 — dan hanya satu piring. Sate, ikan, sayur adalah teman terbaikmu di sana; es buah bersantan adalah dessert 400 kkal yang menyamar jadi buah.</li>
+    <li><b>Ditawari terus oleh tuan rumah:</b> jangan menolak — <em>perlambat</em>. "Iya tante, ini masih ada" sambil piring belum kosong bekerja lebih baik daripada "nggak, aku lagi diet" yang mengundang seminar 20 menit soal dietmu.</li>
+    <li><b>Bukber / traktiran kantor:</b> jadikan ini cheat meal terjadwal minggu itu. Kalau minggu itu jadwal cheat-mu sudah terpakai, pilih menu paling patuh yang tersedia dan pesan minuman tawar — hemat 200-400 kkal dari minuman saja sudah kemenangan.</li>
+    <li><b>"Kok makin kurus? Makan yang banyak!"</b> Senyum, terima kasih, ganti topik. Kamu tidak wajib mempresentasikan protokolmu ke siapa pun.</li>
+  </ul>
+
+  <div class="callout gold">
+    <span class="cl-t">Pakai Tools-mu</span>
+    <p>Mau tahu dampak persis satu cheat meal ke targetmu — dan berapa penyesuaian sisa minggunya? Buka <b>Kalkulator Suite → tab Cheat Meal</b>. Untuk skenario lapangan lengkap (kondangan, warteg, resto Padang, traveling, PMS-craving), buka bonus <b>Survival Guide</b>.</p>
+  </div>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 8</span>
+    <p>Satu cheat meal terjadwal per minggu bukan pelanggaran protokol — ia bagian dari protokol. Aturan emasnya: meal bukan day, dijadwalkan bukan spontan, dinikmati bukan disesali, dan besoknya normal bukan balas dendam.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 9 ============ -->
+<section class="chapter" id="bab9">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 09</span><span class="rule"></span><span class="part">Bagian III — Bertahan</span></div>
+    <h2>Plateau &amp; <em>Troubleshooting</em></h2>
+    <p class="ch-lede">Suatu saat — mungkin minggu ketiga, mungkin bulan kedua — timbangan akan berhenti bergerak. Ini bukan tanda protokol gagal. Ini tanda kamu perlu bab ini.</p>
+  </div>
+
+  <h3>Definisi dulu: apa itu plateau sungguhan</h3>
+  <p>Timbangan datar 4 hari <b>bukan</b> plateau. Timbangan naik setelah makan bakso <b>bukan</b> plateau. Perempuan: berat naik 1-2 kg menjelang haid karena retensi air <b>bukan</b> plateau — bandingkan berat pada fase siklus yang sama. <b>Plateau sungguhan = rata-rata mingguan tidak bergerak selama 3 minggu berturut-turut, dengan lingkar pinggang yang juga diam.</b> Sebelum tiga minggu, jawabannya selalu sama: lanjutkan, ini fluktuasi air.</p>
+
+  <h3>Diagnosis berurutan — jangan lompat ke solusi</h3>
+  <p>Kalau plateau sungguhan terjadi, jalani urutan ini. Berhenti di langkah pertama yang menemukan masalah:</p>
+  <details><summary>Langkah 1 · Audit kejujuran kalori (penyebab #1 sejauh ini)</summary>
+    <div class="d-body"><p>Selama 5 hari, catat <em>semuanya</em> dengan menimbang: minyak masak, sambal kemasan, gigitan dari piring anak, susu di kopi, "nyicip" saat masak. Riset menunjukkan under-reporting bisa mencapai 30-50% — dan hampir semua plateau selesai di langkah ini. Kalau ternyata asupanmu memang sudah benar, lanjut.</p></div>
+  </details>
+  <details><summary>Langkah 2 · Recalibrate TDEE</summary>
+    <div class="d-body"><p>Kamu yang sekarang lebih ringan dari kamu 6 minggu lalu — dan tubuh yang lebih ringan membakar lebih sedikit. Turun 4 kg ≈ TDEE turun ±70-120 kkal. Hitung ulang di Kalkulator Suite dengan berat terbaru; defisitmu mungkin sudah menipis tanpa kamu sadari.</p></div>
+  </details>
+  <details><summary>Langkah 3 · Audit tidur &amp; stres</summary>
+    <div class="d-body"><p>Dua minggu terakhir tidur berapa jam? Sedang dikejar deadline? Kortisol tinggi = retensi air yang bisa menutupi fat loss 1-2 kg di timbangan. Kalau ini masalahnya, perbaiki tidur seminggu — sering kali timbangan "tiba-tiba" turun drastis (efek whoosh: air yang tertahan dilepas sekaligus).</p></div>
+  </details>
+  <details><summary>Langkah 4 · Naikkan gerak, bukan turunkan makan</summary>
+    <div class="d-body"><p>Insting semua orang: potong kalori lagi. Tahan dulu — di bawah kalori tertentu, kepatuhan dan hormon jadi taruhannya. Naikkan dulu sisi pengeluaran: +2.000 langkah/hari, tambah 1 sesi latihan, naik tangga. 150-200 kkal ekstra keluar per hari tanpa menyentuh piring.</p></div>
+  </details>
+  <details><summary>Langkah 5 · Diet break 1 minggu (senjata terakhir, dan bukan menyerah)</summary>
+    <div class="d-body"><p>Setelah 8+ minggu defisit, tubuh melakukan adaptasi: hormon tiroid dan leptin menurun, NEAT turun diam-diam. Solusi yang didukung riset: makan di <em>maintenance</em> (bukan surplus!) selama 1 minggu. Hormon pulih, kewarasan pulih, lalu defisit dilanjutkan dengan tubuh yang kembali responsif. Ini strategi, bukan kekalahan.</p></div>
+  </details>
+
+  <h3>FAQ troubleshooting cepat</h3>
+  <details><summary>"Berat turun tapi perut masih buncit?"</summary>
+    <div class="d-body"><p>Normal dan hampir universal. Urutan area pembakaran lemak ditentukan genetik, dan perut biasanya terakhir. Terus jalan; meteran pinggang akan bergerak sebelum matamu puas. Spot reduction tetap mitos — sit-up tidak mengubah urutan ini.</p></div>
+  </details>
+  <details><summary>"Minggu pertama turun 2 kg, minggu kedua cuma 0,5 kg. Melambat?"</summary>
+    <div class="d-body"><p>Sesuai rencana. Penurunan besar minggu pertama sebagian besar air + glikogen (setiap gram glikogen mengikat ±3 gram air). Mulai minggu kedua, penurunan 0,4-1 kg/minggu adalah kecepatan fat loss sungguhan — dan itulah yang kita mau.</p></div>
+  </details>
+  <details><summary>"Lapar banget terus-menerus, wajar?"</summary>
+    <div class="d-body"><p>Lapar ringan menjelang jam makan: wajar. Lapar mengganggu sepanjang hari: tidak — audit tiga hal: protein sudah 1,8 g/kg? Sayur sudah ½ piring? Tidur sudah 7 jam? Ketiganya adalah rem lapar alami. Kalau semua sudah benar dan tetap tersiksa, pindah dari defisit 500 ke 300 — lebih lambat sampai jauh lebih baik daripada cepat lalu berhenti.</p></div>
+  </details>
+  <details><summary>"Boleh pakai obat/teh diet biar cepat?"</summary>
+    <div class="d-body"><p>Teh "detox" dan pelangsing instan bekerja lewat efek laksatif dan diuretik — yang hilang air dan isi usus, bukan lemak, plus risiko elektrolit. Tubuhmu sudah punya sistem detox bernama hati dan ginjal, gratis. Untuk obat medis (mis. yang diresepkan dokter untuk obesitas), itu ranah konsultasi dokter — bukan keputusan dari ebook, dan tetap harus ditemani protokol makan-latihan ini agar hasilnya bertahan.</p></div>
+  </details>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 9</span>
+    <p>Plateau sungguhan butuh 3 minggu data untuk dinyatakan. Diagnosisnya berurutan: audit kejujuran kalori → hitung ulang TDEE → periksa tidur/stres → naikkan gerak → baru diet break. Memotong kalori lebih dalam adalah opsi terakhir, bukan refleks pertama.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 10 ============ -->
+<section class="chapter" id="bab10">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 10</span><span class="rule"></span><span class="part">Bagian III — Bertahan</span></div>
+    <h2>Peta 30 Hari, <em>Minggu demi Minggu</em></h2>
+    <p class="ch-lede">Sekarang semua komponen dirangkai jadi satu garis waktu. Bab ini memberitahumu persis apa yang harus dilakukan — dan apa yang akan kamu rasakan — di setiap minggu. Termasuk bagian tidak enaknya.</p>
+  </div>
+
+  <h3>Minggu 1 (Hari 1-7) — Kalibrasi</h3>
+  <p><b>Fokus:</b> pasang sistem, bukan kejar hasil. Hitung angkamu (Bab 3), mulai timbang pagi, catat makanan setiap hari (ini minggu wajib tracking), mulai latihan di level yang jujur, dan lakukan meal prep pertamamu.</p>
+  <p><b>Yang akan kamu rasakan:</b> semangat tinggi, sedikit canggung menakar porsi, dan mungkin sedikit lapar di sore hari saat tubuh menyesuaikan. <b>Timbangan:</b> turun cepat, bisa 1-1,5 kg — sebagian besar air dan glikogen. Nikmati, tapi jangan terpaku; ini bonus pembuka, bukan kecepatan sesungguhnya.</p>
+
+  <h3>Minggu 2 (Hari 8-14) — Friksi</h3>
+  <p><b>Fokus:</b> pertahankan sistem saat kebaruan mulai pudar. Naikkan latihan sedikit (progressive overload pertamamu), jadwalkan cheat meal pertama di akhir minggu, dan mulai perhatikan pola tidurmu dengan serius.</p>
+  <p><b>Yang akan kamu rasakan:</b> inilah minggu paling berbahaya secara psikologis. Penurunan melambat ke kecepatan sungguhan (0,4-0,8 kg), rasa spesial sudah hilang, dan suara "gini doang hasilnya?" mulai muncul. <b>Ini bukan tanda gagal — ini tanda transisi dari fase air ke fase lemak.</b> Semua orang melewati minggu ini; yang berhasil hanyalah yang tidak berhenti di sini.</p>
+
+  <h3>Minggu 3 (Hari 15-21) — Momentum</h3>
+  <p><b>Fokus:</b> sistem mulai terasa otomatis. Tracking boleh dilonggarkan kalau porsimu sudah terkalibrasi (banyak orang sudah hafal "harga" makanan favoritnya). Ukur lingkar pinggang — perbandingan dengan hari 1 biasanya jadi suntikan motivasi terbesar sejauh ini.</p>
+  <p><b>Yang akan kamu rasakan:</b> celana mulai longgar, energi lebih stabil dari sebelum mulai (banyak yang kaget soal ini), pujian pertama dari orang sekitar. Waspadai musuh baru: <b>kepercayaan diri berlebih</b> — "sudah keliatan hasilnya, longgarin dikit ah". Longgar sedikit yang tidak diukur adalah cara paling umum kehilangan minggu keempat.</p>
+
+  <h3>Minggu 4 (Hari 22-30) — Pembuktian</h3>
+  <p><b>Fokus:</b> selesaikan kuat. Jaga protokol persis seperti minggu 3, lakukan pengukuran akhir di hari 30 (berat rata-rata 3 hari terakhir, lingkar pinggang, foto dengan pose/cahaya sama seperti hari 1), dan baca Bab 11 sebelum hari 30 tiba — karena hari 31 butuh rencana.</p>
+  <p><b>Hasil yang realistis di hari 30:</b> turun 2-4 kg dengan komposisi yang benar (lemak, bukan otot), lingkar pinggang menyusut 3-6 cm, kekuatan naik satu level latihan, dan — paling berharga — kamu kini <em>tahu cara kerja tubuhmu sendiri.</em> Angka itu tidak bisa dicuri siapa pun.</p>
+
+  <h3>Checklist harian — 6 hal, setiap hari</h3>
+  <p>Semua bab dipadatkan jadi enam kotak. Centang yang sudah jadi kebiasaanmu hari ini:</p>
+  <div class="check" data-ck="d1"><div class="box">✓</div><div class="c-body"><b>Kalori dalam target (±100 kkal)</b>Formula piring 2-1-1 di setiap makan besar.</div></div>
+  <div class="check" data-ck="d2"><div class="box">✓</div><div class="c-body"><b>Protein tercapai</b>1,8 g per kg berat badan, tersebar di 3-4 slot makan.</div></div>
+  <div class="check" data-ck="d3"><div class="box">✓</div><div class="c-body"><b>Latihan 15 menit ATAU 8.000+ langkah</b>Minimal satu dari keduanya, idealnya keduanya.</div></div>
+  <div class="check" data-ck="d4"><div class="box">✓</div><div class="c-body"><b>Minuman tanpa gula sepanjang hari</b>Air, teh tawar, kopi hitam. Kalori dicadangkan untuk makanan yang mengenyangkan.</div></div>
+  <div class="check" data-ck="d5"><div class="box">✓</div><div class="c-body"><b>Tidur 7+ jam semalam</b>Hormon laparmu diprogram ulang malam ini.</div></div>
+  <div class="check" data-ck="d6"><div class="box">✓</div><div class="c-body"><b>Timbang &amp; catat pagi ini</b>10 detik yang membuat seluruh protokol bisa dievaluasi.</div></div>
+
+  <div class="callout gold">
+    <span class="cl-t">Pakai Tools-mu</span>
+    <p>Versi 30 hari penuh dari checklist ini — dengan matriks habit, streak counter, dan grafik berat — ada di <b>Training &amp; Progress Hub</b>. Lima menit tiap malam untuk mencentang adalah ritual penutup hari yang mengikat semuanya.</p>
+  </div>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 10</span>
+    <p>Minggu 1 kalibrasi (turun cepat: air), minggu 2 friksi (melambat: normal — jangan berhenti), minggu 3 momentum (hasil terlihat — jangan lengah), minggu 4 pembuktian. Enam checklist harian adalah seluruh protokol dalam bentuk paling padat.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 11 ============ -->
+<section class="chapter" id="bab11">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">Bab 11</span><span class="rule"></span><span class="part">Bagian III — Bertahan</span></div>
+    <h2>Setelah <em>Hari ke-30</em></h2>
+    <p class="ch-lede">Menurunkan berat badan adalah proyek 30 hari. Mempertahankannya adalah keterampilan seumur hidup — dan inilah bagian yang tidak diajarkan diet manapun yang berakhir dengan efek yoyo.</p>
+  </div>
+
+  <h3>Hari 31: tiga jalan</h3>
+  <div class="grid2">
+    <div class="tile"><div class="t-h">Lanjut cutting</div><p>Kalau targetmu belum tercapai dan kamu masih nyaman: lanjutkan protokol yang sama dengan TDEE yang dihitung ulang (beratmu sudah berubah). Setelah total 8-12 minggu defisit, jadwalkan diet break seminggu.</p></div>
+    <div class="tile"><div class="t-h">Reverse diet ke maintenance</div><p>Kalau target tercapai: naikkan kalori bertahap +100-150 kkal per minggu sampai berat stabil di angka baru. Kenaikan mendadak ke pola lama = rebound klasik; kenaikan bertahap = tubuh menyesuaikan tanpa menimbun.</p></div>
+    <div class="tile"><div class="t-h">Recomp santai</div><p>Makan di maintenance, protein tetap tinggi, latihan terus naik level. Berat stabil tapi komposisi terus membaik — celana makin longgar di berat yang sama. Jalur terbaik untuk jangka panjang.</p></div>
+    <div class="tile"><div class="t-h">Yang bukan pilihan</div><p>"Sudah selesai diet, balik normal." Pola makan lama menghasilkan berat badan lama — itu bukan opini, itu aritmetika. Kabar baiknya: kamu tidak akan mau kembali; rasanya sudah tidak seperti "normal"-mu lagi.</p></div>
+  </div>
+
+  <h3>Aturan 80/20 untuk selamanya</h3>
+  <p>Maintenance bukan diet abadi — ia kelonggaran yang terstruktur: <b>80% makananmu patuh pola protokol</b> (piring 2-1-1, protein cukup, minuman tawar), <b>20% bebas dinikmati</b> tanpa perhitungan dan tanpa rasa bersalah. Praktisnya dari ±35 kali makan seminggu, sekitar 7 boleh sepenuhnya bebas. Cukup untuk semua bakso, martabak, dan kondangan dalam hidupmu — terlalu sedikit untuk menggagalkanmu.</p>
+
+  <h3>Sistem alarm dini</h3>
+  <p>Yang membuat berat kembali bukan satu martabak — tapi tiga bulan tanpa data. Pasang tiga alarm ini selamanya:</p>
+  <ul>
+    <li><b>Timbang tetap 2-3× seminggu.</b> Ritual 10 detik yang membuat kenaikan tertangkap saat masih 1 kg, bukan saat sudah 6 kg.</li>
+    <li><b>Garis merah +2 kg.</b> Rata-rata mingguan melewati berat target +2 kg → jalankan protokol penuh selama 2 minggu. Selalu cukup kalau ditangkap dini.</li>
+    <li><b>Celana penguji.</b> Satu celana pas di berat targetmu. Mulai sesak = data, bahkan tanpa timbangan.</li>
+  </ul>
+
+  <h3>Empat sabotase maintenance</h3>
+  <ol>
+    <li><b>Kalori cair merayap balik.</b> Es teh manis kembali jadi default → +230 kkal/hari diam-diam ≈ 1 kg per 5 minggu. Minuman tawar adalah kebiasaan yang paling layak dijaga seumur hidup.</li>
+    <li><b>Berhenti latihan total.</b> Otot yang dibangun adalah "mesin"-mu; membiarkannya hilang menurunkan TDEE dan mengundang berat kembali. 2× seminggu saja sudah mempertahankan mayoritas hasilmu.</li>
+    <li><b>"Sekali ini saja" yang menjadi identitas.</b> Sekali jelas bukan masalah. Tapi saat "sekali" terjadi tiap hari, itu bukan pengecualian lagi — itu pola baru. Bedakan keduanya dengan data, bukan perasaan.</li>
+    <li><b>Momen hidup besar tanpa rencana.</b> Pindah kerja, menikah, punya anak, Ramadan-Lebaran — semua mengacak rutinitas. Tidak apa-apa naik 1-2 kg di masa transisi; yang penting alarm dini tetap menyala dan protokol siap diaktifkan kembali. Kamu sudah pernah melakukannya sekali; kedua kalinya selalu lebih mudah.</li>
+  </ol>
+
+  <div class="callout key">
+    <span class="cl-t">Inti Bab 11</span>
+    <p>Hari 31 punya tiga jalan sah: lanjut cutting, reverse ke maintenance, atau recomp — "kembali normal" bukan salah satunya. Hidup jangka panjang memakai 80/20, dijaga tiga alarm dini. Berat badan ideal bukan garis finis; ia efek samping dari sistem yang terus berjalan.</p>
+  </div>
+
+  <div class="pull">"Kamu tidak sedang menyelesaikan diet. Kamu sedang menjadi orang yang tidak lagi membutuhkannya."</div>
+</section>
+
+<!-- ============ GLOSARIUM ============ -->
+<section class="chapter" id="glosarium">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">✦</span><span class="rule"></span><span class="part">Referensi</span></div>
+    <h2>Glosarium <em>Interaktif</em></h2>
+    <p class="ch-lede">40+ istilah diet, nutrisi, dan training — dijelaskan tanpa jargon. Ketik untuk mencari; daftar tersaring seketika.</p>
+  </div>
+
+  <div class="gl-search">
+    <input id="glq" type="search" placeholder="Cari istilah… (TDEE, defisit, plateau, whey…)" autocomplete="off">
+    <span class="n" id="gln">44 istilah</span>
+  </div>
+
+  <div class="gl-cat">Kalori &amp; Energi</div>
+  <div class="term"><div class="tn">TDEE <i>Total Daily Energy Expenditure</i></div><div class="td">Total kalori yang dibakar tubuh per hari: BMR + aktivitas + efek termal makanan. Patokan utama menentukan target diet. Contoh: TDEE 2.000 − defisit 500 = target <code>1.500 kkal</code>.</div></div>
+  <div class="term"><div class="tn">BMR <i>Basal Metabolic Rate</i></div><div class="td">Kalori yang dibakar saat istirahat total — biaya operasional organ. Menyumbang 60-70% TDEE. Diestimasi dengan rumus <code>Mifflin-St Jeor</code>.</div></div>
+  <div class="term"><div class="tn">Defisit Kalori</div><div class="td">Makan di bawah TDEE agar tubuh memakai cadangan lemak. Rentang sehat: <code>300-500 kkal/hari</code> ≈ turun 0,3-0,5 kg/minggu. Defisit &gt;800 berisiko kehilangan otot dan gagal patuh.</div></div>
+  <div class="term"><div class="tn">Surplus Kalori</div><div class="td">Makan di atas TDEE untuk menambah massa. Lean bulk: +200-300 kkal dengan latihan beban agar mayoritas kenaikan berupa otot.</div></div>
+  <div class="term"><div class="tn">Maintenance</div><div class="td">Makan ≈ TDEE (±100 kkal); berat stabil. Fase tujuan setelah cutting selesai, dan rumah dari body recomposition.</div></div>
+  <div class="term"><div class="tn">NEAT <i>Non-Exercise Activity Thermogenesis</i></div><div class="td">Kalori dari semua gerakan non-olahraga: jalan, naik tangga, beres-beres. Bisa berbeda ratusan kkal antar orang — sering lebih menentukan daripada sesi olahraga itu sendiri.</div></div>
+  <div class="term"><div class="tn">TEF <i>Thermic Effect of Food</i></div><div class="td">Kalori yang terbakar untuk mencerna makanan. Protein tertinggi (<code>20-30%</code>), karbo 5-10%, lemak 0-3% — satu alasan lagi diet tinggi protein unggul.</div></div>
+  <div class="term"><div class="tn">kkal vs kal</div><div class="td">"Kalori" pada label makanan = kilokalori (kkal). 1 kkal = 1.000 kalori kecil = 4,184 kJ. Semua angka di buku ini memakai kkal.</div></div>
+  <div class="term"><div class="tn">Efek Whoosh</div><div class="td">Fenomena timbangan datar berminggu-minggu lalu tiba-tiba turun drastis — air yang tertahan (sering karena stres/kurang tidur) dilepas sekaligus. Alasan lain untuk menilai per minggu, bukan per hari.</div></div>
+
+  <div class="gl-cat">Strategi Diet</div>
+  <div class="term"><div class="tn">Cutting</div><div class="td">Fase penurunan lemak: defisit moderat + protein tinggi + latihan beban. Durasi wajar <code>8-16 minggu</code>, lalu diet break atau maintenance.</div></div>
+  <div class="term"><div class="tn">Bulking / Lean Bulk</div><div class="td">Fase penambahan otot lewat surplus kalori + latihan beban progresif. "Lean" berarti surplus kecil demi meminimalkan penambahan lemak.</div></div>
+  <div class="term"><div class="tn">Body Recomposition</div><div class="td">Turun lemak dan naik otot bersamaan. Paling terasa pada pemula, orang yang kembali latihan, dan pemilik lemak tubuh tinggi. Resep: kalori sekitar maintenance/defisit tipis + protein tinggi + latihan beban.</div></div>
+  <div class="term"><div class="tn">Refeed Day</div><div class="td">Satu hari di tengah cutting dengan kalori dinaikkan ke maintenance (utamanya dari karbo) untuk memulihkan glikogen dan kepatuhan psikologis.</div></div>
+  <div class="term"><div class="tn">Diet Break</div><div class="td">1-2 minggu makan di maintenance setelah 8-12 minggu defisit. Memulihkan hormon dan motivasi; bagian dari strategi, bukan menyerah. Lihat Bab 9.</div></div>
+  <div class="term"><div class="tn">Intermittent Fasting (IF)</div><div class="td">Pola makan berjendela waktu, mis. <code>16:8</code>. Alat kepatuhan, bukan sihir metabolik — hasil setara diet biasa saat total kalori sama.</div></div>
+  <div class="term"><div class="tn">Carb Cycling</div><div class="td">Variasi karbo harian mengikuti jadwal latihan: hari latihan berat = karbo tinggi, hari istirahat = rendah. Opsional; menambah kerumitan tanpa keunggulan besar bagi pemula.</div></div>
+  <div class="term"><div class="tn">Cheat Meal vs Cheat Day</div><div class="td">Satu makan bebas terjadwal (aman, dianggarkan) vs satu hari penuh bebas (mampu menghapus defisit seminggu). Protokol ini hanya mengenal yang pertama. Lihat Bab 8.</div></div>
+  <div class="term"><div class="tn">Weight Cycling / Efek Yoyo</div><div class="td">Siklus turun-naik berat akibat diet ekstrem tanpa fase maintenance. Dicegah dengan defisit moderat, reverse diet, dan aturan 80/20.</div></div>
+  <div class="term"><div class="tn">Reverse Diet</div><div class="td">Menaikkan kalori bertahap (+100-150 kkal/minggu) dari defisit menuju maintenance baru, memberi tubuh waktu beradaptasi tanpa menimbun lemak.</div></div>
+  <div class="term"><div class="tn">Aturan 80/20</div><div class="td">Kerangka maintenance: 80% makan mengikuti pola protokol, 20% bebas tanpa perhitungan. Struktur yang membuat "seimbang" jadi terukur.</div></div>
+
+  <div class="gl-cat">Protein &amp; Makro</div>
+  <div class="term"><div class="tn">Macronutrients (Macros)</div><div class="td">Tiga nutrisi penyumbang kalori: protein (4 kkal/g), karbohidrat (4 kkal/g), lemak (9 kkal/g). Kalori menentukan berat; macros menentukan komposisi dan rasa kenyang.</div></div>
+  <div class="term"><div class="tn">Protein per kg</div><div class="td">Standar asupan protein harian. Rentang optimal massa otot: <code>1,6-2,2 g/kg</code> (Morton dkk., 2018); saat cutting ambil sisi atas. Protokol ini: 1,8 g/kg.</div></div>
+  <div class="term"><div class="tn">Lantai Lemak</div><div class="td">Asupan lemak minimum untuk kesehatan hormonal: <code>0,8-1 g/kg</code>. Di bawah itu berkepanjangan → gangguan hormon, mood, siklus haid.</div></div>
+  <div class="term"><div class="tn">MPS <i>Muscle Protein Synthesis</i></div><div class="td">Proses pembentukan protein otot. Dimaksimalkan dengan 25-40 g protein per makan, tersebar 3-5 kali sehari, plus latihan beban.</div></div>
+  <div class="term"><div class="tn">Whey Protein</div><div class="td">Suplemen protein dari susu, cepat serap. Alat bantu praktis mencapai target — bukan kewajiban jika protein dari makanan sudah cukup.</div></div>
+  <div class="term"><div class="tn">Kasein</div><div class="td">Protein susu lambat serap (±8 jam) — cocok sebelum tidur atau untuk rasa kenyang panjang.</div></div>
+  <div class="term"><div class="tn">DIAAS / PDCAAS</div><div class="td">Skor kualitas protein. Telur, whey, daging, ikan ≈ skor tertinggi; protein nabati lebih rendah sendiri-sendiri — kombinasikan (tempe + nasi) untuk profil asam amino lengkap.</div></div>
+  <div class="term"><div class="tn">Serat</div><div class="td">Karbohidrat tak tercerna yang memperlambat pengosongan lambung → kenyang lebih lama, gula darah stabil. Target ±25-35 g/hari dari sayur, buah, biji utuh.</div></div>
+  <div class="term"><div class="tn">Net Carbs</div><div class="td">Total karbo dikurangi serat; relevan terutama untuk pelaku keto. Untuk protokol ini, total karbo biasa sudah memadai.</div></div>
+  <div class="term"><div class="tn">Glikogen</div><div class="td">Cadangan karbo di otot dan hati. Tiap gramnya mengikat ±3 g air — penjelasan kenapa berat melonjak setelah makan besar karbo dan anjlok di awal diet. Bukan lemak.</div></div>
+
+  <div class="gl-cat">Training &amp; Cardio</div>
+  <div class="term"><div class="tn">Resistance Training</div><div class="td">Latihan beban (termasuk beban tubuh). Sinyal utama agar tubuh mempertahankan otot saat defisit — tanpa ini, berat yang hilang ikut membawa otot.</div></div>
+  <div class="term"><div class="tn">Progressive Overload</div><div class="td">Menaikkan tuntutan latihan secara bertahap (rep, durasi, tempo, level gerakan). Satu-satunya aturan latihan yang wajib di protokol ini.</div></div>
+  <div class="term"><div class="tn">LISS <i>Low-Intensity Steady State</i></div><div class="td">Cardio santai berdurasi (jalan cepat, sepeda santai 30-60 menit). Ramah recovery dan minim eat-back — cardio default protokol ini.</div></div>
+  <div class="term"><div class="tn">HIIT <i>High-Intensity Interval Training</i></div><div class="td">Interval intens-istirahat. Efisien waktu, tapi biaya recovery tinggi — batasi jika digabung latihan beban dan tidur belum beres.</div></div>
+  <div class="term"><div class="tn">EPOC <i>Afterburn</i></div><div class="td">Pembakaran ekstra pasca latihan intens. Nyata tapi kecil: ±<code>5-10%</code> dari kalori sesi — bukan 50% seperti klaim iklan.</div></div>
+  <div class="term"><div class="tn">Zone 2</div><div class="td">Intensitas cardio 60-70% detak jantung maksimal — masih bisa mengobrol. Zona optimal kesehatan mitokondria dan oksidasi lemak.</div></div>
+  <div class="term"><div class="tn">DOMS</div><div class="td">Nyeri otot 24-72 jam pasca latihan baru. Normal, mereda seiring adaptasi; bukan ukuran kualitas latihan, dan bukan alasan berhenti — gerak ringan justru mempercepat pulih.</div></div>
+  <div class="term"><div class="tn">Skinny-fat</div><div class="td">Berat normal tapi lemak tinggi dan otot minim — hasil khas diet tanpa latihan beban dan protein. Jawabannya body recomposition, bukan defisit lebih dalam.</div></div>
+
+  <div class="gl-cat">Hormon &amp; Pemulihan</div>
+  <div class="term"><div class="tn">Ghrelin</div><div class="td">Hormon lapar dari lambung. Melonjak saat kurang tidur — penjelasan biologis craving pasca begadang.</div></div>
+  <div class="term"><div class="tn">Leptin</div><div class="td">Hormon kenyang dari sel lemak. Menurun saat defisit panjang dan kurang tidur; dipulihkan lewat tidur cukup, refeed, dan diet break.</div></div>
+  <div class="term"><div class="tn">Kortisol</div><div class="td">Hormon stres. Kronis tinggi → nafsu makan naik, retensi air, dorongan penyimpanan lemak perut. Dikelola lewat tidur, jeda, dan gerakan.</div></div>
+  <div class="term"><div class="tn">Adaptasi Metabolik</div><div class="td">Penurunan pengeluaran energi melampaui prediksi saat defisit panjang (NEAT turun, hormon menyesuaikan). Nyata tapi sering dibesar-besarkan; jawabannya diet break, bukan panik.</div></div>
+
+  <div class="gl-cat">Mitos yang Sudah Tumbang</div>
+  <div class="term"><div class="tn">Anabolic Window</div><div class="td">❌ Mitos "wajib protein 30 menit pasca gym". Total protein harian jauh lebih menentukan; jendela sesungguhnya fleksibel berjam-jam.</div></div>
+  <div class="term"><div class="tn">Spot Reduction</div><div class="td">❌ Mitos membakar lemak di area spesifik lewat latihan area itu. Urutan area penurunan lemak ditentukan genetik; sit-up membangun otot perut, bukan membakar lemak perut.</div></div>
+  <div class="term"><div class="tn">Detox Tea / Juice Cleanse</div><div class="td">❌ Marketing. Tubuh punya sistem detox bernama hati &amp; ginjal. Berat yang "turun" dari produk ini = air dan isi usus.</div></div>
+  <div class="term"><div class="tn">Karbo Bikin Gemuk</div><div class="td">❌ Surplus kalori yang bikin gemuk. Miliaran manusia bertubuh sehat dengan pola makan tinggi karbo — porsi dan total yang menentukan.</div></div>
+  <div class="term"><div class="tn">Makan Malam Bikin Gemuk</div><div class="td">❌ Total kalori harian yang relevan, bukan jam. Makan malam dalam anggaran = aman; melewatkannya lalu kalap jam 22.00 = tidak.</div></div>
+  <div class="term"><div class="tn">Makan 6× Sehari Membakar Lebih</div><div class="td">❌ Efek termal makanan mengikuti total, bukan frekuensi. 3× atau 6× sehari setara jika kalorinya sama — pilih yang membuatmu paling patuh.</div></div>
+</section>
+
+<!-- ============ PENUTUP ============ -->
+<section class="chapter" id="penutup">
+  <div class="ch-head">
+    <div class="ch-kicker"><span class="num">✦</span><span class="rule"></span><span class="part">Penutup</span></div>
+    <h2>Mulai <em>Hari Ini</em></h2>
+    <p class="ch-lede">Pengetahuan yang tidak dieksekusi hanyalah hiburan. Ini lima langkah pertamamu — bisa selesai sebelum tidur malam ini.</p>
+  </div>
+
+  <div class="check" data-ck="go1"><div class="box">✓</div><div class="c-body"><b>Hitung 4 angkamu (10 menit)</b>Kalkulator di Bab 3 atau bonus Kalkulator Suite: kalori target, protein, lemak, karbo. Tulis di catatan HP.</div></div>
+  <div class="check" data-ck="go2"><div class="box">✓</div><div class="c-body"><b>Siapkan timbangan di tempat terlihat (2 menit)</b>Besok pagi: bangun → toilet → timbang → catat. Hari pertama datamu dimulai.</div></div>
+  <div class="check" data-ck="go3"><div class="box">✓</div><div class="c-body"><b>Bersihkan satu pemicu dari rumah (5 menit)</b>Pilih satu: minuman manis, kerupuk sebelah TV, atau stok gorengan. Satu saja — sisanya menyusul.</div></div>
+  <div class="check" data-ck="go4"><div class="box">✓</div><div class="c-body"><b>Rencanakan 3 makan besok dari template Bab 5 (5 menit)</b>Besok tidak boleh ada pertanyaan "makan apa ya?" — itu celah tempat gofood masuk.</div></div>
+  <div class="check" data-ck="go5"><div class="box">✓</div><div class="c-body"><b>Jadwalkan latihan pertama (1 menit)</b>Pasang alarm 15 menit untuk besok. Level 1 pun dihitung. Yang penting janjinya ditepati.</div></div>
+
+  <div class="book-end">
+    <div class="f-t">30 hari dari sekarang,<br>kamu akan berterima kasih<br>pada dirimu yang <em>malam ini</em>.</div>
+    <p>Protokol Langsing 30 Hari — Diet Evidence-Based untuk Turun 2-4 Kg Sebulan. Sampai jumpa di hari ke-30.</p>
+  </div>
+</section>
+
+</div><!-- /.page -->
+</main>
+</div><!-- /.shell -->
+
+<script>
+// ===== Nav drawer =====
+function toggleNav(){document.body.classList.toggle('nav-open')}
+document.querySelectorAll('.sb-nav a').forEach(a=>a.addEventListener('click',()=>{
+  if(window.innerWidth<=1080)document.body.classList.remove('nav-open');
+}));
+
+// ===== Reading progress =====
+const prog=document.getElementById('progress');
+function onScroll(){
+  const h=document.documentElement;
+  const max=h.scrollHeight-h.clientHeight;
+  prog.style.width=(max>0?(h.scrollTop/max)*100:0)+'%';
+}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// ===== Scrollspy =====
+const links=[...document.querySelectorAll('.sb-nav a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spy=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>spy.observe(s));
+
+// ===== Persisted checklists =====
+const CK_KEY='pl30-checks';
+function ckState(){try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}')}catch(e){return{}}}
+document.querySelectorAll('.check').forEach(el=>{
+  const id=el.dataset.ck;
+  if(ckState()[id])el.classList.add('on');
+  el.addEventListener('click',()=>{
+    const s=ckState();
+    el.classList.toggle('on');
+    if(el.classList.contains('on'))s[id]=1;else delete s[id];
+    try{localStorage.setItem(CK_KEY,JSON.stringify(s))}catch(e){}
+  });
+});
+
+// ===== Inline calculator (Bab 3) =====
+const $=id=>document.getElementById(id);
+function calc(){
+  const m=$('cGender').value==='m';
+  const age=+$('cAge').value||0,h=+$('cH').value||0,w=+$('cW').value||0;
+  const act=+$('cAct').value,def=+$('cDef').value;
+  if(!age||!h||!w){return}
+  const bmr=m?10*w+6.25*h-5*age+5:10*w+6.25*h-5*age-161;
+  const tdee=bmr*act, goal=Math.max(1000,tdee-def);
+  const prot=Math.round(w*1.8), fat=Math.round(w*0.8);
+  const carb=Math.max(0,Math.round((goal-prot*4-fat*9)/4));
+  $('oBmr').textContent=Math.round(bmr);
+  $('oTdee').textContent=Math.round(tdee);
+  $('oGoal').textContent=Math.round(goal);
+  $('oProt').innerHTML=prot+' <small>g</small>';
+  $('oFat').innerHTML=fat+' <small>g</small>';
+  $('oCarb').innerHTML=carb+' <small>g</small>';
+}
+['cGender','cAge','cH','cW','cAct','cDef'].forEach(id=>{
+  $(id).addEventListener('input',calc);$(id).addEventListener('change',calc);
+});
+calc();
+
+// ===== Glossary search =====
+const glq=$('glq'),terms=[...document.querySelectorAll('.term')],cats=[...document.querySelectorAll('.gl-cat')];
+function glFilter(){
+  const q=glq.value.toLowerCase().trim();let n=0;
+  terms.forEach(t=>{
+    const hit=!q||t.textContent.toLowerCase().includes(q);
+    t.classList.toggle('hide',!hit);if(hit)n++;
+  });
+  cats.forEach(c=>{
+    let el=c.nextElementSibling,any=false;
+    while(el&&el.classList.contains('term')){if(!el.classList.contains('hide'))any=true;el=el.nextElementSibling}
+    c.style.display=any?'':'none';
+  });
+  $('gln').textContent=n+' istilah';
+}
+glq.addEventListener('input',glFilter);glFilter();
+</script>
+</body></html>
